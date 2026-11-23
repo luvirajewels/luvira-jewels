@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,18 +41,182 @@ header { background:var(--black); color:white; text-align:center; padding:24px 1
 .pagination { display:flex; justify-content:center; align-items:center; gap:15px; padding:30px 0; }
 .pagination button { padding:10px 20px; background:var(--black); color:var(--gold); border:0; cursor:pointer; }
 .pagination button:disabled { opacity:.35; cursor:not-allowed; }
-.modal { display:none; position:fixed; inset:0; z-index:10; background:#000b; overflow-y:auto; padding:20px; -webkit-overflow-scrolling:touch; }
-.modal-box { background:white; max-width:650px; width:100%; margin:30px auto; padding:25px; position:relative; }
-.close { position:absolute; right:15px; top:12px; font-size:28px; cursor:pointer; }
-.modal h2 { font-family:Georgia,serif; padding-right:25px; }
-.modal p { line-height:1.7; font-size:14px; }
-#modal-links img,#modal-links iframe { display:block; max-width:100%; }
+
+.modal { display:none; position:fixed; inset:0; z-index:1000; background:#000b; overflow-y:auto; padding:18px; -webkit-overflow-scrolling:touch; }
+.modal-box { background:white; max-width:1450px; width:100%; margin:18px auto; padding:30px; position:relative; border-radius:10px; max-height:calc(100vh - 36px); overflow-y:auto; -webkit-overflow-scrolling:touch; }
+
+.product-view .close {
+  position:sticky;
+  float:right;
+  top:0;
+  right:0;
+  z-index:5;
+  width:38px;
+  height:38px;
+  border:1px solid #e7dfcf;
+  border-radius:50%;
+  background:#fff;
+  line-height:30px;
+  text-align:center;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.product-gallery {
+  display:grid;
+  grid-template-columns:78px minmax(0,1fr) minmax(280px,350px);
+  gap:22px;
+  align-items:start;
+  clear:both;
+}
+
+.gallery-thumbs {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:680px;
+  overflow-y:auto;
+  padding:2px;
+}
+
+.gallery-thumb {
+  width:68px;
+  height:68px;
+  flex:0 0 68px;
+  padding:3px;
+  border:1px solid #ded8ce;
+  border-radius:7px;
+  background:#fff;
+  cursor:pointer;
+}
+
+.gallery-thumb.active { border:2px solid var(--gold); }
+.gallery-thumb img { width:100%; height:100%; object-fit:contain; }
+
+.gallery-stage {
+  min-width:0;
+  min-height:540px;
+  height:min(65vw,680px);
+  max-height:680px;
+  background:#f7f6f3;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.gallery-stage img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.gallery-arrow {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:38px;
+  height:38px;
+  border:1px solid #ddd;
+  border-radius:50%;
+  background:#ffffffd9;
+  color:#171512;
+  font-size:22px;
+  cursor:pointer;
+}
+.gallery-arrow.prev { left:12px; }
+.gallery-arrow.next { right:12px; }
+
+.gallery-info { padding:8px 4px; }
+.gallery-info h2 {
+  font-family:Georgia,serif;
+  font-size:30px;
+  line-height:1.25;
+  margin:8px 0 18px;
+  color:#171512;
+}
+.gallery-info p { font-size:14px; line-height:1.6; margin:8px 0; }
+
+.gallery-kicker {
+  color:#9a793e;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.gallery-colour-title { margin:24px 0 10px; font-size:14px; font-weight:bold; }
+.gallery-colours { display:flex; gap:10px; flex-wrap:wrap; }
+
+.gallery-colour {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid #d8d2c8;
+  background:#fff;
+  padding:9px 11px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:12px;
+}
+.gallery-colour.active { border:2px solid var(--gold); background:#fffaf0; }
+
+.colour-swatch { width:17px; height:17px; border-radius:50%; border:1px solid #aaa; display:inline-block; }
+.swatch-yl { background:linear-gradient(135deg,#fff1a8,#c99b24); }
+.swatch-wh { background:linear-gradient(135deg,#fff,#aeb4bb); }
+.swatch-rs { background:linear-gradient(135deg,#f7d1bd,#b8795c); }
+.swatch-pt { background:linear-gradient(135deg,#eee,#85898e); }
+
+.gallery-media-note { color:#927b56; font-size:12px !important; }
+
+.product-full-details {
+  margin-top:34px;
+  padding-top:25px;
+  border-top:1px solid #e8e2d8;
+}
+.product-full-details h3 {
+  font-family:Georgia,serif;
+  font-size:26px;
+  margin:0 0 18px;
+}
+
+.product-detail-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.product-detail-item {
+  background:#faf8f3;
+  border:1px solid #eee7da;
+  padding:15px;
+  min-width:0;
+}
+.product-detail-item strong { display:block; font-size:12px; color:#8c7449; margin-bottom:7px; }
+.product-detail-item span { font-size:14px; overflow-wrap:anywhere; }
+
+.product-video-section { margin-top:28px; }
+.product-video-section h3 { font-family:Georgia,serif; font-size:22px; }
+.product-video-section iframe { width:min(100%,700px); aspect-ratio:16/9; border:0; display:block; margin:12px 0; }
+
 footer { background:var(--black); color:#c7b58e; text-align:center; padding:25px 10px; margin-top:35px; font-size:12px; letter-spacing:1px; }
 
 @media(max-width:1000px) {
   .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
   .categories { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
+
+@media(max-width:900px) {
+  .modal-box { padding:20px; }
+  .product-gallery { grid-template-columns:64px minmax(0,1fr); gap:14px; }
+  .gallery-thumbs { grid-column:1; grid-row:1; }
+  .gallery-stage { grid-column:2; grid-row:1; min-height:420px; height:58vw; }
+  .gallery-info { grid-column:1 / -1; grid-row:2; }
+  .gallery-info h2 { font-size:26px; }
+  .product-detail-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
 @media(max-width:700px) {
   .container { padding:18px 12px; }
   .logo { letter-spacing:3px; }
@@ -66,11 +229,31 @@ footer { background:var(--black); color:#c7b58e; text-align:center; padding:25px
   .toolbar { gap:12px; }
   .toolbar h2 { font-size:21px; }
   .search { width:100%; }
-  .modal { padding:10px; }
-  .modal-box { margin:10px auto; padding:18px; }
-  .modal h2 { font-size:22px; }
-  .modal p { font-size:14px; }
 }
+
+@media(max-width:560px) {
+  .modal { padding:0; }
+  .modal-box {
+    margin:0;
+    min-height:100%;
+    max-height:100%;
+    border-radius:0;
+    padding:14px;
+  }
+  .product-gallery { grid-template-columns:54px minmax(0,1fr); gap:9px; }
+  .gallery-thumbs { gap:7px; max-height:390px; }
+  .gallery-thumb { width:50px; height:50px; flex-basis:50px; }
+  .gallery-stage { min-height:300px; height:88vw; max-height:480px; }
+  .gallery-info h2 { font-size:23px; }
+  .gallery-info p { font-size:13px; }
+  .gallery-colour { padding:8px 9px; font-size:11px; }
+  .product-full-details { margin-top:24px; padding-top:20px; }
+  .product-full-details h3 { font-size:22px; }
+  .product-detail-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .product-detail-item { padding:11px; }
+  .product-detail-item span { font-size:12px; }
+}
+
 @media(max-width:350px) {
   .categories { grid-template-columns:repeat(2,1fr); }
   .grid { gap:7px; }
@@ -80,6 +263,7 @@ footer { background:var(--black); color:#c7b58e; text-align:center; padding:25px
 </head>
 
 <body>
+
 <header>
   <div class="logo">LUVIRA JEWELS</div>
   <div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
@@ -114,12 +298,12 @@ footer { background:var(--black); color:#c7b58e; text-align:center; padding:25px
 
 <footer>LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION</footer>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <span class="close" id="close">&times;</span>
-    <h2 id="modal-name"></h2>
-    <div id="modal-details"></div>
-    <div id="modal-links"></div>
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-box product-view">
+    <button class="close" id="close" type="button" aria-label="Close">&times;</button>
+    <div id="modal-content">
+      <div class="status">Loading product...</div>
+    </div>
   </div>
 </div>
 
@@ -464,38 +648,183 @@ function renderProducts() {
 }
 
 
-// PRODUCT DETAILS
+// PRODUCT DETAILS: IMAGE GALLERY + COLOUR SWITCHER
+
+let activeProductMedia = {
+  product: null,
+  images: [],
+  videos: [],
+  colourGroups: {},
+  colour: "",
+  index: 0
+};
+
+const PRODUCT_COLOURS = {
+  YL: { label:"Yellow Gold", swatch:"swatch-yl" },
+  WH: { label:"White Gold", swatch:"swatch-wh" },
+  RS: { label:"Rose Gold", swatch:"swatch-rs" },
+  PT: { label:"Platinum", swatch:"swatch-pt" }
+};
+
+function getImageColour(filename) {
+  const name = String(filename || "").toUpperCase();
+  const match = name.match(/-(YL|WH|RS|PT)-/);
+  return match ? match[1] : "OTHER";
+}
+
+function makeSafeText(value) {
+  return String(value == null || value === "" ? "-" : value);
+}
+
+function renderProductGallery() {
+  const p = activeProductMedia.product;
+  const images = activeProductMedia.colourGroups[activeProductMedia.colour] || [];
+  const current = images[activeProductMedia.index] || images[0] || null;
+  const content = document.getElementById("modal-content");
+
+  const colourButtons = Object.keys(activeProductMedia.colourGroups)
+    .filter(code => code !== "OTHER" && activeProductMedia.colourGroups[code].length)
+    .map(code => {
+      const meta = PRODUCT_COLOURS[code] || {label:code,swatch:"swatch-pt"};
+      return `<button type="button" class="gallery-colour ${activeProductMedia.colour === code ? "active" : ""}" data-colour="${code}">
+        <span class="colour-swatch ${meta.swatch}"></span>${meta.label}
+      </button>`;
+    }).join("");
+
+  const thumbs = images.map((item,index) => `
+    <button type="button" class="gallery-thumb ${index === activeProductMedia.index ? "active" : ""}" data-image-index="${index}" aria-label="View image ${index+1}">
+      <img src="${item.url}" alt="${makeSafeText(item.name)}">
+    </button>`).join("");
+
+  content.innerHTML = `
+    <div class="product-gallery">
+      <div class="gallery-thumbs">${thumbs || '<div class="gallery-media-note">No photos</div>'}</div>
+
+      <div class="gallery-stage" id="gallery-stage">
+        ${current ? `<img id="gallery-main-image" alt="${makeSafeText(p.name)}">` : '<div class="status">No product images found for this colour.</div>'}
+        ${images.length > 1 ? `
+          <button type="button" class="gallery-arrow prev" id="gallery-prev" aria-label="Previous image">‹</button>
+          <button type="button" class="gallery-arrow next" id="gallery-next" aria-label="Next image">›</button>` : ""}
+      </div>
+
+      <aside class="gallery-info">
+        <div class="gallery-kicker">Luvira Jewels · Product details</div>
+        <h2>${makeSafeText(p.name || p.code)}</h2>
+        <p><strong>Product Code:</strong> ${makeSafeText(p.code)}</p>
+        <p><strong>Category:</strong> ${makeSafeText(p.category)}</p>
+        <p>${makeSafeText(p.description)}</p>
+
+        <div class="gallery-colour-title">Choose your colour</div>
+        <div class="gallery-colours">${colourButtons || '<span class="gallery-media-note">No colour-specific images found.</span>'}</div>
+        <p class="gallery-media-note">Select a colour to view its matching product photos.</p>
+      </aside>
+    </div>
+
+    <section class="product-full-details">
+      <h3>Product Details</h3>
+      <div class="product-detail-grid">
+        ${[
+          ["Product Name",p.name],
+          ["Product Code",p.code],
+          ["Category",p.category],
+          ["Description",p.description],
+          ["Material",p.material],
+          ["Metal Weight",p.metalWeight],
+          ["Diamond Weight",p.diamondWeight],
+          ["Size",p.size]
+        ].map(([label,value]) => `<div class="product-detail-item"><strong>${label}</strong><span>${makeSafeText(value)}</span></div>`).join("")}
+      </div>
+    </section>
+
+    <section class="product-video-section" id="product-video-section">
+      <h3>Product Videos</h3>
+      <div id="product-video-list"></div>
+    </section>
+  `;
+
+  const mainImg = document.getElementById("gallery-main-image");
+
+  if (mainImg && current) {
+    loadDriveImage(mainImg,current,() => {
+      const stage = document.getElementById("gallery-stage");
+      if (stage) stage.innerHTML = '<div class="status">This product image could not be loaded.</div>';
+    });
+  }
+
+  // THUMBNAIL CLICK
+
+  content.querySelectorAll("[data-image-index]").forEach(button => {
+    button.addEventListener("click",() => {
+      activeProductMedia.index = Number(button.dataset.imageIndex);
+      renderProductGallery();
+    });
+  });
+
+  // COLOUR CHANGE
+
+  content.querySelectorAll("[data-colour]").forEach(button => {
+    button.addEventListener("click",() => {
+      activeProductMedia.colour = button.dataset.colour;
+      activeProductMedia.index = 0;
+      renderProductGallery();
+    });
+  });
+
+  // PREVIOUS / NEXT
+
+  const prev = document.getElementById("gallery-prev");
+  const next = document.getElementById("gallery-next");
+
+  if (prev) prev.onclick = () => {
+    activeProductMedia.index = (activeProductMedia.index - 1 + images.length) % images.length;
+    renderProductGallery();
+  };
+
+  if (next) next.onclick = () => {
+    activeProductMedia.index = (activeProductMedia.index + 1) % images.length;
+    renderProductGallery();
+  };
+
+  // PRODUCT VIDEOS
+
+  const videoList = document.getElementById("product-video-list");
+
+  if (activeProductMedia.videos.length) {
+    activeProductMedia.videos.forEach(item => {
+      const frame = document.createElement("iframe");
+      frame.src = getDriveVideoUrl(item);
+      frame.title = item.name || "Product video";
+      frame.loading = "lazy";
+      frame.allow = "autoplay; encrypted-media; picture-in-picture";
+      frame.allowFullscreen = true;
+      videoList.appendChild(frame);
+    });
+  } else {
+    videoList.innerHTML = '<p class="gallery-media-note">No product videos available.</p>';
+  }
+}
+
 
 async function openProduct(p) {
   const modal = document.getElementById("modal");
-  const details = document.getElementById("modal-details");
-  const links = document.getElementById("modal-links");
+  const content = document.getElementById("modal-content");
 
-  document.getElementById("modal-name").textContent = p.name || p.code;
-  details.innerHTML = "";
-  links.textContent = "Loading product photos and videos...";
-
-  [
-    ["Product Code",p.code],
-    ["Category",p.category],
-    ["Description",p.description],
-    ["Material",p.material],
-    ["Metal Weight",p.metalWeight],
-    ["Diamond Weight",p.diamondWeight],
-    ["Size",p.size]
-  ].forEach(([label,value]) => {
-    const line = document.createElement("p");
-    const strong = document.createElement("strong");
-    strong.textContent = label + ": ";
-    line.append(strong,document.createTextNode(value || "-"));
-    details.appendChild(line);
-  });
+  activeProductMedia = {
+    product:p,
+    images:[],
+    videos:[],
+    colourGroups:{},
+    colour:"",
+    index:0
+  };
 
   modal.style.display = "block";
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+
+  content.innerHTML = '<div class="status">Loading product photos and videos...</div>';
 
   try {
-    // LOAD IMAGES AND VIDEOS INDEPENDENTLY
-
     const results = await Promise.allSettled([
       fetchProductMedia(p.imageFolder),
       fetchProductMedia(p.videoFolder)
@@ -507,87 +836,39 @@ async function openProduct(p) {
     const videoData = results[1].status === "fulfilled"
       ? results[1].value : {videos:[]};
 
-    if (results[0].status === "rejected") console.error("Image API error:",results[0].reason);
-    if (results[1].status === "rejected") console.error("Video API error:",results[1].reason);
+    activeProductMedia.images = imageData.images || [];
+    activeProductMedia.videos = videoData.videos || [];
 
-    const media = {
-      images:imageData.images || [],
-      videos:videoData.videos || []
-    };
+    // GROUP IMAGES BY COLOUR
 
-    links.innerHTML = "";
+    activeProductMedia.images.forEach(item => {
+      const code = getImageColour(item.name);
 
-    // PRODUCT IMAGES
+      if (!activeProductMedia.colourGroups[code]) {
+        activeProductMedia.colourGroups[code] = [];
+      }
 
-    const imageTitle = document.createElement("h3");
-    imageTitle.textContent = "Product Images";
-    links.appendChild(imageTitle);
-
-    const imageGrid = document.createElement("div");
-    imageGrid.style.display = "grid";
-    imageGrid.style.gridTemplateColumns = "repeat(auto-fit,minmax(130px,1fr))";
-    imageGrid.style.gap = "10px";
-
-    (media.images || []).forEach(item => {
-      const img = document.createElement("img");
-      img.alt = item.name || p.name || "Product image";
-      img.loading = "lazy";
-      img.decoding = "async";
-      img.referrerPolicy = "no-referrer";
-      img.style.width = "100%";
-      img.style.aspectRatio = "1 / 1";
-      img.style.objectFit = "contain";
-      img.style.background = "#f5f3ef";
-
-      imageGrid.appendChild(img);
-      loadDriveImage(img,item,() => img.remove());
+      activeProductMedia.colourGroups[code].push(item);
     });
 
-    if (imageGrid.children.length) {
-      links.appendChild(imageGrid);
-    } else {
-      const noImages = document.createElement("p");
-      noImages.textContent = "No product images found.";
-      links.appendChild(noImages);
+    const available = Object.keys(activeProductMedia.colourGroups)
+      .filter(code => code !== "OTHER");
+
+    activeProductMedia.colour =
+      ["YL","WH","RS"].find(code => available.includes(code))
+      || available[0]
+      || "OTHER";
+
+    if (!available.length && activeProductMedia.images.length) {
+      activeProductMedia.colourGroups.OTHER = activeProductMedia.images;
+      activeProductMedia.colour = "OTHER";
     }
 
-    // PRODUCT VIDEOS
-
-    const videoTitle = document.createElement("h3");
-    videoTitle.textContent = "Product Videos";
-    videoTitle.style.marginTop = "25px";
-    links.appendChild(videoTitle);
-
-    if (media.videos && media.videos.length) {
-      media.videos.forEach(item => {
-        const frame = document.createElement("iframe");
-        frame.src = getDriveVideoUrl(item);
-        frame.title = item.name || "Product video";
-        frame.loading = "lazy";
-        frame.allow = "autoplay; encrypted-media; picture-in-picture";
-        frame.allowFullscreen = true;
-        frame.style.width = "100%";
-        frame.style.aspectRatio = "16 / 9";
-        frame.style.border = "0";
-        frame.style.marginBottom = "15px";
-        links.appendChild(frame);
-      });
-    } else {
-      const noVideos = document.createElement("p");
-      noVideos.textContent = "No product videos found.";
-      links.appendChild(noVideos);
-    }
-
-    if (results[0].status === "rejected" || results[1].status === "rejected") {
-      const warning = document.createElement("p");
-      warning.style.color = "#a17b36";
-      warning.textContent = "Some product media could not load. Please refresh and try again.";
-      links.appendChild(warning);
-    }
+    renderProductGallery();
 
   } catch(error) {
     console.error("Product media error:",error);
-    links.textContent = "Unable to load product media. Please try again.";
+    content.innerHTML = '<div class="status">Unable to load product media. Please refresh and try again.</div>';
   }
 }
 
@@ -632,15 +913,22 @@ document.getElementById("next").onclick = () => {
 
 // MODAL CLOSE
 
-document.getElementById("close").onclick = () => {
-  document.getElementById("modal").style.display = "none";
-};
+function closeProductModal() {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("close").onclick = closeProductModal;
 
 document.getElementById("modal").onclick = e => {
-  if (e.target.id === "modal") {
-    document.getElementById("modal").style.display = "none";
-  }
+  if (e.target.id === "modal") closeProductModal();
 };
+
+document.addEventListener("keydown",e => {
+  if (e.key === "Escape") closeProductModal();
+});
 
 
 // START WEBSITE
