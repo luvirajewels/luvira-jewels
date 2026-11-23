@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,934 +8,730 @@
 <title>Luvira Jewels | Exclusive Jewellery</title>
 
 <style>
-:root {
-  --black:#171512;
-  --gold:#c8a45d;
-  --cream:#faf8f3;
-  --text:#29251f;
+:root{--black:#171512;--gold:#c8a45d;--cream:#faf8f3;--text:#29251f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--text);font-family:Arial,sans-serif}
+header{background:var(--black);color:white;text-align:center;padding:24px 15px;border-bottom:3px solid var(--gold)}
+.logo{font-family:Georgia,serif;font-size:clamp(25px,5vw,38px);font-weight:bold;letter-spacing:5px}
+.tagline{color:var(--gold);font-size:11px;letter-spacing:3px;margin-top:9px}
+.container{max-width:1400px;margin:auto;padding:25px 18px}
+.section-title{font-family:Georgia,serif;font-size:26px;margin:10px 0 22px}
+.categories{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:25px}
+.cat-btn{background:var(--black);color:var(--gold);border:1px solid var(--gold);padding:20px 8px;cursor:pointer;font-weight:bold;letter-spacing:1px;min-height:85px}
+.cat-btn.active,.cat-btn:hover{background:var(--gold);color:var(--black)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:25px 0;flex-wrap:wrap}
+.toolbar h2{font-family:Georgia,serif;font-size:25px;margin:0}
+.search{width:min(100%,320px);padding:13px;border:1px solid #d8d0c3;background:white;border-radius:5px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product{background:white;border:1px solid #e9e5dc;overflow:hidden;cursor:pointer;transition:.2s}
+.product:hover{transform:translateY(-4px);box-shadow:0 8px 25px #00000012}
+.product-image{width:100%;aspect-ratio:1/1;background:#f5f3ef;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.product-image img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
+.no-image{color:#a99b83;font-family:Georgia,serif;font-size:15px}
+.product-info{padding:13px}
+.product-info h3{font-family:Georgia,serif;font-size:17px;margin:0 0 8px}
+.product-info p{font-size:12px;color:#777;margin:5px 0}
+.product-info .category{color:#a17b36}
+.view-btn{display:block;width:100%;margin-top:12px;background:var(--black);color:var(--gold);border:0;padding:11px;cursor:pointer}
+.status{text-align:center;padding:35px 10px;color:#8a795b}
+.pagination{display:flex;justify-content:center;align-items:center;gap:15px;padding:30px 0}
+.pagination button{padding:10px 20px;background:var(--black);color:var(--gold);border:0;cursor:pointer}
+.pagination button:disabled{opacity:.35;cursor:not-allowed}
+
+.modal{display:none;position:fixed;inset:0;z-index:1000;background:#000b;overflow-y:auto;padding:18px;-webkit-overflow-scrolling:touch}
+.modal-box{background:white;max-width:1450px;width:100%;margin:18px auto;padding:30px;position:relative;border-radius:10px;max-height:calc(100vh - 36px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.product-view .close{position:sticky;float:right;top:0;right:0;z-index:5;width:38px;height:38px;border:1px solid #e7dfcf;border-radius:50%;background:#fff;font-size:28px;cursor:pointer}
+.product-gallery{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(280px,350px);gap:22px;align-items:start;clear:both}
+.gallery-rail{min-width:0;display:flex;flex-direction:column;gap:12px}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:2px}
+.gallery-thumb{width:100%;aspect-ratio:1/1;min-width:0;padding:3px;border:1px solid #ded8ce;border-radius:7px;background:#fff;cursor:pointer}
+.gallery-thumb.active{border:2px solid var(--gold)}
+.gallery-thumb img{width:100%;height:100%;object-fit:contain}
+.gallery-video-under-thumbs{width:100%;min-width:0}
+.gallery-video-label{font-size:11px;font-weight:bold;color:#8c7449;margin:0 0 6px}
+.gallery-video-under-thumbs iframe{display:block;width:100%;aspect-ratio:16/9;border:1px solid #e5dfd4;border-radius:6px;background:#171512}
+.gallery-media-note{color:#927b56;font-size:12px!important}
+.gallery-stage{min-width:0;min-height:540px;height:min(65vw,680px);max-height:680px;background:#f7f6f3;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gallery-stage img{width:100%;height:100%;object-fit:contain}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border:1px solid #ddd;border-radius:50%;background:#ffffffd9;color:#171512;font-size:22px;cursor:pointer}
+.gallery-arrow.prev{left:12px}
+.gallery-arrow.next{right:12px}
+.gallery-info{padding:8px 4px}
+.gallery-info h2{font-family:Georgia,serif;font-size:30px;line-height:1.25;margin:8px 0 18px;color:#171512}
+.gallery-info p{font-size:14px;line-height:1.6;margin:8px 0}
+.gallery-kicker{color:#9a793e;text-transform:uppercase;letter-spacing:1.5px;font-size:11px;font-weight:bold}
+.gallery-colour-title{margin:24px 0 10px;font-size:14px;font-weight:bold}
+.gallery-colours{display:flex;gap:10px;flex-wrap:wrap}
+.gallery-colour{display:flex;align-items:center;gap:7px;border:1px solid #d8d2c8;background:#fff;padding:9px 11px;border-radius:30px;cursor:pointer;font-size:12px}
+.gallery-colour.active{border:2px solid var(--gold);background:#fffaf0}
+.colour-swatch{width:17px;height:17px;border-radius:50%;border:1px solid #aaa;display:inline-block}
+.swatch-yl{background:linear-gradient(135deg,#fff1a8,#c99b24)}
+.swatch-wh{background:linear-gradient(135deg,#fff,#aeb4bb)}
+.swatch-rs{background:linear-gradient(135deg,#f7d1bd,#b8795c)}
+.swatch-pt{background:linear-gradient(135deg,#eee,#85898e)}
+.product-full-details{margin-top:34px;padding-top:25px;border-top:1px solid #e8e2d8}
+.product-full-details h3{font-family:Georgia,serif;font-size:26px;margin:0 0 18px}
+.product-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.product-detail-item{background:#faf8f3;border:1px solid #eee7da;padding:15px;min-width:0}
+.product-detail-item strong{display:block;font-size:12px;color:#8c7449;margin-bottom:7px}
+.product-detail-item span{font-size:14px;overflow-wrap:anywhere}
+footer{background:var(--black);color:#c7b58e;text-align:center;padding:25px 10px;margin-top:35px;font-size:12px;letter-spacing:1px}
+
+@media(max-width:1000px){
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.categories{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--cream); color:var(--text); font-family:Arial,sans-serif; }
-header { background:var(--black); color:white; text-align:center; padding:24px 15px; border-bottom:3px solid var(--gold); }
-.logo { font-family:Georgia,serif; font-size:clamp(25px,5vw,38px); font-weight:bold; letter-spacing:5px; }
-.tagline { color:var(--gold); font-size:11px; letter-spacing:3px; margin-top:9px; }
-.container { max-width:1400px; margin:auto; padding:25px 18px; }
-.section-title { font-family:Georgia,serif; font-size:26px; margin:10px 0 22px; }
-.categories { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin-bottom:25px; }
-.cat-btn { background:var(--black); color:var(--gold); border:1px solid var(--gold); padding:20px 8px; cursor:pointer; font-weight:bold; letter-spacing:1px; min-height:85px; transition:.2s; }
-.cat-btn.active,.cat-btn:hover { background:var(--gold); color:var(--black); }
-.toolbar { display:flex; justify-content:space-between; align-items:center; gap:15px; margin:25px 0; flex-wrap:wrap; }
-.toolbar h2 { font-family:Georgia,serif; font-size:25px; margin:0; }
-.search { width:min(100%,320px); padding:13px; border:1px solid #d8d0c3; background:white; border-radius:5px; font-size:14px; }
-.grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
-.product { background:white; border:1px solid #e9e5dc; overflow:hidden; cursor:pointer; transition:.2s; }
-.product:hover { transform:translateY(-4px); box-shadow:0 8px 25px #00000012; }
-.product-image { width:100%; aspect-ratio:1/1; background:#f5f3ef; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
-.product-image img { width:100%; height:100%; object-fit:contain; position:absolute; inset:0; }
-.no-image { color:#a99b83; font-family:Georgia,serif; font-size:15px; }
-.product-info { padding:13px; }
-.product-info h3 { font-family:Georgia,serif; font-size:17px; margin:0 0 8px; }
-.product-info p { font-size:12px; color:#777; margin:5px 0; }
-.product-info .category { color:#a17b36; }
-.view-btn { display:block; width:100%; margin-top:12px; background:var(--black); color:var(--gold); border:0; padding:11px; cursor:pointer; }
-.status { text-align:center; padding:35px 10px; color:#8a795b; }
-.pagination { display:flex; justify-content:center; align-items:center; gap:15px; padding:30px 0; }
-.pagination button { padding:10px 20px; background:var(--black); color:var(--gold); border:0; cursor:pointer; }
-.pagination button:disabled { opacity:.35; cursor:not-allowed; }
-
-.modal { display:none; position:fixed; inset:0; z-index:1000; background:#000b; overflow-y:auto; padding:18px; -webkit-overflow-scrolling:touch; }
-.modal-box { background:white; max-width:1450px; width:100%; margin:18px auto; padding:30px; position:relative; border-radius:10px; max-height:calc(100vh - 36px); overflow-y:auto; -webkit-overflow-scrolling:touch; }
-
-.product-view .close {
-  position:sticky;
-  float:right;
-  top:0;
-  right:0;
-  z-index:5;
-  width:38px;
-  height:38px;
-  border:1px solid #e7dfcf;
-  border-radius:50%;
-  background:#fff;
-  line-height:30px;
-  text-align:center;
-  font-size:28px;
-  cursor:pointer;
+@media(max-width:900px){
+.modal-box{padding:20px}
+.product-gallery{grid-template-columns:140px minmax(0,1fr);gap:14px}
+.gallery-rail{grid-column:1;grid-row:1}
+.gallery-stage{grid-column:2;grid-row:1;min-height:420px;height:58vw}
+.gallery-info{grid-column:1/-1;grid-row:2}
+.gallery-info h2{font-size:26px}
+.product-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
-.product-gallery {
-  display:grid;
-  grid-template-columns:78px minmax(0,1fr) minmax(280px,350px);
-  gap:22px;
-  align-items:start;
-  clear:both;
+@media(max-width:700px){
+.container{padding:18px 12px}
+.logo{letter-spacing:3px}
+.categories{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cat-btn{min-height:65px;padding:12px 4px;font-size:11px;letter-spacing:.5px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.product-info{padding:9px}
+.product-info h3{font-size:14px}
+.product-info p{font-size:11px}
+.toolbar{gap:12px}
+.toolbar h2{font-size:21px}
+.search{width:100%}
 }
-
-.gallery-thumbs {
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  max-height:680px;
-  overflow-y:auto;
-  padding:2px;
+@media(max-width:560px){
+.modal{padding:0}
+.modal-box{margin:0;min-height:100%;max-height:100%;border-radius:0;padding:14px}
+.product-gallery{grid-template-columns:1fr;gap:14px}
+.gallery-rail{grid-column:1;grid-row:1}
+.gallery-thumbs{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.gallery-thumb{width:100%}
+.gallery-video-under-thumbs{max-width:260px}
+.gallery-stage{grid-column:1;grid-row:2;min-height:300px;height:88vw;max-height:480px}
+.gallery-info{grid-column:1;grid-row:3}
+.gallery-info h2{font-size:23px}
+.gallery-info p{font-size:13px}
+.gallery-colour{padding:8px 9px;font-size:11px}
+.product-full-details{margin-top:24px;padding-top:20px}
+.product-full-details h3{font-size:22px}
+.product-detail-grid{grid-template-columns:1fr 1fr;gap:8px}
+.product-detail-item{padding:11px}
+.product-detail-item span{font-size:12px}
 }
-
-.gallery-thumb {
-  width:68px;
-  height:68px;
-  flex:0 0 68px;
-  padding:3px;
-  border:1px solid #ded8ce;
-  border-radius:7px;
-  background:#fff;
-  cursor:pointer;
-}
-
-.gallery-thumb.active { border:2px solid var(--gold); }
-.gallery-thumb img { width:100%; height:100%; object-fit:contain; }
-
-.gallery-stage {
-  min-width:0;
-  min-height:540px;
-  height:min(65vw,680px);
-  max-height:680px;
-  background:#f7f6f3;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.gallery-stage img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.gallery-arrow {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:38px;
-  height:38px;
-  border:1px solid #ddd;
-  border-radius:50%;
-  background:#ffffffd9;
-  color:#171512;
-  font-size:22px;
-  cursor:pointer;
-}
-.gallery-arrow.prev { left:12px; }
-.gallery-arrow.next { right:12px; }
-
-.gallery-info { padding:8px 4px; }
-.gallery-info h2 {
-  font-family:Georgia,serif;
-  font-size:30px;
-  line-height:1.25;
-  margin:8px 0 18px;
-  color:#171512;
-}
-.gallery-info p { font-size:14px; line-height:1.6; margin:8px 0; }
-
-.gallery-kicker {
-  color:#9a793e;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.gallery-colour-title { margin:24px 0 10px; font-size:14px; font-weight:bold; }
-.gallery-colours { display:flex; gap:10px; flex-wrap:wrap; }
-
-.gallery-colour {
-  display:flex;
-  align-items:center;
-  gap:7px;
-  border:1px solid #d8d2c8;
-  background:#fff;
-  padding:9px 11px;
-  border-radius:30px;
-  cursor:pointer;
-  font-size:12px;
-}
-.gallery-colour.active { border:2px solid var(--gold); background:#fffaf0; }
-
-.colour-swatch { width:17px; height:17px; border-radius:50%; border:1px solid #aaa; display:inline-block; }
-.swatch-yl { background:linear-gradient(135deg,#fff1a8,#c99b24); }
-.swatch-wh { background:linear-gradient(135deg,#fff,#aeb4bb); }
-.swatch-rs { background:linear-gradient(135deg,#f7d1bd,#b8795c); }
-.swatch-pt { background:linear-gradient(135deg,#eee,#85898e); }
-
-.gallery-media-note { color:#927b56; font-size:12px !important; }
-
-.product-full-details {
-  margin-top:34px;
-  padding-top:25px;
-  border-top:1px solid #e8e2d8;
-}
-.product-full-details h3 {
-  font-family:Georgia,serif;
-  font-size:26px;
-  margin:0 0 18px;
-}
-
-.product-detail-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-}
-
-.product-detail-item {
-  background:#faf8f3;
-  border:1px solid #eee7da;
-  padding:15px;
-  min-width:0;
-}
-.product-detail-item strong { display:block; font-size:12px; color:#8c7449; margin-bottom:7px; }
-.product-detail-item span { font-size:14px; overflow-wrap:anywhere; }
-
-.product-video-section { margin-top:28px; }
-.product-video-section h3 { font-family:Georgia,serif; font-size:22px; }
-.product-video-section iframe { width:min(100%,700px); aspect-ratio:16/9; border:0; display:block; margin:12px 0; }
-
-footer { background:var(--black); color:#c7b58e; text-align:center; padding:25px 10px; margin-top:35px; font-size:12px; letter-spacing:1px; }
-
-@media(max-width:1000px) {
-  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .categories { grid-template-columns:repeat(3,minmax(0,1fr)); }
-}
-
-@media(max-width:900px) {
-  .modal-box { padding:20px; }
-  .product-gallery { grid-template-columns:64px minmax(0,1fr); gap:14px; }
-  .gallery-thumbs { grid-column:1; grid-row:1; }
-  .gallery-stage { grid-column:2; grid-row:1; min-height:420px; height:58vw; }
-  .gallery-info { grid-column:1 / -1; grid-row:2; }
-  .gallery-info h2 { font-size:26px; }
-  .product-detail-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-}
-
-@media(max-width:700px) {
-  .container { padding:18px 12px; }
-  .logo { letter-spacing:3px; }
-  .categories { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
-  .cat-btn { min-height:65px; padding:12px 4px; font-size:11px; letter-spacing:.5px; }
-  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-  .product-info { padding:9px; }
-  .product-info h3 { font-size:14px; }
-  .product-info p { font-size:11px; }
-  .toolbar { gap:12px; }
-  .toolbar h2 { font-size:21px; }
-  .search { width:100%; }
-}
-
-@media(max-width:560px) {
-  .modal { padding:0; }
-  .modal-box {
-    margin:0;
-    min-height:100%;
-    max-height:100%;
-    border-radius:0;
-    padding:14px;
-  }
-  .product-gallery { grid-template-columns:54px minmax(0,1fr); gap:9px; }
-  .gallery-thumbs { gap:7px; max-height:390px; }
-  .gallery-thumb { width:50px; height:50px; flex-basis:50px; }
-  .gallery-stage { min-height:300px; height:88vw; max-height:480px; }
-  .gallery-info h2 { font-size:23px; }
-  .gallery-info p { font-size:13px; }
-  .gallery-colour { padding:8px 9px; font-size:11px; }
-  .product-full-details { margin-top:24px; padding-top:20px; }
-  .product-full-details h3 { font-size:22px; }
-  .product-detail-grid { grid-template-columns:1fr 1fr; gap:8px; }
-  .product-detail-item { padding:11px; }
-  .product-detail-item span { font-size:12px; }
-}
-
-@media(max-width:350px) {
-  .categories { grid-template-columns:repeat(2,1fr); }
-  .grid { gap:7px; }
-  .product-info h3 { font-size:12px; }
+@media(max-width:350px){
+.categories{grid-template-columns:repeat(2,1fr)}
+.grid{gap:7px}
+.product-info h3{font-size:12px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
-  <div class="logo">LUVIRA JEWELS</div>
-  <div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
+<div class="logo">LUVIRA JEWELS</div>
+<div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
 </header>
 
 <main class="container">
-  <h1 class="section-title">Explore Our Collections</h1>
+<h1 class="section-title">Explore Our Collections</h1>
+<div class="categories" id="categories">
+<button class="cat-btn active" data-cat="All Products">ALL</button>
+<button class="cat-btn" data-cat="Rings">RINGS</button>
+<button class="cat-btn" data-cat="Earrings">EARRINGS</button>
+<button class="cat-btn" data-cat="Pendants">PENDANTS</button>
+<button class="cat-btn" data-cat="Necklaces">NECKLACES</button>
+<button class="cat-btn" data-cat="Bracelets">BRACELETS</button>
+</div>
 
-  <div class="categories" id="categories">
-    <button class="cat-btn active" data-cat="All Products">ALL</button>
-    <button class="cat-btn" data-cat="Rings">RINGS</button>
-    <button class="cat-btn" data-cat="Earrings">EARRINGS</button>
-    <button class="cat-btn" data-cat="Pendants">PENDANTS</button>
-    <button class="cat-btn" data-cat="Necklaces">NECKLACES</button>
-    <button class="cat-btn" data-cat="Bracelets">BRACELETS</button>
-  </div>
+<div class="toolbar">
+<h2 id="heading">All Products</h2>
+<input class="search" id="search" type="search" placeholder="Search product name or code...">
+</div>
 
-  <div class="toolbar">
-    <h2 id="heading">All Products</h2>
-    <input class="search" id="search" type="search" placeholder="Search product name or code...">
-  </div>
+<div id="status" class="status">Loading collections...</div>
+<div class="grid" id="products"></div>
 
-  <div id="status" class="status">Loading collections...</div>
-  <div class="grid" id="products"></div>
-
-  <div class="pagination" id="pagination" style="display:none">
-    <button id="prev">Previous</button>
-    <span id="page">Page 1</span>
-    <button id="next">Next</button>
-  </div>
+<div class="pagination" id="pagination" style="display:none">
+<button id="prev">Previous</button>
+<span id="page">Page 1</span>
+<button id="next">Next</button>
+</div>
 </main>
 
 <footer>LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION</footer>
 
 <div class="modal" id="modal" aria-hidden="true">
-  <div class="modal-box product-view">
-    <button class="close" id="close" type="button" aria-label="Close">&times;</button>
-    <div id="modal-content">
-      <div class="status">Loading product...</div>
-    </div>
-  </div>
+<div class="modal-box product-view">
+<button class="close" id="close" type="button" aria-label="Close">&times;</button>
+<div id="modal-content"><div class="status">Loading product...</div></div>
+</div>
 </div>
 
 <script>
-
-// GOOGLE SHEETS DATA
-
 const SHEETS = {
-  "Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
-
-  "Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
-
-  "Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
-
-  "Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
-
-  "Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+"Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
+"Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
+"Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
+"Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
+"Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
 };
 
-
-// GOOGLE APPS SCRIPT API
-
-const MEDIA_API = "https://script.google.com/macros/s/AKfycbxUrGRyZzOG_8ca0jF1bAE0U1X5KzCuZWWWeQUD2gkN-vZZKA0iyGxChdD3RDz8LKAkpA/exec";
-
-const mediaCache = new Map();
-
-
-// FETCH PRODUCT MEDIA USING JSONP
-
-function fetchProductMedia(folderUrl) {
-  folderUrl = String(folderUrl || "").trim();
-
-  if (!folderUrl) {
-    return Promise.resolve({success:true,images:[],videos:[]});
-  }
-
-  if (mediaCache.has(folderUrl)) {
-    return mediaCache.get(folderUrl);
-  }
-
-  const request = new Promise((resolve,reject) => {
-    const callbackName = "luvMedia_" + Date.now() + "_" + Math.floor(Math.random()*1000000);
-    const script = document.createElement("script");
-    let finished = false;
-    let timeout;
-
-    const cleanup = () => {
-      if (finished) return;
-      finished = true;
-      clearTimeout(timeout);
-      delete window[callbackName];
-      script.remove();
-    };
-
-    timeout = setTimeout(() => {
-      cleanup();
-      mediaCache.delete(folderUrl);
-      reject(new Error("Media API timed out"));
-    },60000);
-
-    window[callbackName] = data => {
-      if (finished) return;
-      cleanup();
-
-      if (data && data.success) {
-        resolve(data);
-      } else {
-        mediaCache.delete(folderUrl);
-        reject(new Error((data && data.error) || "Media API failed"));
-      }
-    };
-
-    script.onerror = () => {
-      if (finished) return;
-      cleanup();
-      mediaCache.delete(folderUrl);
-      reject(new Error("Could not connect to media API"));
-    };
-
-    script.src = MEDIA_API +
-      "?folder=" + encodeURIComponent(folderUrl) +
-      "&callback=" + encodeURIComponent(callbackName) +
-      "&_=" + Date.now();
-
-    document.head.appendChild(script);
-  });
-
-  mediaCache.set(folderUrl,request);
-  return request;
-}
-
-
-// GOOGLE DRIVE IMAGE FALLBACK
-
-function getDriveFileId(item) {
-  if (!item) return "";
-  if (item.id) return String(item.id).trim();
-  if (item.fileId) return String(item.fileId).trim();
-
-  const url = String(item.url || "");
-  const patterns = [
-    /\/file\/d\/([a-zA-Z0-9_-]+)/,
-    /[?&]id=([a-zA-Z0-9_-]+)/,
-    /\/d\/([a-zA-Z0-9_-]+)/
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match) return match[1];
-  }
-  return "";
-}
-
-function loadDriveImage(img,item,onFail) {
-  const id = getDriveFileId(item);
-  const candidates = [];
-
-  if (item && item.url) candidates.push(String(item.url).trim());
-
-  if (id) {
-    candidates.push("https://lh3.googleusercontent.com/d/" + id + "=w1200");
-    candidates.push("https://drive.google.com/thumbnail?id=" + id + "&sz=w1200");
-    candidates.push("https://drive.google.com/uc?export=view&id=" + id);
-  }
-
-  const urls = [...new Set(candidates.filter(Boolean))];
-  let index = 0;
-
-  img.onerror = () => {
-    index++;
-    if (index < urls.length) {
-      img.src = urls[index];
-    } else {
-      img.onerror = null;
-      if (typeof onFail === "function") onFail();
-      else img.remove();
-    }
-  };
-
-  if (urls.length) {
-    img.src = urls[0];
-  } else if (typeof onFail === "function") {
-    onFail();
-  } else {
-    img.remove();
-  }
-}
-
-function getDriveVideoUrl(item) {
-  const id = getDriveFileId(item);
-  if (id) return "https://drive.google.com/file/d/" + id + "/preview";
-  return item && item.url ? String(item.url) : "";
-}
-
-
-// WEBSITE VARIABLES
-
-let allProducts = [];
-let currentCategory = "All Products";
-let currentPage = 1;
-const perPage = 12;
-
-
-// CSV READER
-
-function parseCSV(text) {
-  const rows = [];
-  let row = [];
-  let cell = "";
-  let quoted = false;
-
-  for (let i=0; i<text.length; i++) {
-    const c = text[i];
-
-    if (c === '"') {
-      if (quoted && text[i+1] === '"') {
-        cell += '"';
-        i++;
-      } else {
-        quoted = !quoted;
-      }
-    } else if (c === ',' && !quoted) {
-      row.push(cell);
-      cell = "";
-    } else if ((c === '\n' || c === '\r') && !quoted) {
-      if (c === '\r' && text[i+1] === '\n') i++;
-      row.push(cell);
-      if (row.some(v => v.trim() !== "")) rows.push(row);
-      row = [];
-      cell = "";
-    } else {
-      cell += c;
-    }
-  }
-
-  row.push(cell);
-  if (row.some(v => v.trim() !== "")) rows.push(row);
-  return rows;
-}
-
-
-// LOAD GOOGLE SHEETS
-
-async function loadProducts() {
-  const status = document.getElementById("status");
-
-  try {
-    const results = await Promise.all(
-      Object.entries(SHEETS).map(async ([category,url]) => {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error("Unable to load " + category);
-        }
-
-        const csv = await response.text();
-        const rows = parseCSV(csv);
-
-        return rows.slice(1)
-          .filter(r => r[0] && r[0].trim())
-          .map(r => ({
-            code:r[0] || "",
-            name:r[1] || "",
-            description:r[2] || "",
-            material:r[3] || "",
-            metalWeight:r[4] || "",
-            diamondWeight:r[5] || "",
-            size:r[6] || "",
-            imageFolder:r[7] || "",
-            videoFolder:r[8] || "",
-            category
-          }));
-      })
-    );
-
-    allProducts = results.flat();
-    status.style.display = "none";
-    renderProducts();
-
-  } catch(error) {
-    status.textContent = "Unable to load products. Please check Google Sheets publishing settings.";
-    console.error(error);
-  }
-}
-
-
-// DISPLAY PRODUCTS
-
-function renderProducts() {
-  const grid = document.getElementById("products");
-  const search = document.getElementById("search").value.toLowerCase();
-
-  const filtered = allProducts.filter(p => {
-    const categoryMatch = currentCategory === "All Products" || p.category === currentCategory;
-    const searchMatch = (p.name + " " + p.code + " " + p.category).toLowerCase().includes(search);
-    return categoryMatch && searchMatch;
-  });
-
-  const totalPages = Math.max(1,Math.ceil(filtered.length/perPage));
-  currentPage = Math.min(currentPage,totalPages);
-
-  const start = (currentPage-1)*perPage;
-  const pageProducts = filtered.slice(start,start+perPage);
-
-  document.getElementById("heading").textContent = currentCategory;
-  grid.innerHTML = "";
-
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="status" style="grid-column:1/-1">No products found.</div>';
-  }
-
-  pageProducts.forEach(p => {
-    const card = document.createElement("div");
-    card.className = "product";
-
-    const image = document.createElement("div");
-    image.className = "product-image";
-
-    const placeholder = document.createElement("span");
-    placeholder.className = "no-image";
-    placeholder.textContent = "LUVIRA JEWELS";
-    image.appendChild(placeholder);
-
-    // LOAD PRODUCT IMAGE
-
-    if (p.imageFolder) {
-      fetchProductMedia(p.imageFolder)
-        .then(media => {
-          if (!media.images || !media.images.length) return;
-
-          const img = document.createElement("img");
-          img.alt = p.name || p.code || "Luvira jewellery";
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.referrerPolicy = "no-referrer";
-
-          img.onload = () => placeholder.remove();
-
-          image.appendChild(img);
-          loadDriveImage(img,media.images[0],() => img.remove());
-        })
-        .catch(error => {
-          console.warn("Image load:",p.code,error);
-        });
-    }
-
-    const info = document.createElement("div");
-    info.className = "product-info";
-
-    const name = document.createElement("h3");
-    name.textContent = p.name;
-
-    const code = document.createElement("p");
-    code.textContent = "Product Code: " + p.code;
-
-    const category = document.createElement("p");
-    category.className = "category";
-    category.textContent = p.category;
-
-    const btn = document.createElement("button");
-    btn.className = "view-btn";
-    btn.textContent = "View Details";
-
-    btn.addEventListener("click",e => {
-      e.stopPropagation();
-      openProduct(p);
-    });
-
-    info.append(name,code,category,btn);
-    card.append(image,info);
-
-    card.addEventListener("click",() => openProduct(p));
-    grid.appendChild(card);
-  });
-
-  const pagination = document.getElementById("pagination");
-  pagination.style.display = filtered.length ? "flex" : "none";
-
-  document.getElementById("page").textContent = `Page ${currentPage} of ${totalPages}`;
-  document.getElementById("prev").disabled = currentPage === 1;
-  document.getElementById("next").disabled = currentPage === totalPages;
-}
-
-
-// PRODUCT DETAILS: IMAGE GALLERY + COLOUR SWITCHER
-
-let activeProductMedia = {
-  product: null,
-  images: [],
-  videos: [],
-  colourGroups: {},
-  colour: "",
-  index: 0
+const MEDIA_API="https://script.google.com/macros/s/AKfycbxUrGRyZzOG_8ca0jF1bAE0U1X5KzCuZWWWeQUD2gkN-vZZKA0iyGxChdD3RDz8LKAkpA/exec";
+const mediaCache=new Map();
+
+function fetchProductMedia(folderUrl){
+folderUrl=String(folderUrl||"").trim();
+if(!folderUrl)return Promise.resolve({success:true,images:[],videos:[]});
+if(mediaCache.has(folderUrl))return mediaCache.get(folderUrl);
+
+const request=new Promise((resolve,reject)=>{
+const callbackName="luvMedia_"+Date.now()+"_"+Math.floor(Math.random()*1000000);
+const script=document.createElement("script");
+let finished=false;
+let timeout;
+
+const cleanup=()=>{
+if(finished)return;
+finished=true;
+clearTimeout(timeout);
+delete window[callbackName];
+script.remove();
 };
 
-const PRODUCT_COLOURS = {
-  YL: { label:"Yellow Gold", swatch:"swatch-yl" },
-  WH: { label:"White Gold", swatch:"swatch-wh" },
-  RS: { label:"Rose Gold", swatch:"swatch-rs" },
-  PT: { label:"Platinum", swatch:"swatch-pt" }
+timeout=setTimeout(()=>{
+cleanup();
+mediaCache.delete(folderUrl);
+reject(new Error("Media API timed out"));
+},60000);
+
+window[callbackName]=data=>{
+if(finished)return;
+cleanup();
+if(data&&data.success)resolve(data);
+else{
+mediaCache.delete(folderUrl);
+reject(new Error((data&&data.error)||"Media API failed"));
+}
 };
 
-function getImageColour(filename) {
-  const name = String(filename || "").toUpperCase();
-  const match = name.match(/-(YL|WH|RS|PT)-/);
-  return match ? match[1] : "OTHER";
+script.onerror=()=>{
+if(finished)return;
+cleanup();
+mediaCache.delete(folderUrl);
+reject(new Error("Could not connect to media API"));
+};
+
+script.src=MEDIA_API+"?folder="+encodeURIComponent(folderUrl)+"&callback="+encodeURIComponent(callbackName)+"&_="+Date.now();
+document.head.appendChild(script);
+});
+
+mediaCache.set(folderUrl,request);
+return request;
 }
 
-function makeSafeText(value) {
-  return String(value == null || value === "" ? "-" : value);
+function getDriveFileId(item){
+if(!item)return "";
+if(item.id)return String(item.id).trim();
+if(item.fileId)return String(item.fileId).trim();
+
+const url=String(item.url||"");
+const patterns=[
+/\/file\/d\/([a-zA-Z0-9_-]+)/,
+/[?&]id=([a-zA-Z0-9_-]+)/,
+/\/d\/([a-zA-Z0-9_-]+)/
+];
+
+for(const pattern of patterns){
+const match=url.match(pattern);
+if(match)return match[1];
+}
+return "";
 }
 
-function renderProductGallery() {
-  const p = activeProductMedia.product;
-  const images = activeProductMedia.colourGroups[activeProductMedia.colour] || [];
-  const current = images[activeProductMedia.index] || images[0] || null;
-  const content = document.getElementById("modal-content");
+function loadDriveImage(img,item,onFail){
+const id=getDriveFileId(item);
+const candidates=[];
 
-  const colourButtons = Object.keys(activeProductMedia.colourGroups)
-    .filter(code => code !== "OTHER" && activeProductMedia.colourGroups[code].length)
-    .map(code => {
-      const meta = PRODUCT_COLOURS[code] || {label:code,swatch:"swatch-pt"};
-      return `<button type="button" class="gallery-colour ${activeProductMedia.colour === code ? "active" : ""}" data-colour="${code}">
-        <span class="colour-swatch ${meta.swatch}"></span>${meta.label}
-      </button>`;
-    }).join("");
+if(item&&item.url)candidates.push(String(item.url).trim());
 
-  const thumbs = images.map((item,index) => `
-    <button type="button" class="gallery-thumb ${index === activeProductMedia.index ? "active" : ""}" data-image-index="${index}" aria-label="View image ${index+1}">
-      <img src="${item.url}" alt="${makeSafeText(item.name)}">
-    </button>`).join("");
-
-  content.innerHTML = `
-    <div class="product-gallery">
-      <div class="gallery-thumbs">${thumbs || '<div class="gallery-media-note">No photos</div>'}</div>
-
-      <div class="gallery-stage" id="gallery-stage">
-        ${current ? `<img id="gallery-main-image" alt="${makeSafeText(p.name)}">` : '<div class="status">No product images found for this colour.</div>'}
-        ${images.length > 1 ? `
-          <button type="button" class="gallery-arrow prev" id="gallery-prev" aria-label="Previous image">‹</button>
-          <button type="button" class="gallery-arrow next" id="gallery-next" aria-label="Next image">›</button>` : ""}
-      </div>
-
-      <aside class="gallery-info">
-        <div class="gallery-kicker">Luvira Jewels · Product details</div>
-        <h2>${makeSafeText(p.name || p.code)}</h2>
-        <p><strong>Product Code:</strong> ${makeSafeText(p.code)}</p>
-        <p><strong>Category:</strong> ${makeSafeText(p.category)}</p>
-        <p>${makeSafeText(p.description)}</p>
-
-        <div class="gallery-colour-title">Choose your colour</div>
-        <div class="gallery-colours">${colourButtons || '<span class="gallery-media-note">No colour-specific images found.</span>'}</div>
-        <p class="gallery-media-note">Select a colour to view its matching product photos.</p>
-      </aside>
-    </div>
-
-    <section class="product-full-details">
-      <h3>Product Details</h3>
-      <div class="product-detail-grid">
-        ${[
-          ["Product Name",p.name],
-          ["Product Code",p.code],
-          ["Category",p.category],
-          ["Description",p.description],
-          ["Material",p.material],
-          ["Metal Weight",p.metalWeight],
-          ["Diamond Weight",p.diamondWeight],
-          ["Size",p.size]
-        ].map(([label,value]) => `<div class="product-detail-item"><strong>${label}</strong><span>${makeSafeText(value)}</span></div>`).join("")}
-      </div>
-    </section>
-
-    <section class="product-video-section" id="product-video-section">
-      <h3>Product Videos</h3>
-      <div id="product-video-list"></div>
-    </section>
-  `;
-
-  const mainImg = document.getElementById("gallery-main-image");
-
-  if (mainImg && current) {
-    loadDriveImage(mainImg,current,() => {
-      const stage = document.getElementById("gallery-stage");
-      if (stage) stage.innerHTML = '<div class="status">This product image could not be loaded.</div>';
-    });
-  }
-
-  // THUMBNAIL CLICK
-
-  content.querySelectorAll("[data-image-index]").forEach(button => {
-    button.addEventListener("click",() => {
-      activeProductMedia.index = Number(button.dataset.imageIndex);
-      renderProductGallery();
-    });
-  });
-
-  // COLOUR CHANGE
-
-  content.querySelectorAll("[data-colour]").forEach(button => {
-    button.addEventListener("click",() => {
-      activeProductMedia.colour = button.dataset.colour;
-      activeProductMedia.index = 0;
-      renderProductGallery();
-    });
-  });
-
-  // PREVIOUS / NEXT
-
-  const prev = document.getElementById("gallery-prev");
-  const next = document.getElementById("gallery-next");
-
-  if (prev) prev.onclick = () => {
-    activeProductMedia.index = (activeProductMedia.index - 1 + images.length) % images.length;
-    renderProductGallery();
-  };
-
-  if (next) next.onclick = () => {
-    activeProductMedia.index = (activeProductMedia.index + 1) % images.length;
-    renderProductGallery();
-  };
-
-  // PRODUCT VIDEOS
-
-  const videoList = document.getElementById("product-video-list");
-
-  if (activeProductMedia.videos.length) {
-    activeProductMedia.videos.forEach(item => {
-      const frame = document.createElement("iframe");
-      frame.src = getDriveVideoUrl(item);
-      frame.title = item.name || "Product video";
-      frame.loading = "lazy";
-      frame.allow = "autoplay; encrypted-media; picture-in-picture";
-      frame.allowFullscreen = true;
-      videoList.appendChild(frame);
-    });
-  } else {
-    videoList.innerHTML = '<p class="gallery-media-note">No product videos available.</p>';
-  }
+if(id){
+candidates.push("https://lh3.googleusercontent.com/d/"+id+"=w1200");
+candidates.push("https://drive.google.com/thumbnail?id="+id+"&sz=w1200");
+candidates.push("https://drive.google.com/uc?export=view&id="+id);
 }
 
+const urls=[...new Set(candidates.filter(Boolean))];
+let index=0;
 
-async function openProduct(p) {
-  const modal = document.getElementById("modal");
-  const content = document.getElementById("modal-content");
+img.onerror=()=>{
+index++;
+if(index<urls.length)img.src=urls[index];
+else{
+img.onerror=null;
+if(typeof onFail==="function")onFail();
+else img.remove();
+}
+};
 
-  activeProductMedia = {
-    product:p,
-    images:[],
-    videos:[],
-    colourGroups:{},
-    colour:"",
-    index:0
-  };
-
-  modal.style.display = "block";
-  modal.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-
-  content.innerHTML = '<div class="status">Loading product photos and videos...</div>';
-
-  try {
-    const results = await Promise.allSettled([
-      fetchProductMedia(p.imageFolder),
-      fetchProductMedia(p.videoFolder)
-    ]);
-
-    const imageData = results[0].status === "fulfilled"
-      ? results[0].value : {images:[]};
-
-    const videoData = results[1].status === "fulfilled"
-      ? results[1].value : {videos:[]};
-
-    activeProductMedia.images = imageData.images || [];
-    activeProductMedia.videos = videoData.videos || [];
-
-    // GROUP IMAGES BY COLOUR
-
-    activeProductMedia.images.forEach(item => {
-      const code = getImageColour(item.name);
-
-      if (!activeProductMedia.colourGroups[code]) {
-        activeProductMedia.colourGroups[code] = [];
-      }
-
-      activeProductMedia.colourGroups[code].push(item);
-    });
-
-    const available = Object.keys(activeProductMedia.colourGroups)
-      .filter(code => code !== "OTHER");
-
-    activeProductMedia.colour =
-      ["YL","WH","RS"].find(code => available.includes(code))
-      || available[0]
-      || "OTHER";
-
-    if (!available.length && activeProductMedia.images.length) {
-      activeProductMedia.colourGroups.OTHER = activeProductMedia.images;
-      activeProductMedia.colour = "OTHER";
-    }
-
-    renderProductGallery();
-
-  } catch(error) {
-    console.error("Product media error:",error);
-    content.innerHTML = '<div class="status">Unable to load product media. Please refresh and try again.</div>';
-  }
+if(urls.length)img.src=urls[0];
+else if(typeof onFail==="function")onFail();
+else img.remove();
 }
 
+function getDriveVideoUrl(item){
+const id=getDriveFileId(item);
+if(id)return "https://drive.google.com/file/d/"+id+"/preview";
+return item&&item.url?String(item.url):"";
+}
+
+let allProducts=[];
+let currentCategory="All Products";
+let currentPage=1;
+const perPage=12;
+
+function parseCSV(text){
+const rows=[];
+let row=[];
+let cell="";
+let quoted=false;
+
+for(let i=0;i<text.length;i++){
+const c=text[i];
+
+if(c==='"'){
+if(quoted&&text[i+1]==='"'){
+cell+='"';
+i++;
+}else quoted=!quoted;
+}else if(c===','&&!quoted){
+row.push(cell);
+cell="";
+}else if((c==='\n'||c==='\r')&&!quoted){
+if(c==='\r'&&text[i+1]==='\n')i++;
+row.push(cell);
+if(row.some(v=>v.trim()!==""))rows.push(row);
+row=[];
+cell="";
+}else cell+=c;
+}
+
+row.push(cell);
+if(row.some(v=>v.trim()!==""))rows.push(row);
+return rows;
+}
+
+async function loadProducts(){
+const status=document.getElementById("status");
+
+try{
+const results=await Promise.all(
+Object.entries(SHEETS).map(async([category,url])=>{
+const response=await fetch(url);
+if(!response.ok)throw new Error("Unable to load "+category);
+
+const csv=await response.text();
+const rows=parseCSV(csv);
+
+return rows.slice(1)
+.filter(r=>r[0]&&r[0].trim())
+.map(r=>({
+code:r[0]||"",
+name:r[1]||"",
+description:r[2]||"",
+material:r[3]||"",
+metalWeight:r[4]||"",
+diamondWeight:r[5]||"",
+size:r[6]||"",
+imageFolder:r[7]||"",
+videoFolder:r[8]||"",
+category
+}));
+})
+);
+
+allProducts=results.flat();
+status.style.display="none";
+renderProducts();
+
+}catch(error){
+status.textContent="Unable to load products. Please check Google Sheets publishing settings.";
+console.error(error);
+}
+}
+
+function renderProducts(){
+const grid=document.getElementById("products");
+const search=document.getElementById("search").value.toLowerCase();
+
+const filtered=allProducts.filter(p=>{
+const categoryMatch=currentCategory==="All Products"||p.category===currentCategory;
+const searchMatch=(p.name+" "+p.code+" "+p.category).toLowerCase().includes(search);
+return categoryMatch&&searchMatch;
+});
+
+const totalPages=Math.max(1,Math.ceil(filtered.length/perPage));
+currentPage=Math.min(currentPage,totalPages);
+
+const start=(currentPage-1)*perPage;
+const pageProducts=filtered.slice(start,start+perPage);
+
+document.getElementById("heading").textContent=currentCategory;
+grid.innerHTML="";
+
+if(!filtered.length){
+grid.innerHTML='<div class="status" style="grid-column:1/-1">No products found.</div>';
+}
+
+pageProducts.forEach(p=>{
+const card=document.createElement("div");
+card.className="product";
+
+const image=document.createElement("div");
+image.className="product-image";
+
+const placeholder=document.createElement("span");
+placeholder.className="no-image";
+placeholder.textContent="LUVIRA JEWELS";
+image.appendChild(placeholder);
+
+if(p.imageFolder){
+fetchProductMedia(p.imageFolder).then(media=>{
+if(!media.images||!media.images.length)return;
+
+const img=document.createElement("img");
+img.alt=p.name||p.code||"Luvira jewellery";
+img.loading="lazy";
+img.decoding="async";
+img.referrerPolicy="no-referrer";
+img.onload=()=>placeholder.remove();
+
+image.appendChild(img);
+loadDriveImage(img,media.images[0],()=>img.remove());
+}).catch(error=>console.warn("Image load:",p.code,error));
+}
+
+const info=document.createElement("div");
+info.className="product-info";
+
+const name=document.createElement("h3");
+name.textContent=p.name;
+
+const code=document.createElement("p");
+code.textContent="Product Code: "+p.code;
+
+const category=document.createElement("p");
+category.className="category";
+category.textContent=p.category;
+
+const btn=document.createElement("button");
+btn.className="view-btn";
+btn.textContent="View Details";
+btn.addEventListener("click",e=>{
+e.stopPropagation();
+openProduct(p);
+});
+
+info.append(name,code,category,btn);
+card.append(image,info);
+card.addEventListener("click",()=>openProduct(p));
+grid.appendChild(card);
+});
+
+const pagination=document.getElementById("pagination");
+pagination.style.display=filtered.length?"flex":"none";
+document.getElementById("page").textContent=`Page ${currentPage} of ${totalPages}`;
+document.getElementById("prev").disabled=currentPage===1;
+document.getElementById("next").disabled=currentPage===totalPages;
+}
+
+// PRODUCT GALLERY AND COLOUR VIDEO MATCHING
+
+let activeProductMedia={
+product:null,
+images:[],
+videos:[],
+colourGroups:{},
+videosByColour:{},
+colour:"",
+index:0
+};
+
+const PRODUCT_COLOURS={
+YL:{label:"Yellow Gold",swatch:"swatch-yl"},
+WH:{label:"White Gold",swatch:"swatch-wh"},
+RS:{label:"Rose Gold",swatch:"swatch-rs"},
+PT:{label:"Platinum",swatch:"swatch-pt"}
+};
+
+function getImageColour(filename){
+const name=String(filename||"").toUpperCase();
+const match=name.match(/-(YL|WH|RS|PT)(?:[-_.]|$)/);
+return match?match[1]:"OTHER";
+}
+
+function makeSafeText(value){
+return String(value==null||value===""?"-":value);
+}
+
+function renderProductGallery(){
+const p=activeProductMedia.product;
+const images=activeProductMedia.colourGroups[activeProductMedia.colour]||[];
+const current=images[activeProductMedia.index]||images[0]||null;
+const content=document.getElementById("modal-content");
+
+const colourButtons=Object.keys(activeProductMedia.colourGroups)
+.filter(code=>code!=="OTHER"&&activeProductMedia.colourGroups[code].length)
+.map(code=>{
+const meta=PRODUCT_COLOURS[code]||{label:code,swatch:"swatch-pt"};
+return `<button type="button" class="gallery-colour ${activeProductMedia.colour===code?"active":""}" data-colour="${code}">
+<span class="colour-swatch ${meta.swatch}"></span>${meta.label}</button>`;
+}).join("");
+
+const thumbs=images.map((item,index)=>`
+<button type="button" class="gallery-thumb ${index===activeProductMedia.index?"active":""}" data-image-index="${index}" aria-label="View image ${index+1}">
+<img src="${item.url}" alt="${makeSafeText(item.name)}"></button>
+`).join("");
+
+content.innerHTML=`
+<div class="product-gallery">
+<div class="gallery-rail">
+<div class="gallery-thumbs">${thumbs||'<div class="gallery-media-note">No photos</div>'}</div>
+<div class="gallery-video-under-thumbs" id="gallery-colour-video"></div>
+</div>
+
+<div class="gallery-stage" id="gallery-stage">
+${current?`<img id="gallery-main-image" alt="${makeSafeText(p.name)}">`:'<div class="status">No product images found for this colour.</div>'}
+${images.length>1?`
+<button type="button" class="gallery-arrow prev" id="gallery-prev">‹</button>
+<button type="button" class="gallery-arrow next" id="gallery-next">›</button>`:""}
+</div>
+
+<aside class="gallery-info">
+<div class="gallery-kicker">Luvira Jewels · Product details</div>
+<h2>${makeSafeText(p.name||p.code)}</h2>
+<p><strong>Product Code:</strong> ${makeSafeText(p.code)}</p>
+<p><strong>Category:</strong> ${makeSafeText(p.category)}</p>
+<p>${makeSafeText(p.description)}</p>
+<div class="gallery-colour-title">Choose your colour</div>
+<div class="gallery-colours">${colourButtons||'<span class="gallery-media-note">No colour-specific images found.</span>'}</div>
+<p class="gallery-media-note">Select a colour to view its matching product photos and video.</p>
+</aside>
+</div>
+
+<section class="product-full-details">
+<h3>Product Details</h3>
+<div class="product-detail-grid">
+${[
+["Product Name",p.name],
+["Product Code",p.code],
+["Category",p.category],
+["Description",p.description],
+["Material",p.material],
+["Metal Weight",p.metalWeight],
+["Diamond Weight",p.diamondWeight],
+["Size",p.size]
+].map(([label,value])=>`<div class="product-detail-item"><strong>${label}</strong><span>${makeSafeText(value)}</span></div>`).join("")}
+</div>
+</section>
+`;
+
+const mainImg=document.getElementById("gallery-main-image");
+
+if(mainImg&&current){
+loadDriveImage(mainImg,current,()=>{
+const stage=document.getElementById("gallery-stage");
+if(stage)stage.innerHTML='<div class="status">This product image could not be loaded.</div>';
+});
+}
+
+content.querySelectorAll("[data-image-index]").forEach(button=>{
+button.addEventListener("click",()=>{
+activeProductMedia.index=Number(button.dataset.imageIndex);
+renderProductGallery();
+});
+});
+
+content.querySelectorAll("[data-colour]").forEach(button=>{
+button.addEventListener("click",()=>{
+activeProductMedia.colour=button.dataset.colour;
+activeProductMedia.index=0;
+renderProductGallery();
+});
+});
+
+const prev=document.getElementById("gallery-prev");
+const next=document.getElementById("gallery-next");
+
+if(prev)prev.onclick=()=>{
+activeProductMedia.index=(activeProductMedia.index-1+images.length)%images.length;
+renderProductGallery();
+};
+
+if(next)next.onclick=()=>{
+activeProductMedia.index=(activeProductMedia.index+1)%images.length;
+renderProductGallery();
+};
+
+// MATCH VIDEO USING COLOUR CODE, NOT PRODUCT CODE
+
+const videoBox=document.getElementById("gallery-colour-video");
+const colourVideos=activeProductMedia.videosByColour[activeProductMedia.colour]||[];
+const selectedVideo=colourVideos[0]||null;
+
+if(selectedVideo){
+videoBox.innerHTML='<div class="gallery-video-label">'+
+(PRODUCT_COLOURS[activeProductMedia.colour]?.label||"Selected")+
+' video</div>';
+
+const frame=document.createElement("iframe");
+frame.src=getDriveVideoUrl(selectedVideo);
+frame.title=selectedVideo.name||"Product video";
+frame.loading="lazy";
+frame.allow="autoplay; encrypted-media; picture-in-picture";
+frame.allowFullscreen=true;
+frame.referrerPolicy="no-referrer";
+videoBox.appendChild(frame);
+}else{
+videoBox.innerHTML='<p class="gallery-media-note">No video for this colour.</p>';
+}
+}
+
+async function openProduct(p){
+const modal=document.getElementById("modal");
+const content=document.getElementById("modal-content");
+
+activeProductMedia={
+product:p,
+images:[],
+videos:[],
+colourGroups:{},
+videosByColour:{},
+colour:"",
+index:0
+};
+
+modal.style.display="block";
+modal.setAttribute("aria-hidden","false");
+document.body.style.overflow="hidden";
+
+content.innerHTML='<div class="status">Loading product photos and videos...</div>';
+
+try{
+const results=await Promise.allSettled([
+fetchProductMedia(p.imageFolder),
+fetchProductMedia(p.videoFolder)
+]);
+
+const imageData=results[0].status==="fulfilled"?results[0].value:{images:[]};
+const videoData=results[1].status==="fulfilled"?results[1].value:{videos:[]};
+
+activeProductMedia.images=imageData.images||[];
+activeProductMedia.videos=videoData.videos||[];
+
+// GROUP VIDEOS BY YL / WH / RS.
+// Product filename prefixes can be different.
+// Example: RP16200-YL.mp4 for product PT016200.
+
+activeProductMedia.videos.forEach(item=>{
+const code=getImageColour(item.name);
+if(!activeProductMedia.videosByColour[code]){
+activeProductMedia.videosByColour[code]=[];
+}
+activeProductMedia.videosByColour[code].push(item);
+});
+
+// GROUP IMAGES BY COLOUR
+
+activeProductMedia.images.forEach(item=>{
+const code=getImageColour(item.name);
+if(!activeProductMedia.colourGroups[code]){
+activeProductMedia.colourGroups[code]=[];
+}
+activeProductMedia.colourGroups[code].push(item);
+});
+
+const available=Object.keys(activeProductMedia.colourGroups)
+.filter(code=>code!=="OTHER");
+
+activeProductMedia.colour=
+["YL","WH","RS"].find(code=>available.includes(code))
+||available[0]
+||"OTHER";
+
+if(!available.length&&activeProductMedia.images.length){
+activeProductMedia.colourGroups.OTHER=activeProductMedia.images;
+activeProductMedia.colour="OTHER";
+}
+
+renderProductGallery();
+
+}catch(error){
+console.error("Product media error:",error);
+content.innerHTML='<div class="status">Unable to load product media. Please refresh and try again.</div>';
+}
+}
 
 // CATEGORY FILTER
 
-document.querySelectorAll(".cat-btn").forEach(btn => {
-  btn.addEventListener("click",() => {
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentCategory = btn.dataset.cat;
-    currentPage = 1;
-    renderProducts();
-  });
+document.querySelectorAll(".cat-btn").forEach(btn=>{
+btn.addEventListener("click",()=>{
+document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+currentCategory=btn.dataset.cat;
+currentPage=1;
+renderProducts();
 });
-
+});
 
 // SEARCH
 
-document.getElementById("search").addEventListener("input",() => {
-  currentPage = 1;
-  renderProducts();
+document.getElementById("search").addEventListener("input",()=>{
+currentPage=1;
+renderProducts();
 });
-
 
 // PAGINATION
 
-document.getElementById("prev").onclick = () => {
-  if (currentPage > 1) {
-    currentPage--;
-    renderProducts();
-    window.scrollTo({top:0,behavior:"smooth"});
-  }
+document.getElementById("prev").onclick=()=>{
+if(currentPage>1){
+currentPage--;
+renderProducts();
+window.scrollTo({top:0,behavior:"smooth"});
+}
 };
 
-document.getElementById("next").onclick = () => {
-  currentPage++;
-  renderProducts();
-  window.scrollTo({top:0,behavior:"smooth"});
+document.getElementById("next").onclick=()=>{
+currentPage++;
+renderProducts();
+window.scrollTo({top:0,behavior:"smooth"});
 };
 
+// CLOSE PRODUCT
 
-// MODAL CLOSE
-
-function closeProductModal() {
-  const modal = document.getElementById("modal");
-  modal.style.display = "none";
-  modal.setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
+function closeProductModal(){
+const modal=document.getElementById("modal");
+modal.style.display="none";
+modal.setAttribute("aria-hidden","true");
+document.body.style.overflow="";
 }
 
-document.getElementById("close").onclick = closeProductModal;
+document.getElementById("close").onclick=closeProductModal;
 
-document.getElementById("modal").onclick = e => {
-  if (e.target.id === "modal") closeProductModal();
+document.getElementById("modal").onclick=e=>{
+if(e.target.id==="modal")closeProductModal();
 };
 
-document.addEventListener("keydown",e => {
-  if (e.key === "Escape") closeProductModal();
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")closeProductModal();
 });
-
 
 // START WEBSITE
 
 loadProducts();
-
 </script>
 </body>
 </html>
