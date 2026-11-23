@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#171512">
+
 <title>Luvira Jewels | Exclusive Jewellery</title>
 
 <style>
@@ -14,56 +15,360 @@
   --cream:#faf8f3;
   --text:#29251f;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--text);font-family:Arial,sans-serif}
-header{background:var(--black);color:white;text-align:center;padding:24px 15px;border-bottom:3px solid var(--gold)}
-.logo{font-family:Georgia,serif;font-size:clamp(25px,5vw,38px);font-weight:bold;letter-spacing:5px}
-.tagline{color:var(--gold);font-size:11px;letter-spacing:3px;margin-top:9px}
-.container{max-width:1400px;margin:auto;padding:25px 18px}
-.section-title{font-family:Georgia,serif;font-size:26px;margin:10px 0 22px}
-.categories{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:25px}
-.cat-btn{background:var(--black);color:var(--gold);border:1px solid var(--gold);padding:20px 8px;cursor:pointer;font-weight:bold;letter-spacing:1px;min-height:85px;transition:.2s}
-.cat-btn.active,.cat-btn:hover{background:var(--gold);color:var(--black)}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:25px 0;flex-wrap:wrap}
-.toolbar h2{font-family:Georgia,serif;font-size:25px;margin:0}
-.search{width:min(100%,320px);padding:13px;border:1px solid #d8d0c3;background:white;border-radius:5px;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.product{background:white;border:1px solid #e9e5dc;overflow:hidden;cursor:pointer;transition:.2s}
-.product:hover{transform:translateY(-4px);box-shadow:0 8px 25px #00000012}
-.product-image{width:100%;aspect-ratio:1/1;background:#f5f3ef;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.product-image img{width:100%;height:100%;object-fit:contain}
-.no-image{color:#a99b83;font-family:Georgia,serif;font-size:15px}
-.product-info{padding:13px}
-.product-info h3{font-family:Georgia,serif;font-size:17px;margin:0 0 8px}
-.product-info p{font-size:12px;color:#777;margin:5px 0}
-.product-info .category{color:#a17b36}
-.view-btn{display:block;width:100%;margin-top:12px;background:var(--black);color:var(--gold);border:0;padding:11px;cursor:pointer}
-.status{text-align:center;padding:35px 10px;color:#8a795b}
-.pagination{display:flex;justify-content:center;align-items:center;gap:15px;padding:30px 0}
-.pagination button{padding:10px 20px;background:var(--black);color:var(--gold);border:0;cursor:pointer}
-.pagination button:disabled{opacity:.35;cursor:not-allowed}
-.modal{display:none;position:fixed;inset:0;z-index:10;background:#000b;overflow-y:auto;padding:20px}
-.modal-box{background:white;max-width:650px;margin:30px auto;padding:25px;position:relative}
-.close{position:absolute;right:15px;top:12px;font-size:28px;cursor:pointer}
-.modal h2{font-family:Georgia,serif;padding-right:25px}
-.modal p{line-height:1.7;font-size:14px}
-footer{background:var(--black);color:#c7b58e;text-align:center;padding:25px 10px;margin-top:35px;font-size:12px;letter-spacing:1px}
 
-@media(max-width:700px){
-.container{padding:18px 12px}
-.logo{letter-spacing:3px}
-.categories{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.cat-btn{min-height:65px;padding:12px 4px;font-size:11px;letter-spacing:.5px}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.product-info{padding:9px}
-.product-info h3{font-size:14px}
-.product-info p{font-size:11px}
-.toolbar{gap:12px}
-.toolbar h2{font-size:21px}
-.search{width:100%}
+* {
+  box-sizing:border-box;
 }
-@media(max-width:350px){
-.categories{grid-template-columns:repeat(2,1fr)}
+
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+
+header {
+  background:var(--black);
+  color:white;
+  text-align:center;
+  padding:24px 15px;
+  border-bottom:3px solid var(--gold);
+}
+
+.logo {
+  font-family:Georgia,serif;
+  font-size:clamp(25px,5vw,38px);
+  font-weight:bold;
+  letter-spacing:5px;
+}
+
+.tagline {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-top:9px;
+}
+
+.container {
+  max-width:1400px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.section-title {
+  font-family:Georgia,serif;
+  font-size:26px;
+  margin:10px 0 22px;
+}
+
+.categories {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:25px;
+}
+
+.cat-btn {
+  background:var(--black);
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:20px 8px;
+  cursor:pointer;
+  font-weight:bold;
+  letter-spacing:1px;
+  min-height:85px;
+  transition:.2s;
+}
+
+.cat-btn.active,
+.cat-btn:hover {
+  background:var(--gold);
+  color:var(--black);
+}
+
+.toolbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:25px 0;
+  flex-wrap:wrap;
+}
+
+.toolbar h2 {
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin:0;
+}
+
+.search {
+  width:min(100%,320px);
+  padding:13px;
+  border:1px solid #d8d0c3;
+  background:white;
+  border-radius:5px;
+  font-size:14px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+}
+
+.product {
+  background:white;
+  border:1px solid #e9e5dc;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.product:hover {
+  transform:translateY(-4px);
+  box-shadow:0 8px 25px #00000012;
+}
+
+.product-image {
+  width:100%;
+  aspect-ratio:1/1;
+  background:#f5f3ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+.product-image img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  position:absolute;
+  inset:0;
+}
+
+.no-image {
+  color:#a99b83;
+  font-family:Georgia,serif;
+  font-size:15px;
+}
+
+.product-info {
+  padding:13px;
+}
+
+.product-info h3 {
+  font-family:Georgia,serif;
+  font-size:17px;
+  margin:0 0 8px;
+}
+
+.product-info p {
+  font-size:12px;
+  color:#777;
+  margin:5px 0;
+}
+
+.product-info .category {
+  color:#a17b36;
+}
+
+.view-btn {
+  display:block;
+  width:100%;
+  margin-top:12px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  padding:11px;
+  cursor:pointer;
+}
+
+.status {
+  text-align:center;
+  padding:35px 10px;
+  color:#8a795b;
+}
+
+.pagination {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  padding:30px 0;
+}
+
+.pagination button {
+  padding:10px 20px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  cursor:pointer;
+}
+
+.pagination button:disabled {
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+/* PRODUCT MODAL */
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10;
+  background:#000b;
+  overflow-y:auto;
+  padding:20px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.modal-box {
+  background:white;
+  max-width:650px;
+  width:100%;
+  margin:30px auto;
+  padding:25px;
+  position:relative;
+}
+
+.close {
+  position:absolute;
+  right:15px;
+  top:12px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.modal h2 {
+  font-family:Georgia,serif;
+  padding-right:25px;
+}
+
+.modal p {
+  line-height:1.7;
+  font-size:14px;
+}
+
+#modal-links img {
+  display:block;
+  max-width:100%;
+}
+
+#modal-links iframe {
+  display:block;
+  max-width:100%;
+}
+
+footer {
+  background:var(--black);
+  color:#c7b58e;
+  text-align:center;
+  padding:25px 10px;
+  margin-top:35px;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+/* TABLET */
+
+@media(max-width:1000px) {
+  .grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .categories {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+  .container {
+    padding:18px 12px;
+  }
+
+  .logo {
+    letter-spacing:3px;
+  }
+
+  .categories {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .cat-btn {
+    min-height:65px;
+    padding:12px 4px;
+    font-size:11px;
+    letter-spacing:.5px;
+  }
+
+  .grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .product-info {
+    padding:9px;
+  }
+
+  .product-info h3 {
+    font-size:14px;
+  }
+
+  .product-info p {
+    font-size:11px;
+  }
+
+  .toolbar {
+    gap:12px;
+  }
+
+  .toolbar h2 {
+    font-size:21px;
+  }
+
+  .search {
+    width:100%;
+  }
+
+  .modal {
+    padding:10px;
+  }
+
+  .modal-box {
+    margin:10px auto;
+    padding:18px;
+  }
+
+  .modal h2 {
+    font-size:22px;
+  }
+
+  .modal p {
+    font-size:14px;
+  }
+}
+
+@media(max-width:350px) {
+
+  .categories {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid {
+    gap:7px;
+  }
+
+  .product-info h3 {
+    font-size:12px;
+  }
+
 }
 </style>
 </head>
@@ -71,606 +376,940 @@ footer{background:var(--black);color:#c7b58e;text-align:center;padding:25px 10px
 <body>
 
 <header>
-<div class="logo">LUVIRA JEWELS</div>
-<div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
+  <div class="logo">LUVIRA JEWELS</div>
+  <div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
 </header>
 
 <main class="container">
 
-<h1 class="section-title">Explore Our Collections</h1>
+  <h1 class="section-title">Explore Our Collections</h1>
 
-<div class="categories" id="categories">
-<button class="cat-btn active" data-cat="All Products">ALL</button>
-<button class="cat-btn" data-cat="Rings">RINGS</button>
-<button class="cat-btn" data-cat="Earrings">EARRINGS</button>
-<button class="cat-btn" data-cat="Pendants">PENDANTS</button>
-<button class="cat-btn" data-cat="Necklaces">NECKLACES</button>
-<button class="cat-btn" data-cat="Bracelets">BRACELETS</button>
-</div>
+  <div class="categories" id="categories">
 
-<div class="toolbar">
-<h2 id="heading">All Products</h2>
-<input class="search" id="search" type="search" placeholder="Search product name or code...">
-</div>
+    <button class="cat-btn active" data-cat="All Products">ALL</button>
+    <button class="cat-btn" data-cat="Rings">RINGS</button>
+    <button class="cat-btn" data-cat="Earrings">EARRINGS</button>
+    <button class="cat-btn" data-cat="Pendants">PENDANTS</button>
+    <button class="cat-btn" data-cat="Necklaces">NECKLACES</button>
+    <button class="cat-btn" data-cat="Bracelets">BRACELETS</button>
 
-<div id="status" class="status">Loading collections...</div>
-<div class="grid" id="products"></div>
+  </div>
 
-<div class="pagination" id="pagination" style="display:none">
-<button id="prev">Previous</button>
-<span id="page">Page 1</span>
-<button id="next">Next</button>
-</div>
+  <div class="toolbar">
+
+    <h2 id="heading">All Products</h2>
+
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Search product name or code..."
+    >
+
+  </div>
+
+  <div id="status" class="status">
+    Loading collections...
+  </div>
+
+  <div class="grid" id="products"></div>
+
+  <div class="pagination" id="pagination" style="display:none">
+
+    <button id="prev">Previous</button>
+
+    <span id="page">Page 1</span>
+
+    <button id="next">Next</button>
+
+  </div>
 
 </main>
 
-<footer>LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION</footer>
+<footer>
+  LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
+</footer>
 
 <div class="modal" id="modal">
-<div class="modal-box">
-<span class="close" id="close">&times;</span>
-<h2 id="modal-name"></h2>
-<div id="modal-details"></div>
-<div id="modal-links"></div>
-</div>
+
+  <div class="modal-box">
+
+    <span class="close" id="close">&times;</span>
+
+    <h2 id="modal-name"></h2>
+
+    <div id="modal-details"></div>
+
+    <div id="modal-links"></div>
+
+  </div>
+
 </div>
 
 <script>
 
+// ======================================
 // GOOGLE SHEETS DATA
+// ======================================
 
 const SHEETS = {
-"Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
 
-"Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
+  "Rings":
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
 
-"Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
+  "Earrings":
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
 
-"Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
+  "Pendants":
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
 
-"Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+  "Necklaces":
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
+
+  "Bracelets":
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+
 };
 
+
+// ======================================
 // GOOGLE APPS SCRIPT API
+// ======================================
 
 const MEDIA_API =
 "https://script.google.com/macros/s/AKfycbxUrGRyZzOG_8ca0jF1bAE0U1X5KzCuZWWWeQUD2gkN-vZZKA0iyGxChdD3RDz8LKAkpA/exec";
 
+
 const mediaCache = new Map();
 
-function fetchProductMedia(folderUrl){
 
-if(!folderUrl){
-return Promise.resolve({success:true,images:[],videos:[]});
+// ======================================
+// FETCH PRODUCT MEDIA
+// ======================================
+
+function fetchProductMedia(folderUrl) {
+
+  folderUrl = String(folderUrl || "").trim();
+
+  if (!folderUrl) {
+
+    return Promise.resolve({
+      success:true,
+      images:[],
+      videos:[]
+    });
+
+  }
+
+  if (mediaCache.has(folderUrl)) {
+    return mediaCache.get(folderUrl);
+  }
+
+  const request = new Promise((resolve,reject) => {
+
+    const callbackName =
+      "luvMedia_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random()*1000000);
+
+    const script = document.createElement("script");
+
+    let finished = false;
+    let timeout;
+
+    const cleanup = () => {
+
+      if (finished) return;
+
+      finished = true;
+
+      clearTimeout(timeout);
+
+      delete window[callbackName];
+
+      script.remove();
+
+    };
+
+
+    // 60 SECOND TIMEOUT
+
+    timeout = setTimeout(() => {
+
+      cleanup();
+
+      mediaCache.delete(folderUrl);
+
+      reject(new Error("Media API timed out"));
+
+    },60000);
+
+
+    // API CALLBACK
+
+    window[callbackName] = data => {
+
+      if (finished) return;
+
+      cleanup();
+
+      if (data && data.success) {
+
+        resolve(data);
+
+      } else {
+
+        mediaCache.delete(folderUrl);
+
+        reject(
+          new Error(
+            (data && data.error) ||
+            "Media API failed"
+          )
+        );
+
+      }
+
+    };
+
+
+    // SCRIPT ERROR
+
+    script.onerror = () => {
+
+      if (finished) return;
+
+      cleanup();
+
+      mediaCache.delete(folderUrl);
+
+      reject(
+        new Error("Could not connect to media API")
+      );
+
+    };
+
+
+    // API REQUEST
+
+    script.src =
+      MEDIA_API +
+      "?folder=" +
+      encodeURIComponent(folderUrl) +
+      "&callback=" +
+      encodeURIComponent(callbackName) +
+      "&_=" +
+      Date.now();
+
+
+    document.head.appendChild(script);
+
+  });
+
+
+  mediaCache.set(folderUrl,request);
+
+  return request;
+
 }
 
-if(mediaCache.has(folderUrl)){
-return mediaCache.get(folderUrl);
-}
 
-const request = new Promise((resolve,reject)=>{
+// ======================================
+// WEBSITE VARIABLES
+// ======================================
 
-const callbackName =
-"luvMedia_"+Date.now()+"_"+Math.floor(Math.random()*1000000);
+let allProducts = [];
 
-const script=document.createElement("script");
-let finished=false;
-let timeout;
+let currentCategory = "All Products";
 
-const cleanup=()=>{
-if(finished)return;
-finished=true;
-delete window[callbackName];
-script.remove();
-};
+let currentPage = 1;
 
-timeout=setTimeout(()=>{
-cleanup();
-mediaCache.delete(folderUrl);
-reject(new Error("Media API timed out"));
-},20000);
-
-window[callbackName]=data=>{
-
-clearTimeout(timeout);
-cleanup();
-
-if(data && data.success){
-resolve(data);
-}else{
-mediaCache.delete(folderUrl);
-reject(new Error((data && data.error)||"Media API failed"));
-}
-
-};
-
-script.onerror=()=>{
-clearTimeout(timeout);
-cleanup();
-mediaCache.delete(folderUrl);
-reject(new Error("Could not connect to media API"));
-};
-
-script.src=MEDIA_API+
-"?folder="+encodeURIComponent(folderUrl)+
-"&callback="+encodeURIComponent(callbackName);
-
-document.head.appendChild(script);
-
-});
-
-mediaCache.set(folderUrl,request);
-return request;
-
-}
-
-let allProducts=[];
-let currentCategory="All Products";
-let currentPage=1;
-const perPage=12;
+const perPage = 12;
 
 
+// ======================================
 // CSV READER
+// ======================================
 
-function parseCSV(text){
+function parseCSV(text) {
 
-const rows=[];
-let row=[];
-let cell="";
-let quoted=false;
+  const rows = [];
 
-for(let i=0;i<text.length;i++){
+  let row = [];
+  let cell = "";
+  let quoted = false;
 
-const c=text[i];
+  for (let i=0; i<text.length; i++) {
 
-if(c==='"'){
+    const c = text[i];
 
-if(quoted && text[i+1]==='"'){
-cell+='"';
-i++;
-}else{
-quoted=!quoted;
+    if (c === '"') {
+
+      if (quoted && text[i+1] === '"') {
+
+        cell += '"';
+        i++;
+
+      } else {
+
+        quoted = !quoted;
+
+      }
+
+    } else if (c === ',' && !quoted) {
+
+      row.push(cell);
+      cell = "";
+
+    } else if ((c === '\n' || c === '\r') && !quoted) {
+
+      if (c === '\r' && text[i+1] === '\n') i++;
+
+      row.push(cell);
+
+      if (row.some(v => v.trim() !== "")) {
+        rows.push(row);
+      }
+
+      row = [];
+      cell = "";
+
+    } else {
+
+      cell += c;
+
+    }
+
+  }
+
+  row.push(cell);
+
+  if (row.some(v => v.trim() !== "")) {
+    rows.push(row);
+  }
+
+  return rows;
+
 }
 
-}else if(c===',' && !quoted){
 
-row.push(cell);
-cell="";
-
-}else if((c==='\n'||c==='\r')&&!quoted){
-
-if(c==='\r'&&text[i+1]==='\n')i++;
-
-row.push(cell);
-
-if(row.some(v=>v.trim()!=="")){
-rows.push(row);
-}
-
-row=[];
-cell="";
-
-}else{
-cell+=c;
-}
-
-}
-
-row.push(cell);
-
-if(row.some(v=>v.trim()!=="")){
-rows.push(row);
-}
-
-return rows;
-
-}
-
-
+// ======================================
 // LOAD GOOGLE SHEETS
+// ======================================
 
-async function loadProducts(){
+async function loadProducts() {
 
-const status=document.getElementById("status");
+  const status = document.getElementById("status");
 
-try{
+  try {
 
-const results=await Promise.all(
+    const results = await Promise.all(
 
-Object.entries(SHEETS).map(async([category,url])=>{
+      Object.entries(SHEETS).map(
+        async ([category,url]) => {
 
-const response=await fetch(url);
+          const response = await fetch(url);
 
-if(!response.ok){
-throw new Error("Unable to load "+category);
+          if (!response.ok) {
+            throw new Error("Unable to load " + category);
+          }
+
+          const csv = await response.text();
+
+          const rows = parseCSV(csv);
+
+          return rows.slice(1)
+
+            .filter(r => r[0] && r[0].trim())
+
+            .map(r => ({
+
+              code:r[0] || "",
+
+              name:r[1] || "",
+
+              description:r[2] || "",
+
+              material:r[3] || "",
+
+              metalWeight:r[4] || "",
+
+              diamondWeight:r[5] || "",
+
+              size:r[6] || "",
+
+              imageFolder:r[7] || "",
+
+              videoFolder:r[8] || "",
+
+              category
+
+            }));
+
+        }
+
+      )
+
+    );
+
+
+    allProducts = results.flat();
+
+    status.style.display = "none";
+
+    renderProducts();
+
+  } catch(error) {
+
+    status.textContent =
+      "Unable to load products. Please check Google Sheets publishing settings.";
+
+    console.error(error);
+
+  }
+
 }
 
-const csv=await response.text();
-const rows=parseCSV(csv);
 
-return rows.slice(1)
-.filter(r=>r[0]&&r[0].trim())
-.map(r=>({
-
-code:r[0]||"",
-name:r[1]||"",
-description:r[2]||"",
-material:r[3]||"",
-metalWeight:r[4]||"",
-diamondWeight:r[5]||"",
-size:r[6]||"",
-imageFolder:r[7]||"",
-videoFolder:r[8]||"",
-category
-
-}));
-
-})
-
-);
-
-allProducts=results.flat();
-
-status.style.display="none";
-renderProducts();
-
-}catch(error){
-
-status.textContent=
-"Unable to load products. Please check Google Sheets publishing settings.";
-
-console.error(error);
-
-}
-
-}
-
-
+// ======================================
 // DISPLAY PRODUCTS
+// ======================================
 
-function renderProducts(){
+function renderProducts() {
 
-const grid=document.getElementById("products");
-const search=document.getElementById("search").value.toLowerCase();
+  const grid = document.getElementById("products");
 
-const filtered=allProducts.filter(p=>{
+  const search =
+    document.getElementById("search").value.toLowerCase();
 
-const categoryMatch=
-currentCategory==="All Products"||
-p.category===currentCategory;
+  const filtered = allProducts.filter(p => {
 
-const searchMatch=
-(p.name+" "+p.code+" "+p.category)
-.toLowerCase().includes(search);
+    const categoryMatch =
+      currentCategory === "All Products" ||
+      p.category === currentCategory;
 
-return categoryMatch&&searchMatch;
+    const searchMatch =
+      (p.name + " " + p.code + " " + p.category)
+      .toLowerCase()
+      .includes(search);
 
-});
+    return categoryMatch && searchMatch;
 
-const totalPages=Math.max(1,Math.ceil(filtered.length/perPage));
+  });
 
-currentPage=Math.min(currentPage,totalPages);
 
-const start=(currentPage-1)*perPage;
-const pageProducts=filtered.slice(start,start+perPage);
+  const totalPages =
+    Math.max(1,Math.ceil(filtered.length/perPage));
 
-document.getElementById("heading").textContent=currentCategory;
+  currentPage = Math.min(currentPage,totalPages);
 
-grid.innerHTML="";
+  const start = (currentPage-1)*perPage;
 
-if(!filtered.length){
+  const pageProducts =
+    filtered.slice(start,start+perPage);
 
-grid.innerHTML=
-'<div class="status" style="grid-column:1/-1">No products found.</div>';
+
+  document.getElementById("heading").textContent =
+    currentCategory;
+
+  grid.innerHTML = "";
+
+
+  if (!filtered.length) {
+
+    grid.innerHTML =
+      '<div class="status" style="grid-column:1/-1">No products found.</div>';
+
+  }
+
+
+  pageProducts.forEach(p => {
+
+    const card = document.createElement("div");
+
+    card.className = "product";
+
+
+    const image = document.createElement("div");
+
+    image.className = "product-image";
+
+
+    const placeholder = document.createElement("span");
+
+    placeholder.className = "no-image";
+
+    placeholder.textContent = "LUVIRA JEWELS";
+
+    image.appendChild(placeholder);
+
+
+    // LOAD PRODUCT IMAGE
+
+    if (p.imageFolder) {
+
+      fetchProductMedia(p.imageFolder)
+
+        .then(media => {
+
+          if (!media.images || !media.images.length) return;
+
+          const img = document.createElement("img");
+
+          img.alt = p.name || p.code || "Luvira jewellery";
+
+          img.loading = "lazy";
+
+          img.decoding = "async";
+
+          img.referrerPolicy = "no-referrer";
+
+
+          img.onload = () => {
+            placeholder.remove();
+          };
+
+
+          img.onerror = () => {
+            img.remove();
+          };
+
+
+          img.src = media.images[0].url;
+
+          image.appendChild(img);
+
+        })
+
+        .catch(error => {
+
+          console.warn("Image load:",p.code,error);
+
+        });
+
+    }
+
+
+    const info = document.createElement("div");
+
+    info.className = "product-info";
+
+
+    const name = document.createElement("h3");
+
+    name.textContent = p.name;
+
+
+    const code = document.createElement("p");
+
+    code.textContent = "Product Code: " + p.code;
+
+
+    const category = document.createElement("p");
+
+    category.className = "category";
+
+    category.textContent = p.category;
+
+
+    const btn = document.createElement("button");
+
+    btn.className = "view-btn";
+
+    btn.textContent = "View Details";
+
+
+    btn.addEventListener("click",e => {
+
+      e.stopPropagation();
+
+      openProduct(p);
+
+    });
+
+
+    info.append(name,code,category,btn);
+
+    card.append(image,info);
+
+
+    card.addEventListener("click",() => openProduct(p));
+
+
+    grid.appendChild(card);
+
+  });
+
+
+  const pagination =
+    document.getElementById("pagination");
+
+  pagination.style.display =
+    filtered.length ? "flex" : "none";
+
+
+  document.getElementById("page").textContent =
+    `Page ${currentPage} of ${totalPages}`;
+
+  document.getElementById("prev").disabled =
+    currentPage === 1;
+
+  document.getElementById("next").disabled =
+    currentPage === totalPages;
 
 }
 
-pageProducts.forEach(p=>{
 
-const card=document.createElement("div");
-card.className="product";
-
-const image=document.createElement("div");
-image.className="product-image";
-
-const placeholder=document.createElement("span");
-placeholder.className="no-image";
-placeholder.textContent="LUVIRA JEWELS";
-
-image.appendChild(placeholder);
-
-// H COLUMN = IMAGES FOLDER
-
-if(p.imageFolder){
-
-fetchProductMedia(p.imageFolder).then(media=>{
-
-if(!media.images||!media.images.length)return;
-
-const img=document.createElement("img");
-img.src=media.images[0].url;
-img.alt=p.name||p.code||"Luvira jewellery";
-img.loading="lazy";
-img.onerror=()=>img.remove();
-
-image.replaceChildren(img);
-
-}).catch(error=>{
-console.warn("Image load:",p.code,error);
-});
-
-}
-
-const info=document.createElement("div");
-info.className="product-info";
-
-const name=document.createElement("h3");
-name.textContent=p.name;
-
-const code=document.createElement("p");
-code.textContent="Product Code: "+p.code;
-
-const category=document.createElement("p");
-category.className="category";
-category.textContent=p.category;
-
-const btn=document.createElement("button");
-btn.className="view-btn";
-btn.textContent="View Details";
-
-btn.addEventListener("click",e=>{
-e.stopPropagation();
-openProduct(p);
-});
-
-info.append(name,code,category,btn);
-
-card.append(image,info);
-
-card.addEventListener("click",()=>openProduct(p));
-
-grid.appendChild(card);
-
-});
-
-const pagination=document.getElementById("pagination");
-
-pagination.style.display=filtered.length?"flex":"none";
-
-document.getElementById("page").textContent=
-`Page ${currentPage} of ${totalPages}`;
-
-document.getElementById("prev").disabled=currentPage===1;
-document.getElementById("next").disabled=currentPage===totalPages;
-
-}
-
-
+// ======================================
 // PRODUCT DETAILS
+// ======================================
 
-async function openProduct(p){
+async function openProduct(p) {
 
-const modal=document.getElementById("modal");
-const details=document.getElementById("modal-details");
-const links=document.getElementById("modal-links");
+  const modal = document.getElementById("modal");
 
-document.getElementById("modal-name").textContent=p.name||p.code;
+  const details = document.getElementById("modal-details");
 
-details.innerHTML="";
-links.textContent="Loading product photos and videos...";
-
-[
-["Product Code",p.code],
-["Category",p.category],
-["Description",p.description],
-["Material",p.material],
-["Metal Weight",p.metalWeight],
-["Diamond Weight",p.diamondWeight],
-["Size",p.size]
-
-].forEach(([label,value])=>{
-
-const line=document.createElement("p");
-const strong=document.createElement("strong");
-
-strong.textContent=label+": ";
-
-line.append(strong,document.createTextNode(value||"-"));
-details.appendChild(line);
-
-});
-
-modal.style.display="block";
-
-try{
-
-// H AND I COLUMNS ARE FETCHED SEPARATELY
-
-const [imageData,videoData]=await Promise.all([
-
-fetchProductMedia(p.imageFolder),
-fetchProductMedia(p.videoFolder)
-
-]);
-
-const media={
-images:imageData.images||[],
-videos:videoData.videos||[]
-};
-
-links.innerHTML="";
+  const links = document.getElementById("modal-links");
 
 
-// PRODUCT IMAGES
+  document.getElementById("modal-name").textContent =
+    p.name || p.code;
 
-const imageTitle=document.createElement("h3");
-imageTitle.textContent="Product Images";
-links.appendChild(imageTitle);
 
-const imageGrid=document.createElement("div");
+  details.innerHTML = "";
 
-imageGrid.style.display="grid";
-imageGrid.style.gridTemplateColumns=
-"repeat(auto-fit,minmax(130px,1fr))";
-imageGrid.style.gap="10px";
+  links.textContent = "Loading product photos and videos...";
 
-(media.images||[]).forEach(item=>{
+  [
+    ["Product Code",p.code],
+    ["Category",p.category],
+    ["Description",p.description],
+    ["Material",p.material],
+    ["Metal Weight",p.metalWeight],
+    ["Diamond Weight",p.diamondWeight],
+    ["Size",p.size]
 
-const img=document.createElement("img");
+  ].forEach(([label,value]) => {
 
-img.src=item.url;
-img.alt=item.name||p.name||"Product image";
-img.loading="lazy";
+    const line = document.createElement("p");
 
-img.style.width="100%";
-img.style.aspectRatio="1 / 1";
-img.style.objectFit="contain";
-img.style.background="#f5f3ef";
+    const strong = document.createElement("strong");
 
-img.onerror=()=>img.remove();
+    strong.textContent = label + ": ";
 
-imageGrid.appendChild(img);
+    line.append(
+      strong,
+      document.createTextNode(value || "-")
+    );
 
-});
+    details.appendChild(line);
 
-if(imageGrid.children.length){
-links.appendChild(imageGrid);
-}else{
+  });
 
-const noImages=document.createElement("p");
-noImages.textContent="No product images found.";
-links.appendChild(noImages);
+
+  modal.style.display = "block";
+
+
+  try {
+
+    // IMAGE AND VIDEO REQUESTS RUN INDEPENDENTLY
+
+    const results = await Promise.allSettled([
+
+      fetchProductMedia(p.imageFolder),
+
+      fetchProductMedia(p.videoFolder)
+
+    ]);
+
+
+    const imageData =
+      results[0].status === "fulfilled"
+        ? results[0].value
+        : {images:[]};
+
+
+    const videoData =
+      results[1].status === "fulfilled"
+        ? results[1].value
+        : {videos:[]};
+
+
+    if (results[0].status === "rejected") {
+      console.error("Image API error:",results[0].reason);
+    }
+
+    if (results[1].status === "rejected") {
+      console.error("Video API error:",results[1].reason);
+    }
+
+
+    const media = {
+
+      images:imageData.images || [],
+
+      videos:videoData.videos || []
+
+    };
+
+
+    links.innerHTML = "";
+
+
+    // ======================================
+    // PRODUCT IMAGES
+    // ======================================
+
+    const imageTitle = document.createElement("h3");
+
+    imageTitle.textContent = "Product Images";
+
+    links.appendChild(imageTitle);
+
+
+    const imageGrid = document.createElement("div");
+
+    imageGrid.style.display = "grid";
+
+    imageGrid.style.gridTemplateColumns =
+      "repeat(auto-fit,minmax(130px,1fr))";
+
+    imageGrid.style.gap = "10px";
+
+
+    (media.images || []).forEach(item => {
+
+      const img = document.createElement("img");
+
+      img.alt = item.name || p.name || "Product image";
+
+      img.loading = "lazy";
+
+      img.decoding = "async";
+
+      img.referrerPolicy = "no-referrer";
+
+      img.style.width = "100%";
+
+      img.style.aspectRatio = "1 / 1";
+
+      img.style.objectFit = "contain";
+
+      img.style.background = "#f5f3ef";
+
+
+      img.onerror = () => {
+
+        img.remove();
+
+      };
+
+
+      img.src = item.url;
+
+      imageGrid.appendChild(img);
+
+    });
+
+
+    if (imageGrid.children.length) {
+
+      links.appendChild(imageGrid);
+
+    } else {
+
+      const noImages = document.createElement("p");
+
+      noImages.textContent = "No product images found.";
+
+      links.appendChild(noImages);
+
+    }
+
+
+    // ======================================
+    // PRODUCT VIDEOS
+    // ======================================
+
+    const videoTitle = document.createElement("h3");
+
+    videoTitle.textContent = "Product Videos";
+
+    videoTitle.style.marginTop = "25px";
+
+    links.appendChild(videoTitle);
+
+
+    if (media.videos && media.videos.length) {
+
+      media.videos.forEach(item => {
+
+        const frame = document.createElement("iframe");
+
+        frame.src = item.url;
+
+        frame.title = item.name || "Product video";
+
+        frame.loading = "lazy";
+
+        frame.allow =
+          "autoplay; encrypted-media; picture-in-picture";
+
+        frame.allowFullscreen = true;
+
+        frame.style.width = "100%";
+
+        frame.style.aspectRatio = "16 / 9";
+
+        frame.style.border = "0";
+
+        frame.style.marginBottom = "15px";
+
+        links.appendChild(frame);
+
+      });
+
+    } else {
+
+      const noVideos = document.createElement("p");
+
+      noVideos.textContent = "No product videos found.";
+
+      links.appendChild(noVideos);
+
+    }
+
+
+    // SHOW PARTIAL API ERRORS
+
+    if (
+      results[0].status === "rejected" ||
+      results[1].status === "rejected"
+    ) {
+
+      const warning = document.createElement("p");
+
+      warning.style.color = "#a17b36";
+
+      warning.textContent =
+        "Some product media could not load. Please refresh and try again.";
+
+      links.appendChild(warning);
+
+    }
+
+  } catch(error) {
+
+    console.error("Product media error:",error);
+
+    links.textContent =
+      "Unable to load product media. Please try again.";
+
+  }
 
 }
 
 
-// PRODUCT VIDEOS
-
-const videoTitle=document.createElement("h3");
-
-videoTitle.textContent="Product Videos";
-videoTitle.style.marginTop="25px";
-
-links.appendChild(videoTitle);
-
-if(media.videos&&media.videos.length){
-
-media.videos.forEach(item=>{
-
-const frame=document.createElement("iframe");
-
-frame.src=item.url;
-frame.title=item.name||"Product video";
-frame.loading="lazy";
-frame.allow="autoplay; encrypted-media; picture-in-picture";
-frame.allowFullscreen=true;
-
-frame.style.width="100%";
-frame.style.aspectRatio="16 / 9";
-frame.style.border="0";
-frame.style.marginBottom="15px";
-
-links.appendChild(frame);
-
-});
-
-}else{
-
-const noVideos=document.createElement("p");
-noVideos.textContent="No product videos found.";
-
-links.appendChild(noVideos);
-
-}
-
-}catch(error){
-
-console.error("Product media error:",error);
-
-links.textContent=
-"Unable to load product media. Check API deployment and Drive sharing permissions.";
-
-}
-
-}
-
-
+// ======================================
 // CATEGORY FILTER
+// ======================================
 
-document.querySelectorAll(".cat-btn").forEach(btn=>{
+document.querySelectorAll(".cat-btn").forEach(btn => {
 
-btn.addEventListener("click",()=>{
+  btn.addEventListener("click",() => {
 
-document.querySelectorAll(".cat-btn")
-.forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".cat-btn")
+      .forEach(b => b.classList.remove("active"));
 
-btn.classList.add("active");
+    btn.classList.add("active");
 
-currentCategory=btn.dataset.cat;
-currentPage=1;
+    currentCategory = btn.dataset.cat;
 
-renderProducts();
+    currentPage = 1;
+
+    renderProducts();
+
+  });
 
 });
 
-});
 
-
+// ======================================
 // SEARCH
+// ======================================
 
-document.getElementById("search").addEventListener("input",()=>{
+document.getElementById("search").addEventListener("input",() => {
 
-currentPage=1;
-renderProducts();
+  currentPage = 1;
+
+  renderProducts();
 
 });
 
 
+// ======================================
 // PAGINATION
+// ======================================
 
-document.getElementById("prev").onclick=()=>{
+document.getElementById("prev").onclick = () => {
 
-if(currentPage>1){
+  if (currentPage > 1) {
 
-currentPage--;
-renderProducts();
+    currentPage--;
 
-window.scrollTo({top:0,behavior:"smooth"});
+    renderProducts();
 
-}
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
 
-};
-
-document.getElementById("next").onclick=()=>{
-
-currentPage++;
-renderProducts();
-
-window.scrollTo({top:0,behavior:"smooth"});
+  }
 
 };
 
 
-// MODAL
+document.getElementById("next").onclick = () => {
 
-document.getElementById("close").onclick=()=>{
+  currentPage++;
 
-document.getElementById("modal").style.display="none";
+  renderProducts();
 
-};
-
-document.getElementById("modal").onclick=e=>{
-
-if(e.target.id==="modal"){
-
-document.getElementById("modal").style.display="none";
-
-}
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 };
 
 
+// ======================================
+// MODAL CLOSE
+// ======================================
+
+document.getElementById("close").onclick = () => {
+
+  document.getElementById("modal").style.display = "none";
+
+};
+
+
+document.getElementById("modal").onclick = e => {
+
+  if (e.target.id === "modal") {
+
+    document.getElementById("modal").style.display = "none";
+
+  }
+
+};
+
+
+// ======================================
 // START WEBSITE
+// ======================================
 
 loadProducts();
 
