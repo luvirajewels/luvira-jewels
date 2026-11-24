@@ -783,6 +783,58 @@ footer{
 
 }
 
+
+/* PRODUCT CARD COLOUR SELECTOR */
+.product-card-media{
+  position:relative;
+}
+.product-card-colours{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:10px 8px 2px;
+}
+.product-card-colour{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  border:2px solid #fff;
+  box-shadow:0 0 0 1px #cfcfcf;
+  cursor:pointer;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.product-card-colour:hover{transform:scale(1.1)}
+.product-card-colour.active{
+  box-shadow:0 0 0 2px var(--gold), 0 0 0 4px #fff;
+}
+.product-card-colour.swatch-yl{
+  background:linear-gradient(135deg,#fff1a8,#c99b24);
+}
+.product-card-colour.swatch-wh{
+  background:linear-gradient(135deg,#fff,#aeb4bb);
+}
+.product-card-colour.swatch-rs{
+  background:linear-gradient(135deg,#f7d1bd,#b8795c);
+}
+.product-card-colour.swatch-pt{
+  background:linear-gradient(135deg,#eee,#85898e);
+}
+.product-card-colour:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:4px;
+}
+.product-card .product-info{padding-top:10px}
+.product-card .product-info h3{margin-top:0}
+@media(max-width:700px){
+  .product-card-colours{gap:9px;padding:9px 6px 1px}
+  .product-card-colour{width:23px;height:23px}
+}
+
 </style>
 </head>
 
@@ -1526,85 +1578,115 @@ function renderProducts(){
   }
 
   list.forEach(p=>{
-
     const card=document.createElement("div");
-
-    card.className="product";
+    card.className="product product-card";
 
     const image=document.createElement("div");
-
-    image.className="product-image";
+    image.className="product-image product-card-media";
 
     const placeholder=document.createElement("span");
-
     placeholder.textContent="LUVIRA JEWELS";
-
     image.appendChild(placeholder);
 
-    if(p.imageFolder){
-
-      fetchProductMedia(p.imageFolder).then(media=>{
-
-        if(!media.images||!media.images.length)return;
-
-        const img=document.createElement("img");
-
-        img.alt=p.name;
-
-        img.loading="lazy";
-
-        img.referrerPolicy="no-referrer";
-
-        img.onload=()=>placeholder.remove();
-
-        image.appendChild(img);
-
-        loadDriveImage(
-
-          img,
-
-          media.images[0],
-
-          ()=>img.remove()
-
-        );
-
-      }).catch(console.warn);
-
-    }
-
     const info=document.createElement("div");
-
     info.className="product-info";
-
     info.innerHTML=`
-
       <h3>${safe(p.name)}</h3>
-
       <p>Product Code: ${safe(p.code)}</p>
-
       <p>${safe(p.category)}</p>
-
-      <button class="view-btn">
-        View Details
-      </button>
-
     `;
 
-    info.querySelector("button").onclick=e=>{
+    const colourRow=document.createElement("div");
+    colourRow.className="product-card-colours";
+    colourRow.setAttribute("aria-label","Choose product colour");
 
-      e.stopPropagation();
+    let cardImagesByColour={};
+    let cardImage=null;
+    let selectedCardColour="";
 
-      openProduct(p);
+    function showCardColour(colour){
+      const items=cardImagesByColour[colour]||[];
+      if(!items.length||!cardImage)return;
 
-    };
+      selectedCardColour=colour;
+      cardImagesByColour[colour]=items;
 
-    card.append(image,info);
+      colourRow.querySelectorAll(".product-card-colour").forEach(button=>{
+        const active=button.dataset.colour===colour;
+        button.classList.toggle("active",active);
+        button.setAttribute("aria-pressed",active?"true":"false");
+      });
 
+      loadDriveImage(cardImage,items[0],()=>{
+        cardImage.removeAttribute("src");
+        placeholder.style.display="flex";
+      });
+      placeholder.style.display="none";
+    }
+
+    if(p.imageFolder){
+      fetchProductMedia(p.imageFolder).then(media=>{
+        if(!media.images||!media.images.length)return;
+
+        cardImagesByColour={};
+        media.images.forEach(item=>{
+          const colour=getColour(item.name);
+          if(colour==="OTHER")return;
+          if(!cardImagesByColour[colour])cardImagesByColour[colour]=[];
+          cardImagesByColour[colour].push(item);
+        });
+
+        const availableColours=["RS","YL","WH","PT"].filter(
+          colour=>(cardImagesByColour[colour]||[]).length
+        );
+
+        if(!availableColours.length){
+          cardImage=document.createElement("img");
+          cardImage.alt=p.name;
+          cardImage.loading="lazy";
+          cardImage.referrerPolicy="no-referrer";
+          image.insertBefore(cardImage,placeholder);
+          loadDriveImage(cardImage,media.images[0],()=>{
+            cardImage.remove();
+            placeholder.style.display="flex";
+          });
+          placeholder.style.display="none";
+          return;
+        }
+
+        cardImage=document.createElement("img");
+        cardImage.alt=p.name;
+        cardImage.loading="lazy";
+        cardImage.referrerPolicy="no-referrer";
+        image.insertBefore(cardImage,placeholder);
+
+        availableColours.forEach(colour=>{
+          const button=document.createElement("button");
+          button.type="button";
+          button.className="product-card-colour "+COLOURS[colour].swatch;
+          button.dataset.colour=colour;
+          button.title=COLOURS[colour].label;
+          button.setAttribute("aria-label","Show "+COLOURS[colour].label);
+          button.setAttribute("aria-pressed","false");
+          button.onclick=e=>{
+            e.preventDefault();
+            e.stopPropagation();
+            showCardColour(colour);
+          };
+          colourRow.appendChild(button);
+        });
+
+        const defaultColour=
+          ["YL","WH","RS","PT"].find(colour=>availableColours.includes(colour))
+          ||availableColours[0];
+
+        showCardColour(defaultColour);
+      }).catch(error=>console.warn("Product card media failed:",p.code,error));
+    }
+
+    card.append(image,colourRow,info);
     card.onclick=()=>openProduct(p);
-
     grid.appendChild(card);
-
   });
 
   document.getElementById("heading").textContent=
