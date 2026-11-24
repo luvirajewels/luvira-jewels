@@ -286,6 +286,19 @@ footer{
   user-select:none;
 }
 
+/* VIMEO BACKGROUND PLAYER: no visible Vimeo controls */
+.video-stage iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  outline:0;
+  background:#f8f7f4;
+  pointer-events:none;
+}
+
 /* HIDE VIDEO CONTROLS */
 
 .video-stage video::-webkit-media-controls{
@@ -1664,6 +1677,63 @@ const COLOURS={
 
 };
 
+/*
+  VIMEO VIDEOS
+  Current product LJ002221 uses the three links supplied.
+  For every future product, add its Vimeo links in the Google Sheet
+  videoFolder column using this format:
+  RS=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
+  YL=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
+  WH=https://vimeo.com/VIDEO_ID/PRIVACY_HASH
+*/
+const VIMEO_PRODUCT_MAP={
+  "LJ002221":{
+    RS:"https://vimeo.com/1249559319/ba27aa7c1b",
+    YL:"https://vimeo.com/1249559318/d55ac4f0ba",
+    WH:"https://vimeo.com/1249559320/898a317c21"
+  }
+};
+
+function parseVimeoUrl(value,colour,productCode){
+  const raw=String(value||"").trim();
+  const match=raw.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/i);
+  if(!match)return null;
+  return {
+    name:String(productCode||"PRODUCT")+"-"+colour,
+    id:match[1],
+    vimeoId:match[1],
+    hash:match[2]||"",
+    colour:colour,
+    vimeoUrl:raw
+  };
+}
+
+function getVimeoVideosForProduct(product){
+  const result=[];
+  const raw=String(product.videoFolder||"").trim();
+
+  // Preferred scalable method: store colour-specific Vimeo URLs in Sheet column I.
+  const pattern=/(?:^|[;|\n])\s*(RS|WH|YL)\s*[:=]\s*(https?:\/\/(?:www\.)?vimeo\.com\/[^;|\s]+)/gi;
+  let match;
+  while((match=pattern.exec(raw))!==null){
+    const item=parseVimeoUrl(match[2],match[1].toUpperCase(),product.code);
+    if(item)result.push(item);
+  }
+
+  // Built-in first-product setup, so LJ002221 works even before Sheet column I is changed.
+  if(!result.length){
+    const saved=VIMEO_PRODUCT_MAP[String(product.code||"").trim().toUpperCase()];
+    if(saved){
+      Object.entries(saved).forEach(([colour,url])=>{
+        const item=parseVimeoUrl(url,colour,product.code);
+        if(item)result.push(item);
+      });
+    }
+  }
+
+  return result;
+}
+
 function getColour(name){
 
   const match=String(name||"")
@@ -1789,6 +1859,31 @@ function renderDetails(){
 /* CLEAN AUTOPLAY VIDEO */
 
 function videoHTML(item,index){
+
+  // Vimeo background mode hides the play, volume, settings and fullscreen controls.
+  if(item && item.vimeoId){
+    const privacyHash=item.hash
+      ? "&h="+encodeURIComponent(item.hash)
+      : "";
+    const vimeoSrc=
+      "https://player.vimeo.com/video/"+
+      encodeURIComponent(item.vimeoId)+
+      "?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"+
+      privacyHash;
+
+    return `
+      <div class="video-stage vimeo-video-stage">
+        <iframe
+          src="${safe(vimeoSrc)}"
+          title="Luvira Jewels product video ${index+1}"
+          loading="eager"
+          allow="autoplay; fullscreen; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          playsinline
+        ></iframe>
+      </div>
+    `;
+  }
 
   const sources=getVideoSources(item);
 
@@ -2820,35 +2915,33 @@ async function openProduct(p){
 
   try{
 
-    const results=await Promise.allSettled([
+    const vimeoVideos=getVimeoVideosForProduct(p);
 
-      fetchProductMedia(p.imageFolder),
+    const mediaTasks=[
+      fetchProductMedia(p.imageFolder)
+    ];
 
-      fetchProductMedia(p.videoFolder)
+    // Do not send a Vimeo URL string to the Google Drive Apps Script.
+    if(!vimeoVideos.length){
+      mediaTasks.push(fetchProductMedia(p.videoFolder));
+    }
 
-    ]);
+    const results=await Promise.allSettled(mediaTasks);
 
     if(requestId!==productRequest)return;
 
     const imageData=
-
       results[0].status==="fulfilled"?
-
       results[0].value:
-
       {images:[]};
 
-    const videoData=
-
-      results[1].status==="fulfilled"?
-
+    const driveVideoData=
+      !vimeoVideos.length && results[1] && results[1].status==="fulfilled"?
       results[1].value:
-
       {videos:[]};
 
     mediaState.images=imageData.images||[];
-
-    mediaState.videos=videoData.videos||[];
+    mediaState.videos=vimeoVideos.length?vimeoVideos:(driveVideoData.videos||[]);
 
     /* GROUP IMAGES */
 
