@@ -6,15 +6,14 @@
 <title>Luvira Jewels</title>
 
 <style>
+
 :root{
   --black:#171512;
   --gold:#c8a45d;
   --cream:#faf8f3;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -116,8 +115,8 @@ header{
 }
 
 .product-image span{
-  font:12px Georgia;
   color:#b4a17f;
+  font:12px Georgia;
   letter-spacing:2px;
 }
 
@@ -184,7 +183,7 @@ footer{
   margin-top:35px;
 }
 
-/* PRODUCT MODAL */
+/* PRODUCT POPUP */
 
 .modal{
   display:none;
@@ -202,6 +201,7 @@ footer{
   margin:15px auto;
   padding:25px;
   position:relative;
+  max-height:calc(100vh - 66px);
   max-height:calc(100dvh - 66px);
   overflow-y:auto;
 }
@@ -213,6 +213,7 @@ footer{
   z-index:20;
   border:1px solid #ddd;
   background:white;
+  color:#171512;
   border-radius:50%;
   width:38px;
   height:38px;
@@ -250,12 +251,12 @@ footer{
   cursor:zoom-in;
 }
 
-/* FIXED VIDEO PLAYER */
+/* CLEAN VIDEO PLAYER */
 
 .video-stage{
-  position:relative;
   width:100%;
   aspect-ratio:1/1;
+  position:relative;
   background:#f8f7f4;
   overflow:hidden;
   display:block;
@@ -266,40 +267,84 @@ footer{
   inset:0;
   width:100%;
   height:100%;
-  aspect-ratio:auto;
   margin:0;
+  aspect-ratio:auto;
 }
 
-.video-stage video,
-.video-stage iframe{
+.video-stage video{
   position:absolute;
   inset:0;
-  display:block;
   width:100%;
   height:100%;
-  max-width:100%;
-  border:0;
+  display:block;
   object-fit:contain;
   background:#f8f7f4;
+  border:0;
+  outline:0;
+  pointer-events:none;
+  -webkit-touch-callout:none;
+  user-select:none;
 }
 
-.video-error{
+/* HIDE VIDEO CONTROLS */
+
+.video-stage video::-webkit-media-controls{
+  display:none!important;
+}
+
+.video-stage video::-webkit-media-controls-panel{
+  display:none!important;
+}
+
+.video-stage video::-webkit-media-controls-enclosure{
+  display:none!important;
+}
+
+.video-stage video::-webkit-media-controls-start-playback-button{
+  display:none!important;
+  -webkit-appearance:none;
+}
+
+.video-stage video::-webkit-media-controls-play-button{
+  display:none!important;
+}
+
+.video-stage video::-webkit-media-controls-overlay-play-button{
+  display:none!important;
+}
+
+.video-stage video::-webkit-media-controls-fullscreen-button{
+  display:none!important;
+}
+
+.video-message{
   position:absolute;
   inset:0;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:20px;
   text-align:center;
+  padding:20px;
   color:#927b56;
   font-size:13px;
+  background:#f8f7f4;
 }
 
-.mobile-gallery .video-stage{
-  margin-bottom:14px;
+.video-retry{
+  border:1px solid #c8a45d;
+  background:#171512;
+  color:#c8a45d;
+  padding:10px 18px;
+  cursor:pointer;
+  margin-top:12px;
 }
 
-/* PRODUCT SIDEBAR */
+.video-message[hidden]{
+  display:none;
+}
+
+/* PRODUCT INFORMATION */
 
 .product-sidebar{
   padding:8px 4px;
@@ -381,6 +426,8 @@ footer{
   color:#927b56;
 }
 
+/* PRODUCT DETAILS */
+
 .product-details{
   margin-top:25px;
   padding-top:20px;
@@ -417,7 +464,7 @@ footer{
   overflow-wrap:anywhere;
 }
 
-/* IMAGE ZOOM */
+/* IMAGE FULLSCREEN */
 
 .zoomable-image{
   cursor:zoom-in;
@@ -427,12 +474,11 @@ footer{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.94);
+  background:rgba(0,0,0,.95);
   z-index:3000;
   align-items:center;
   justify-content:center;
-  padding:60px 65px;
-  color:white;
+  padding:55px 65px;
 }
 
 .image-lightbox.active{
@@ -445,9 +491,9 @@ footer{
   max-height:100%;
   width:auto;
   height:auto;
+  object-fit:contain;
   min-width:0;
   min-height:0;
-  object-fit:contain;
 }
 
 .lightbox-close,
@@ -614,6 +660,10 @@ footer{
     cursor:zoom-in;
   }
 
+  .mobile-gallery .video-stage{
+    margin-bottom:14px;
+  }
+
   .mobile-arrow{
     position:absolute;
     top:50%;
@@ -623,6 +673,7 @@ footer{
     border:0;
     border-radius:50%;
     background:#ffffffdd;
+    color:#171512;
     font-size:25px;
     cursor:pointer;
   }
@@ -703,7 +754,6 @@ footer{
   .lightbox-arrow{
     width:36px;
     height:36px;
-    background:#ffffffdd;
   }
 
 }
@@ -719,16 +769,20 @@ footer{
   }
 
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
+
   <div class="logo">LUVIRA JEWELS</div>
+
   <div class="tagline">
     EXCLUSIVE JEWELLERY COLLECTION
   </div>
+
 </header>
 
 <main class="container">
@@ -799,13 +853,17 @@ footer{
   LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
 </footer>
 
-<!-- PRODUCT MODAL -->
+<!-- PRODUCT POPUP -->
 
 <div class="modal" id="modal">
 
   <div class="modal-box">
 
-    <button class="close" id="close" aria-label="Close product">
+    <button
+      class="close"
+      id="close"
+      aria-label="Close product"
+    >
       &times;
     </button>
 
@@ -815,7 +873,7 @@ footer{
 
 </div>
 
-<!-- FULLSCREEN IMAGE ZOOM -->
+<!-- FULLSCREEN IMAGE -->
 
 <div
   class="image-lightbox"
@@ -857,7 +915,6 @@ footer{
   <div
     class="lightbox-caption"
     id="lightboxCaption"
-    aria-live="polite"
   ></div>
 
 </div>
@@ -891,14 +948,18 @@ function fetchProductMedia(folder){
   folder=String(folder||"").trim();
 
   if(!folder){
+
     return Promise.resolve({
       images:[],
       videos:[]
     });
+
   }
 
   if(mediaCache.has(folder)){
+
     return mediaCache.get(folder);
+
   }
 
   const request=new Promise((resolve,reject)=>{
@@ -966,9 +1027,13 @@ function fetchProductMedia(folder){
     };
 
     script.src=
+
       MEDIA_API+
+
       "?folder="+encodeURIComponent(folder)+
+
       "&callback="+encodeURIComponent(callback)+
+
       "&_="+Date.now();
 
     document.head.appendChild(script);
@@ -991,28 +1056,36 @@ function getDriveFileId(item){
 
   if(item.fileId)return String(item.fileId);
 
-  const url=String(
-    item.url||
-    item.directUrl||
-    item.downloadUrl||
-    ""
-  );
+  const urls=[
 
-  const patterns=[
-
-    /\/file\/d\/([a-zA-Z0-9_-]+)/,
-
-    /[?&]id=([a-zA-Z0-9_-]+)/,
-
-    /\/d\/([a-zA-Z0-9_-]+)/
+    item.url,
+    item.directUrl,
+    item.downloadUrl,
+    item.previewUrl
 
   ];
 
-  for(const pattern of patterns){
+  for(const value of urls){
 
-    const match=url.match(pattern);
+    const url=String(value||"");
 
-    if(match)return match[1];
+    const patterns=[
+
+      /\/file\/d\/([a-zA-Z0-9_-]+)/,
+
+      /[?&]id=([a-zA-Z0-9_-]+)/,
+
+      /\/d\/([a-zA-Z0-9_-]+)/
+
+    ];
+
+    for(const pattern of patterns){
+
+      const match=url.match(pattern);
+
+      if(match)return match[1];
+
+    }
 
   }
 
@@ -1020,15 +1093,17 @@ function getDriveFileId(item){
 
 }
 
-/* GOOGLE DRIVE IMAGE LOADER */
+/* IMAGE SOURCES */
 
-function loadDriveImage(img,item,onFail){
+function getImageSources(item,size=1200){
+
+  if(!item)return [];
 
   const id=getDriveFileId(item);
 
   const urls=[];
 
-  if(item&&item.url){
+  if(size<=1200 && item.url){
 
     urls.push(String(item.url));
 
@@ -1037,20 +1112,42 @@ function loadDriveImage(img,item,onFail){
   if(id){
 
     urls.push(
-      "https://lh3.googleusercontent.com/d/"+id+"=w1200"
+
+      "https://lh3.googleusercontent.com/d/"+
+      id+"=w"+size
+
     );
 
     urls.push(
-      "https://drive.google.com/thumbnail?id="+id+"&sz=w1200"
+
+      "https://drive.google.com/thumbnail?id="+
+      id+"&sz=w"+size
+
     );
 
     urls.push(
+
       "https://drive.google.com/uc?export=view&id="+id
+
     );
 
   }
 
-  const unique=[...new Set(urls.filter(Boolean))];
+  if(item.url){
+
+    urls.push(String(item.url));
+
+  }
+
+  return [...new Set(urls.filter(Boolean))];
+
+}
+
+/* IMAGE LOADER */
+
+function loadDriveImage(img,item,onFail,size=1200){
+
+  const urls=getImageSources(item,size);
 
   let index=0;
 
@@ -1058,9 +1155,9 @@ function loadDriveImage(img,item,onFail){
 
     index++;
 
-    if(index<unique.length){
+    if(index<urls.length){
 
-      img.src=unique[index];
+      img.src=urls[index];
 
     }else{
 
@@ -1080,9 +1177,9 @@ function loadDriveImage(img,item,onFail){
 
   };
 
-  if(unique.length){
+  if(urls.length){
 
-    img.src=unique[0];
+    img.src=urls[0];
 
   }else if(onFail){
 
@@ -1092,34 +1189,14 @@ function loadDriveImage(img,item,onFail){
 
 }
 
-/* DIRECT VIDEO URL */
-
-function getDriveVideoUrl(item){
-
-  if(!item)return "";
-
-  if(item.directUrl){
-
-    return String(item.directUrl);
-
-  }
-
-  if(item.downloadUrl){
-
-    return String(item.downloadUrl);
-
-  }
-
-  return "";
-
-}
-
 /* SAFE TEXT */
 
 function safe(value){
 
   return String(
+
     value==null||value===""?"-":value
+
   ).replace(/[&<>"']/g,c=>({
 
     "&":"&amp;",
@@ -1133,6 +1210,93 @@ function safe(value){
     "'":"&#39;"
 
   })[c]);
+
+}
+
+/* VALID VIDEO URL */
+
+function validVideoURL(value){
+
+  if(!value)return "";
+
+  try{
+
+    const url=new URL(String(value),location.href);
+
+    if(url.protocol!=="https:")return "";
+
+    if(
+
+      url.hostname==="drive.google.com" &&
+
+      /\/file\/d\/[^/]+\/(view|preview)/i.test(url.pathname)
+
+    ){
+
+      return "";
+
+    }
+
+    return url.href;
+
+  }catch(error){
+
+    return "";
+
+  }
+
+}
+
+/* VIDEO SOURCES */
+
+function getVideoSources(item){
+
+  if(!item)return [];
+
+  const sources=[];
+
+  const add=url=>{
+
+    const valid=validVideoURL(url);
+
+    if(valid&&!sources.includes(valid)){
+
+      sources.push(valid);
+
+    }
+
+  };
+
+  add(item.streamUrl);
+
+  add(item.videoUrl);
+
+  add(item.directUrl);
+
+  add(item.downloadUrl);
+
+  add(item.url);
+
+  const id=getDriveFileId(item);
+
+  if(id&&/^[a-zA-Z0-9_-]+$/.test(id)){
+
+    add(
+
+      "https://drive.google.com/uc?export=download&id="+id
+
+    );
+
+    add(
+
+      "https://drive.usercontent.google.com/download?id="+
+      id+"&export=download&confirm=t"
+
+    );
+
+  }
+
+  return sources;
 
 }
 
@@ -1279,6 +1443,7 @@ async function loadProducts(){
   }catch(error){
 
     status.textContent=
+
       "Unable to load products. Check Google Sheets publishing settings.";
 
     console.error(error);
@@ -1294,26 +1459,37 @@ function renderProducts(){
   const grid=document.getElementById("products");
 
   const search=document
+
     .getElementById("search")
+
     .value
+
     .toLowerCase();
 
   const filtered=allProducts.filter(p=>
 
     (
+
       currentCategory==="All Products"||
+
       p.category===currentCategory
+
     )&&
 
     (
+
       p.name+" "+p.code+" "+p.category
+
     ).toLowerCase().includes(search)
 
   );
 
   const total=Math.max(
+
     1,
+
     Math.ceil(filtered.length/perPage)
+
   );
 
   currentPage=Math.min(currentPage,total);
@@ -1331,6 +1507,7 @@ function renderProducts(){
   if(!filtered.length){
 
     grid.innerHTML=
+
       '<div class="status" style="grid-column:1/-1">No products found.</div>';
 
   }
@@ -1370,9 +1547,13 @@ function renderProducts(){
         image.appendChild(img);
 
         loadDriveImage(
+
           img,
+
           media.images[0],
+
           ()=>img.remove()
+
         );
 
       }).catch(console.warn);
@@ -1414,18 +1595,23 @@ function renderProducts(){
   });
 
   document.getElementById("heading").textContent=
+
     currentCategory;
 
   document.getElementById("pagination").style.display=
+
     filtered.length?"flex":"none";
 
   document.getElementById("page").textContent=
+
     `Page ${currentPage} of ${total}`;
 
   document.getElementById("prev").disabled=
+
     currentPage===1;
 
   document.getElementById("next").disabled=
+
     currentPage===total;
 
 }
@@ -1484,7 +1670,7 @@ function getColour(name){
 
     .toUpperCase()
 
-    .match(/-(YL|WH|RS|PT)(?:[-_.]|$)/);
+    .match(/[-_](YL|WH|RS|PT)(?:[-_.]|$)/);
 
   return match?match[1]:"OTHER";
 
@@ -1499,6 +1685,7 @@ function imagesForColour(){
 function videosForColour(){
 
   const matching=
+
     mediaState.videoGroups[mediaState.colour]||[];
 
   return matching.length?
@@ -1513,18 +1700,26 @@ function videosForColour(){
 
 function renderColours(){
 
-  return Object.keys(mediaState.imageGroups)
+  const colours=[...new Set([
 
-    .filter(c=>
-      c!=="OTHER"&&
-      mediaState.imageGroups[c].length
-    )
+    ...Object.keys(mediaState.imageGroups),
+
+    ...Object.keys(mediaState.videoGroups)
+
+  ])];
+
+  return colours
+
+    .filter(c=>COLOURS[c])
 
     .map(c=>`
 
       <button
+
         class="colour-btn ${mediaState.colour===c?"active":""}"
+
         data-colour="${c}"
+
       >
 
         <span class="colour-swatch ${COLOURS[c].swatch}"></span>
@@ -1591,60 +1786,22 @@ function renderDetails(){
 
 }
 
-/* FIXED VIDEO PLAYER */
+/* CLEAN AUTOPLAY VIDEO */
 
 function videoHTML(item,index){
 
-  const url=getDriveVideoUrl(item);
+  const sources=getVideoSources(item);
 
-  const id=getDriveFileId(item);
-
-  const preview=
-
-    id&&/^[a-zA-Z0-9_-]+$/.test(id)
-
-    ?
-
-    "https://drive.google.com/file/d/"+id+"/preview"
-
-    :
-
-    "";
-
-  const isPreview=
-    /drive\.google\.com\/file\/d\/[^/]+\/(?:preview|view)/i.test(url);
-
-  const title=
-    "Luvira Jewels Product Video "+(index+1);
-
-  if((!url||isPreview)&&preview){
+  if(!sources.length){
 
     return `
 
       <div class="video-stage">
 
-        <iframe
-          src="${safe(preview)}"
-          title="${title}"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
+        <div class="video-message">
 
-      </div>
+          Video unavailable.
 
-    `;
-
-  }
-
-  if(!url){
-
-    return `
-
-      <div class="video-stage">
-
-        <div class="video-error">
-          Video URL unavailable.
         </div>
 
       </div>
@@ -1653,16 +1810,27 @@ function videoHTML(item,index){
 
   }
 
+  const posterItem=imagesForColour()[0];
+
+  const posterSources=getImageSources(posterItem);
+
+  const poster=posterSources[0]||"";
+
   return `
 
     <div
+
       class="video-stage"
-      data-preview="${preview?safe(preview):""}"
+
+      data-sources="${safe(JSON.stringify(sources))}"
+
     >
 
       <video
 
         class="product-video"
+
+        autoplay
 
         muted
 
@@ -1672,17 +1840,33 @@ function videoHTML(item,index){
 
         webkit-playsinline
 
-        controls
+        disablepictureinpicture
 
-        preload="metadata"
+        disableremoteplayback
 
-        controlslist="nodownload noremoteplayback"
+        preload="none"
 
-        aria-label="${title}"
+        ${poster?`poster="${safe(poster)}"`:""}
 
-        src="${safe(url)}"
+        aria-label="Luvira Jewels Product Video ${index+1}"
 
       ></video>
+
+      <div class="video-message" hidden>
+
+        <span class="video-message-text">
+
+          Video could not load.
+
+        </span>
+
+        <button class="video-retry">
+
+          Retry Video
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -1690,74 +1874,275 @@ function videoHTML(item,index){
 
 }
 
-/* VIDEO AUTOPLAY AND FALLBACK */
+/* VIDEO PLAYER MANAGEMENT */
 
-function startVisibleVideos(root){
+const videoPlayers=new WeakMap();
 
-  if(!root)return;
+function isVideoVisible(video){
 
-  root.querySelectorAll("video.product-video").forEach(video=>{
+  return (
 
-    const stage=video.parentElement;
+    video.isConnected &&
 
-    if(!video.dataset.bound){
+    video.getClientRects().length>0 &&
 
-      video.dataset.bound="1";
+    !document.hidden &&
 
-      const fallback=()=>{
+    document.getElementById("modal").style.display==="block"
 
-        if(!video.isConnected)return;
+  );
 
-        const preview=stage.dataset.preview;
+}
 
-        if(preview&&preview!=="-"){
+function prepareVideo(video){
 
-          const frame=document.createElement("iframe");
+  if(videoPlayers.has(video)){
 
-          frame.src=preview;
+    return videoPlayers.get(video);
 
-          frame.title=video.getAttribute("aria-label");
+  }
 
-          frame.allow="autoplay; fullscreen";
+  const stage=video.parentElement;
 
-          frame.allowFullscreen=true;
+  const message=stage.querySelector(".video-message");
 
-          stage.replaceChildren(frame);
+  const messageText=stage.querySelector(".video-message-text");
 
-        }else{
+  const retryButton=stage.querySelector(".video-retry");
 
-          stage.innerHTML=`
+  let sources=[];
 
-            <div class="video-error">
+  try{
 
-              Video could not load.
-              Please check Google Drive sharing.
+    sources=JSON.parse(stage.dataset.sources||"[]");
 
-            </div>
+  }catch(error){
 
-          `;
+    sources=[];
 
-        }
+  }
 
-      };
+  const state={
 
-      video.addEventListener(
-        "error",
-        fallback,
-        {once:true}
-      );
+    index:0,
 
-      if(video.error){
+    loaded:false,
 
-        fallback();
+    failed:false,
 
-        return;
+    sources
 
-      }
+  };
+
+  videoPlayers.set(video,state);
+
+  video.controls=false;
+
+  video.removeAttribute("controls");
+
+  video.muted=true;
+
+  video.defaultMuted=true;
+
+  video.autoplay=true;
+
+  video.loop=true;
+
+  video.playsInline=true;
+
+  video.setAttribute("muted","");
+
+  video.setAttribute("autoplay","");
+
+  video.setAttribute("playsinline","");
+
+  video.setAttribute("webkit-playsinline","");
+
+  function showMessage(text){
+
+    if(messageText){
+
+      messageText.textContent=text;
 
     }
 
-    if(!video.getClientRects().length){
+    if(message){
+
+      message.hidden=false;
+
+    }
+
+  }
+
+  function playVideo(){
+
+    if(!isVideoVisible(video))return;
+
+    if(state.failed)return;
+
+    video.muted=true;
+
+    const promise=video.play();
+
+    if(promise&&typeof promise.catch==="function"){
+
+      promise.catch(error=>{
+
+        if(!video.isConnected)return;
+
+        if(error.name==="NotAllowedError"){
+
+          showMessage("Tap to start video.");
+
+          if(retryButton){
+
+            retryButton.textContent="Start Video";
+
+          }
+
+        }
+
+      });
+
+    }
+
+  }
+
+  function loadSource(){
+
+    if(!video.isConnected)return;
+
+    if(!isVideoVisible(video)){
+
+      state.loaded=false;
+
+      return;
+
+    }
+
+    if(state.index>=state.sources.length){
+
+      state.failed=true;
+
+      showMessage(
+
+        "Video unavailable. Please check the video streaming URL."
+
+      );
+
+      if(retryButton){
+
+        retryButton.textContent="Retry Video";
+
+      }
+
+      return;
+
+    }
+
+    state.loaded=true;
+
+    state.failed=false;
+
+    video.muted=true;
+
+    video.preload="auto";
+
+    if(message){
+
+      message.hidden=true;
+
+    }
+
+    video.src=state.sources[state.index];
+
+    video.load();
+
+    playVideo();
+
+  }
+
+  video.addEventListener("loadeddata",()=>{
+
+    if(message){
+
+      message.hidden=true;
+
+    }
+
+    playVideo();
+
+  });
+
+  video.addEventListener("canplay",playVideo);
+
+  video.addEventListener("playing",()=>{
+
+    if(message){
+
+      message.hidden=true;
+
+    }
+
+  });
+
+  video.addEventListener("error",()=>{
+
+    if(!video.isConnected)return;
+
+    state.index++;
+
+    state.loaded=false;
+
+    loadSource();
+
+  });
+
+  video.addEventListener("ended",()=>{
+
+    if(isVideoVisible(video)){
+
+      video.currentTime=0;
+
+      playVideo();
+
+    }
+
+  });
+
+  if(retryButton){
+
+    retryButton.onclick=()=>{
+
+      if(message){
+
+        message.hidden=true;
+
+      }
+
+      if(state.failed){
+
+        state.index=0;
+
+        state.failed=false;
+
+        state.loaded=false;
+
+        loadSource();
+
+      }else{
+
+        playVideo();
+
+      }
+
+    };
+
+  }
+
+  state.start=()=>{
+
+    if(!isVideoVisible(video)){
 
       video.pause();
 
@@ -1765,33 +2150,65 @@ function startVisibleVideos(root){
 
     }
 
-    video.muted=true;
+    if(state.failed)return;
 
-    video.defaultMuted=true;
+    if(!state.loaded){
 
-    video.loop=true;
+      loadSource();
 
-    video.playsInline=true;
+    }else{
 
-    const attempt=video.play();
-
-    if(attempt&&typeof attempt.catch==="function"){
-
-      attempt.catch(()=>{});
+      playVideo();
 
     }
+
+  };
+
+  return state;
+
+}
+
+/* START ONLY VISIBLE VIDEOS */
+
+function startVisibleVideos(root){
+
+  if(!root)return;
+
+  root.querySelectorAll("video.product-video").forEach(video=>{
+
+    if(!isVideoVisible(video)){
+
+      video.pause();
+
+      return;
+
+    }
+
+    const player=prepareVideo(video);
+
+    player.start();
 
   });
 
 }
 
-window.addEventListener("resize",()=>{
+/* STOP ALL VIDEOS */
 
-  startVisibleVideos(
-    document.getElementById("modal-content")
-  );
+function stopVideos(root){
 
-});
+  if(!root)return;
+
+  root.querySelectorAll("video").forEach(video=>{
+
+    video.pause();
+
+    video.removeAttribute("src");
+
+    video.load();
+
+  });
+
+}
 
 /* MOBILE IMAGE GALLERY */
 
@@ -1818,15 +2235,23 @@ function renderMobileImages(){
       ${images.length>1?`
 
         <button
+
           class="mobile-arrow prev"
+
           id="prev-image"
+
           aria-label="Previous image"
+
         >‹</button>
 
         <button
+
           class="mobile-arrow next"
+
           id="next-image"
+
           aria-label="Next image"
+
         >›</button>
 
       `:""}
@@ -1868,7 +2293,9 @@ function renderMobileVideos(){
   }
 
   return videos.map(
+
     (v,i)=>videoHTML(v,i)
+
   ).join("");
 
 }
@@ -1886,9 +2313,13 @@ function getDesktopItems(){
   if(images.length){
 
     items.push({
+
       type:"image",
+
       item:images[0],
+
       imageIndex:0
+
     });
 
   }
@@ -1896,8 +2327,11 @@ function getDesktopItems(){
   videos.forEach(v=>{
 
     items.push({
+
       type:"video",
+
       item:v
+
     });
 
   });
@@ -1905,9 +2339,13 @@ function getDesktopItems(){
   images.slice(1).forEach((v,index)=>{
 
     items.push({
+
       type:"image",
+
       item:v,
+
       imageIndex:index+1
+
     });
 
   });
@@ -1974,6 +2412,8 @@ function renderGallery(){
 
   const content=document.getElementById("modal-content");
 
+  content.innerHTML="";
+
   content.innerHTML=`
 
     <div class="product-layout">
@@ -2027,8 +2467,11 @@ function renderGallery(){
         </div>
 
         <div
+
           class="mobile-tab-content"
+
           id="mobile-video-view"
+
         >
 
           ${mediaState.tab==="videos"?renderMobileVideos():""}
@@ -2098,7 +2541,9 @@ function renderGallery(){
     if(m.type!=="image")return;
 
     const img=content.querySelector(
+
       `[data-desktop="${i}"]`
+
     );
 
     if(img){
@@ -2113,9 +2558,13 @@ function renderGallery(){
 
   loadMobileImage();
 
-  startVisibleVideos(content);
-
   bindGalleryEvents();
+
+  requestAnimationFrame(()=>{
+
+    startVisibleVideos(content);
+
+  });
 
 }
 
@@ -2165,13 +2614,11 @@ function bindImageEvents(){
 
     prev.onclick=()=>{
 
-      if(mediaState.imageIndex>0){
+      mediaState.imageIndex=
 
-        mediaState.imageIndex--;
+        (mediaState.imageIndex-1+images.length)%images.length;
 
-        renderImageView();
-
-      }
+      renderImageView();
 
     };
 
@@ -2181,13 +2628,11 @@ function bindImageEvents(){
 
     next.onclick=()=>{
 
-      if(mediaState.imageIndex<images.length-1){
+      mediaState.imageIndex=
 
-        mediaState.imageIndex++;
+        (mediaState.imageIndex+1)%images.length;
 
-        renderImageView();
-
-      }
+      renderImageView();
 
     };
 
@@ -2204,6 +2649,46 @@ function bindImageEvents(){
     };
 
   });
+
+  const stage=document.querySelector(".mobile-image-stage");
+
+  if(stage){
+
+    let startX=0;
+
+    stage.ontouchstart=e=>{
+
+      startX=e.changedTouches[0].clientX;
+
+    };
+
+    stage.ontouchend=e=>{
+
+      const endX=e.changedTouches[0].clientX;
+
+      const difference=startX-endX;
+
+      if(Math.abs(difference)<50||images.length<2)return;
+
+      if(difference>0){
+
+        mediaState.imageIndex=
+
+          (mediaState.imageIndex+1)%images.length;
+
+      }else{
+
+        mediaState.imageIndex=
+
+          (mediaState.imageIndex-1+images.length)%images.length;
+
+      }
+
+      renderImageView();
+
+    };
+
+  }
 
 }
 
@@ -2222,16 +2707,21 @@ function bindGalleryEvents(){
       document.querySelectorAll("[data-tab]").forEach(b=>{
 
         b.classList.toggle(
+
           "active",
+
           b.dataset.tab===mediaState.tab
+
         );
 
       });
 
       const imageView=
+
         document.getElementById("mobile-image-view");
 
       const videoView=
+
         document.getElementById("mobile-video-view");
 
       if(mediaState.tab==="images"){
@@ -2262,7 +2752,17 @@ function bindGalleryEvents(){
 
       mediaState.imageIndex=0;
 
-      mediaState.tab="images";
+      if(
+
+        mediaState.tab==="videos"&&
+
+        !videosForColour().length
+
+      ){
+
+        mediaState.tab="images";
+
+      }
 
       renderGallery();
 
@@ -2350,7 +2850,7 @@ async function openProduct(p){
 
     mediaState.videos=videoData.videos||[];
 
-    /* GROUP IMAGES BY COLOUR */
+    /* GROUP IMAGES */
 
     mediaState.images.forEach(item=>{
 
@@ -2366,7 +2866,7 @@ async function openProduct(p){
 
     });
 
-    /* GROUP VIDEOS BY COLOUR */
+    /* GROUP VIDEOS */
 
     mediaState.videos.forEach(item=>{
 
@@ -2382,9 +2882,13 @@ async function openProduct(p){
 
     });
 
-    const available=Object.keys(mediaState.imageGroups)
+    const available=[...new Set([
 
-      .filter(c=>c!=="OTHER");
+      ...Object.keys(mediaState.imageGroups),
+
+      ...Object.keys(mediaState.videoGroups)
+
+    ])].filter(c=>c!=="OTHER");
 
     mediaState.colour=
 
@@ -2394,11 +2898,31 @@ async function openProduct(p){
 
       ||"OTHER";
 
-    if(!available.length&&mediaState.images.length){
+    if(
 
-      mediaState.imageGroups.OTHER=mediaState.images;
+      !imagesForColour().length &&
 
-      mediaState.colour="OTHER";
+      mediaState.imageGroups.OTHER
+
+    ){
+
+      mediaState.imageGroups[mediaState.colour]=
+
+        mediaState.imageGroups.OTHER;
+
+    }
+
+    /* MOBILE AUTO VIDEO TAB */
+
+    if(
+
+      window.matchMedia("(max-width:700px)").matches &&
+
+      videosForColour().length
+
+    ){
+
+      mediaState.tab="videos";
 
     }
 
@@ -2433,8 +2957,11 @@ function bindZoom(img,index){
   img.setAttribute("role","button");
 
   img.setAttribute(
+
     "aria-label",
+
     "Enlarge product image"
+
   );
 
   img.onclick=()=>{
@@ -2473,45 +3000,8 @@ function showLightboxImage(index){
 
   const img=document.getElementById("lightboxImage");
 
-  const id=getDriveFileId(item);
-
-  const urls=[];
-
-  if(id){
-
-    urls.push(
-
-      "https://lh3.googleusercontent.com/d/"+id+"=w2400"
-
-    );
-
-    urls.push(
-
-      "https://drive.google.com/thumbnail?id="+id+"&sz=w2400"
-
-    );
-
-  }
-
-  if(item.url){
-
-    urls.push(item.url);
-
-  }
-
-  if(id){
-
-    urls.push(
-
-      "https://drive.google.com/uc?export=view&id="+id
-
-    );
-
-  }
-
-  const unique=[...new Set(urls.filter(Boolean))];
-
   const caption=
+
     document.getElementById("lightboxCaption");
 
   caption.textContent=
@@ -2522,35 +3012,21 @@ function showLightboxImage(index){
 
   img.removeAttribute("src");
 
-  let n=0;
+  loadDriveImage(
 
-  img.onerror=()=>{
+    img,
 
-    n++;
+    item,
 
-    if(n<unique.length){
-
-      img.src=unique[n];
-
-    }else{
-
-      img.onerror=null;
+    ()=>{
 
       caption.textContent="Image could not load.";
 
-    }
+    },
 
-  };
+    2400
 
-  if(unique.length){
-
-    img.src=unique[0];
-
-  }else{
-
-    caption.textContent="Image unavailable.";
-
-  }
+  );
 
   document.getElementById("lightboxPrev").hidden=
 
@@ -2562,7 +3038,7 @@ function showLightboxImage(index){
 
 }
 
-/* OPEN FULLSCREEN IMAGE */
+/* OPEN FULLSCREEN */
 
 function openImageLightbox(index,trigger){
 
@@ -2580,7 +3056,7 @@ function openImageLightbox(index,trigger){
 
 }
 
-/* CLOSE FULLSCREEN IMAGE */
+/* CLOSE FULLSCREEN */
 
 function closeImageLightbox(){
 
@@ -2604,7 +3080,7 @@ function closeImageLightbox(){
 
 }
 
-/* LIGHTBOX BUTTONS */
+/* LIGHTBOX EVENTS */
 
 document.getElementById("lightboxClose").onclick=
 
@@ -2712,9 +3188,25 @@ function closeModal(){
 
   ++productRequest;
 
-  document.getElementById("modal").style.display="none";
+  const modal=document.getElementById("modal");
 
-  document.getElementById("modal-content").innerHTML="";
+  const content=document.getElementById("modal-content");
+
+  modal.style.display="none";
+
+  const oldVideos=[...content.querySelectorAll("video")];
+
+  content.innerHTML="";
+
+  oldVideos.forEach(video=>{
+
+    video.pause();
+
+    video.removeAttribute("src");
+
+    video.load();
+
+  });
 
   document.body.style.overflow="";
 
@@ -2771,6 +3263,30 @@ document.addEventListener("keydown",e=>{
     closeModal();
 
   }
+
+});
+
+/* RESPONSIVE VIDEO SUPPORT */
+
+window.addEventListener("resize",()=>{
+
+  startVisibleVideos(
+
+    document.getElementById("modal-content")
+
+  );
+
+});
+
+/* PAUSE WHEN BROWSER TAB IS HIDDEN */
+
+document.addEventListener("visibilitychange",()=>{
+
+  startVisibleVideos(
+
+    document.getElementById("modal-content")
+
+  );
 
 });
 
