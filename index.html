@@ -835,24 +835,514 @@ footer{
   .product-card-colour{width:23px;height:23px}
 }
 
+
+/* HOMEPAGE HERO BANNER */
+.hero-banner{
+  display:grid;
+  grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);
+  align-items:center;
+  min-height:330px;
+  margin:0 0 34px;
+  overflow:hidden;
+  border-radius:4px;
+  background:linear-gradient(112deg,#edf5fc 0%,#c8e0f6 52%,#a9cdef 100%);
+}
+.hero-copy{
+  padding:42px clamp(22px,5vw,64px);
+  position:relative;
+  z-index:1;
+}
+.hero-kicker{
+  color:#a17b3d;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2.2px;
+  margin:0 0 14px;
+}
+.hero-copy h1{
+  color:#1B356F;
+  font:clamp(32px,4vw,54px)/1.08 Georgia,serif;
+  margin:0 0 15px;
+  max-width:520px;
+}
+.hero-copy p{
+  color:#506482;
+  font-size:14px;
+  line-height:1.7;
+  max-width:420px;
+  margin:0 0 22px;
+}
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:16px;
+  padding:13px 21px;
+  background:#1B356F;
+  color:#fff;
+  border:0;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+.hero-visual{
+  height:100%;
+  min-height:330px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px 30px 18px 0;
+  background:linear-gradient(110deg,rgba(255,255,255,.04),rgba(255,255,255,.2));
+}
+.hero-visual img{
+  width:100%;
+  height:100%;
+  max-height:330px;
+  object-fit:contain;
+  display:block;
+  mix-blend-mode:multiply;
+}
+.hero-visual .hero-fallback{
+  color:#1B356F;
+  font:italic 18px Georgia,serif;
+}
+@media(max-width:700px){
+  .hero-banner{grid-template-columns:1fr;margin-bottom:26px}
+  .hero-copy{padding:28px 24px 12px}
+  .hero-copy h1{font-size:36px}
+  .hero-visual{min-height:190px;height:210px;padding:0 18px 14px}
+  .hero-visual img{max-height:210px}
+}
+
+
+/* REFINED FULL-WIDTH LUVIRA HERO */
+.hero-banner{
+  display:grid;
+  grid-template-columns:minmax(0, .92fr) minmax(0, 1.08fr);
+  align-items:stretch;
+  width:100%;
+  min-height:390px;
+  margin:0 0 34px;
+  overflow:hidden;
+  border-radius:0;
+  background:linear-gradient(105deg,#eef5fc 0%,#dceafa 44%,#c4dcf3 100%);
+  position:relative;
+}
+.hero-copy{
+  padding:clamp(34px,5vw,70px) clamp(24px,6vw,90px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero-kicker{
+  color:#b28b4a;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2.2px;
+  margin:0 0 18px;
+  text-transform:uppercase;
+}
+.hero-copy h1{
+  color:#1B356F;
+  font:clamp(34px,4.3vw,62px)/1.02 Georgia,serif;
+  letter-spacing:-1.5px;
+  margin:0 0 20px;
+  max-width:590px;
+}
+.hero-copy p{
+  color:#526783;
+  font-size:clamp(14px,1.2vw,17px);
+  line-height:1.65;
+  max-width:470px;
+  margin:0 0 26px;
+}
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  align-self:flex-start;
+  padding:15px 24px;
+  background:#1B356F;
+  color:#fff;
+  border:1px solid #1B356F;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s ease,transform .2s ease;
+}
+.hero-cta:hover{background:#142957;transform:translateY(-1px)}
+.hero-visual{
+  min-height:390px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 65% 75%,rgba(255,255,255,.85),transparent 48%),
+    linear-gradient(120deg,#dceafa,#b9d5ef);
+}
+.hero-visual img{
+  width:100%;
+  height:100%;
+  max-height:440px;
+  object-fit:contain;
+  display:block;
+  mix-blend-mode:multiply;
+}
+.hero-visual .hero-fallback{color:#1B356F;font:italic 20px Georgia,serif}
+@media(max-width:700px){
+  .hero-banner{grid-template-columns:1fr;min-height:0;margin-bottom:26px}
+  .hero-copy{padding:34px 25px 18px}
+  .hero-copy h1{font-size:39px;letter-spacing:-.8px}
+  .hero-copy p{font-size:14px}
+  .hero-visual{min-height:220px;height:220px}
+  .hero-visual img{max-height:240px}
+}
+
+
+/* FINAL HERO BRANDING + PRODUCT IMAGE FIX */
+.hero-visual img[hidden]{display:none!important}
+.hero-brand{
+  color:#1B356F;
+  font:700 clamp(20px,2vw,27px)/1 Georgia,serif;
+  letter-spacing:4px;
+  margin:0 0 6px;
+}
+.hero-brand-tagline{
+  color:#a17b3d;
+  font:10px Arial,sans-serif;
+  letter-spacing:2.4px;
+  margin:0 0 28px;
+}
+.hero-copy h1{margin-top:0}
+.hero-visual{
+  background:
+    radial-gradient(ellipse at 68% 76%,rgba(255,255,255,.88),transparent 48%),
+    linear-gradient(120deg,#dceafa,#b9d5ef);
+}
+.hero-visual img{
+  width:100%;
+  height:100%;
+  max-height:440px;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+}
+@media(max-width:700px){
+  .hero-brand{font-size:21px;letter-spacing:3px}
+  .hero-brand-tagline{margin-bottom:20px}
+}
+
+
+/* SIMPLE LUVIRA TOP BAR: BRAND + SEARCH, HERO BELOW */
+.store-header{
+  height:72px;
+  width:100%;
+  padding:0 clamp(20px,4vw,54px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#fff;
+  border-top:4px solid #1B356F;
+  border-bottom:1px solid #e8e8e8;
+  position:relative;
+  z-index:5;
+}
+.store-brand{
+  color:#1B356F;
+  text-decoration:none;
+  font: normal clamp(25px,2.2vw,34px)/1 Georgia,serif;
+  letter-spacing:1.8px;
+  white-space:nowrap;
+}
+.store-search{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:9px 12px;
+  color:#1B356F;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  font:13px Arial,sans-serif;
+}
+.store-search svg{
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+}
+.hero-brand,.hero-brand-tagline{display:none!important}
+@media(max-width:600px){
+  .store-header{height:62px;padding:0 16px}
+  .store-brand{font-size:23px;letter-spacing:1px}
+  .store-search{padding:8px}
+  .store-search span{display:none}
+}
+
+
+/* NETCARAT-INSPIRED COLOUR PALETTE ONLY — KEEP LUVIRA LAYOUT */
+:root{
+  --black:#202124;
+  --gold:#4389c8;
+  --cream:#ffffff;
+  --nc-blue:#4b91d0;
+  --nc-blue-deep:#2e70b2;
+  --nc-blue-light:#d9eafb;
+  --nc-blue-pale:#eef6fd;
+  --nc-text:#202124;
+  --nc-muted:#606b78;
+}
+body{
+  background:#fff!important;
+  color:var(--nc-text)!important;
+}
+.store-header{
+  background:#fff!important;
+  border-top:4px solid var(--nc-blue-deep)!important;
+  border-bottom:1px solid #e8edf2!important;
+}
+.store-brand,.store-search{color:#202124!important}
+.hero-banner{
+  background:linear-gradient(105deg,#78afe0 0%,#9bc7ed 48%,#d9eafb 100%)!important;
+}
+.hero-copy h1,.hero-copy p{color:#fff!important}
+.hero-kicker,.hero-brand-tagline{color:#fff!important}
+.hero-cta{
+  background:#fff!important;
+  color:#244f79!important;
+  border-color:#fff!important;
+}
+.hero-cta:hover{
+  background:#edf6ff!important;
+  color:#1e4770!important;
+}
+.hero-visual{
+  background:linear-gradient(110deg,#a9cff0 0%,#dcecf9 100%)!important;
+}
+.section-title,.toolbar h2{
+  color:#202124!important;
+}
+.categories .cat-btn{
+  background:#fff!important;
+  color:#202124!important;
+  border:1px solid #cbdced!important;
+}
+.categories .cat-btn.active{
+  background:var(--nc-blue-deep)!important;
+  color:#fff!important;
+  border-color:var(--nc-blue-deep)!important;
+}
+.categories .cat-btn:hover{
+  background:var(--nc-blue-pale)!important;
+  color:#244f79!important;
+}
+.search{
+  background:#fff!important;
+  color:#202124!important;
+  border:1px solid #cbd5df!important;
+}
+.product{
+  background:#fff!important;
+  border:1px solid #e5eaf0!important;
+}
+.product-image{
+  background:#f4f8fc!important;
+}
+.product-info h3{color:#202124!important}
+.product-info p{color:#687482!important}
+.view-btn,.pagination button{
+  background:var(--nc-blue-deep)!important;
+  color:#fff!important;
+  border:1px solid var(--nc-blue-deep)!important;
+}
+.view-btn:hover,.pagination button:hover{
+  background:#245d96!important;
+}
+footer{
+  background:#f4f8fc!important;
+  color:#3f5368!important;
+  border-top:1px solid #e2ebf4!important;
+}
+.modal-box{background:#fff!important}
+.desktop-media,.video-stage,.video-stage video,.video-stage iframe,
+.mobile-image-stage{
+  background:#f4f8fc!important;
+}
+.video-message{
+  background:#f4f8fc!important;
+  color:#526b83!important;
+}
+.video-retry{
+  background:var(--nc-blue-deep)!important;
+  color:#fff!important;
+  border-color:var(--nc-blue-deep)!important;
+}
+.gallery-kicker,.detail-item strong,.gallery-note{
+  color:#4b79a5!important;
+}
+.detail-item{
+  background:#f4f8fc!important;
+  border-color:#e1ebf5!important;
+}
+.colour-btn.active{
+  border-color:var(--nc-blue)!important;
+  background:#f0f7fe!important;
+}
+.close,.lightbox-arrow,.lightbox-close{
+  color:#202124!important;
+}
+.mobile-tab.active{
+  border-bottom-color:var(--nc-blue-deep)!important;
+  color:var(--nc-blue-deep)!important;
+}
+.mobile-dot.active{background:var(--nc-blue-deep)!important}
+
+
+/* USER REQUEST: BLUE TYPOGRAPHY THROUGHOUT THE ENTIRE WEBSITE */
+:root{
+  --luvira-text-blue:#1B4F86;
+  --luvira-text-blue-dark:#173F70;
+}
+body,
+body *:not(svg):not(path){
+  color:var(--luvira-text-blue)!important;
+}
+/* Keep every text-bearing control readable while maintaining the blue palette. */
+button,
+input,
+select,
+textarea,
+a,
+.product-info h3,
+.product-info p,
+.section-title,
+.toolbar h2,
+.store-brand,
+.store-search,
+.hero-copy h1,
+.hero-copy p,
+.hero-kicker,
+.hero-brand,
+.hero-brand-tagline,
+.gallery-kicker,
+.product-sidebar h2,
+.product-sidebar p,
+.colour-title,
+.gallery-note,
+.product-details h3,
+.detail-item strong,
+.detail-item span,
+footer,
+.status,
+.pagination span,
+.mobile-tab,
+.video-message,
+.product-image span{
+  color:var(--luvira-text-blue)!important;
+}
+/* Blue text on pale surfaces for accessible contrast. */
+.hero-copy h1,
+.hero-copy p,
+.hero-kicker,
+.hero-brand,
+.hero-brand-tagline{
+  color:var(--luvira-text-blue-dark)!important;
+}
+.hero-cta,
+.view-btn,
+.pagination button,
+.video-retry{
+  background:#e8f2fc!important;
+  color:var(--luvira-text-blue-dark)!important;
+  border:1px solid #8fb9e2!important;
+}
+.categories .cat-btn{
+  color:var(--luvira-text-blue-dark)!important;
+}
+.categories .cat-btn.active{
+  background:#d9eafb!important;
+  color:var(--luvira-text-blue-dark)!important;
+  border-color:#78a9d8!important;
+}
+.mobile-tab.active{
+  color:var(--luvira-text-blue-dark)!important;
+}
+
+
+/* BLUE TYPOGRAPHY INSIDE PRODUCT DETAIL POPUP / LIGHTBOX */
+.modal-box,
+.modal-box *,
+.product-modal,
+.product-modal *,
+.product-details,
+.product-details *,
+.detail-panel,
+.detail-panel *,
+.gallery-info,
+.gallery-info *,
+.product-sidebar,
+.product-sidebar *{
+  color:#1B4F86!important;
+}
+.modal-box .detail-item,
+.product-modal .detail-item,
+.detail-panel .detail-item{
+  background:#f4f8fc!important;
+  border-color:#dce8f4!important;
+}
+.modal-box .detail-item strong,
+.modal-box .detail-item span,
+.product-modal .detail-item strong,
+.product-modal .detail-item span{
+  color:#1B4F86!important;
+}
+.modal-box button,
+.product-modal button,
+.product-sidebar button,
+.colour-btn{
+  color:#1B4F86!important;
+}
+.modal-box .close,
+.product-modal .close{
+  color:#1B4F86!important;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-
-  <div class="logo">LUVIRA JEWELS</div>
-
-  <div class="tagline">
-    EXCLUSIVE JEWELLERY COLLECTION
-  </div>
-
+<header class="store-header">
+  <a class="store-brand" href="#" aria-label="Luvira Jewels home">LUVIRA JEWELS</a>
+  <button class="store-search" type="button" aria-label="Search products"
+    onclick="document.getElementById('all-products-section').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('search').focus(),450)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+    <span>Search</span>
+  </button>
 </header>
 
 <main class="container">
 
-  <h1 class="section-title">
+  <section class="hero-banner" aria-label="Luvira Jewels featured collection">
+    <div class="hero-copy">
+                        <button class="hero-cta" type="button" onclick="document.getElementById('all-products-section').scrollIntoView({behavior:'smooth',block:'start'})">
+        Shop the Collection <span aria-hidden="true">→</span>
+      </button>
+    </div>
+    <div class="hero-visual">
+      <img id="heroProductImage" alt="Featured Luvira diamond jewellery" hidden>
+      <span class="hero-fallback" id="heroFallback">LUVIRA JEWELS</span>
+    </div>
+  </section>
+
+  <h1 class="section-title" id="collection-categories">
     Explore Our Collections
   </h1>
 
@@ -1617,6 +2107,23 @@ function renderProducts(){
         button.setAttribute("aria-pressed",active?"true":"false");
       });
 
+      cardImage.addEventListener("load",()=>{
+        const heroImage=document.getElementById("heroProductImage");
+        const heroFallback=document.getElementById("heroFallback");
+        if(heroImage && !heroImage.dataset.ready){
+          heroImage.onload=()=>{
+            heroImage.hidden=false;
+            heroImage.dataset.ready="true";
+            if(heroFallback)heroFallback.hidden=true;
+          };
+          heroImage.onerror=()=>{
+            heroImage.removeAttribute("src");
+            heroImage.hidden=true;
+            if(heroFallback)heroFallback.hidden=false;
+          };
+          heroImage.src=cardImage.currentSrc||cardImage.src;
+        }
+      },{once:true});
       loadDriveImage(cardImage,items[0],()=>{
         cardImage.removeAttribute("src");
         placeholder.style.display="flex";
