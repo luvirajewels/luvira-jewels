@@ -1468,6 +1468,14 @@ html{scroll-behavior:smooth}
 .hero-banner::after{content:none!important;display:none!important}
 .hero-banner .hero-cta{display:inline-flex!important}
 
+
+/* MOBILE: hide the header search icon; keep the All Products search field */
+@media (max-width: 700px) {
+  .store-header .store-search {
+    display: none !important;
+  }
+}
+
 </style>
 </head>
 
