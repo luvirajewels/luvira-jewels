@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+<link rel="preconnect" href="https://i.vimeocdn.com" crossorigin>
+<link rel="preconnect" href="https://f.vimeocdn.com" crossorigin>
+<link rel="dns-prefetch" href="//player.vimeo.com">
+<link rel="dns-prefetch" href="//i.vimeocdn.com">
+<script src="https://player.vimeo.com/api/player.js" async></script>
 <title>Luvira Jewels</title>
 
 <style>
@@ -43,9 +49,9 @@ header{
 }
 
 .container{
-  max-width:1400px;
+  max-width:1540px;
   margin:auto;
-  padding:25px 18px;
+  padding:25px 28px;
 }
 
 .section-title{
@@ -783,56 +789,1795 @@ footer{
 
 }
 
+
+/* =========================================================
+   LUVIRA LUXURY HOMEPAGE: IMAGE CATEGORIES + DISCOVER STYLES
+   ========================================================= */
+
+.category-showcase{
+  width:100%;
+  margin:4px 0 58px;
+}
+
+.category-showcase-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+
+.category-card{
+  position:relative;
+  display:block;
+  width:100%;
+  min-width:0;
+  aspect-ratio:1.04 / 1;
+  overflow:hidden;
+  padding:0;
+  border:0;
+  border-radius:13px;
+  background:#eee9e3;
+  color:#171512;
+  text-align:left;
+  cursor:pointer;
+  isolation:isolate;
+  box-shadow:0 1px 0 rgba(25,20,15,.04);
+}
+
+.category-card-image{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  display:block;
+  background:
+    radial-gradient(ellipse at 48% 40%,#fff 0%,#f3efeb 58%,#e9e4de 100%);
+}
+
+.category-card-image img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+.category-card::after{
+  content:"";
+  position:absolute;
+  inset:35% 0 0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(248,246,243,0) 0%,rgba(248,246,243,.30) 34%,rgba(248,246,243,.94) 100%);
+  pointer-events:none;
+}
+
+.category-card:hover .category-card-image img{
+  transform:scale(1.055);
+}
+
+.category-card-copy{
+  position:absolute;
+  left:16px;
+  right:12px;
+  bottom:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+}
+
+.category-card-title{
+  font:clamp(19px,1.65vw,27px)/1.08 Georgia,"Times New Roman",serif;
+  letter-spacing:-.5px;
+  color:#171512;
+}
+
+.category-card-link{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#171512;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.1px;
+}
+
+.category-card-link span{
+  font-size:19px;
+  line-height:10px;
+  transition:transform .25s ease;
+}
+
+.category-card:hover .category-card-link span{
+  transform:translateX(4px);
+}
+
+.category-card:focus-visible,
+.discover-arrow:focus-visible,
+.discover-item:focus-visible{
+  outline:2px solid #b9954f;
+  outline-offset:3px;
+}
+
+/* Discover styles section */
+.discover-section{
+  width:100%;
+  margin:0 0 58px;
+  padding:32px 0 20px;
+  background:#fbfaf8;
+  overflow:hidden;
+}
+
+.discover-heading{
+  max-width:650px;
+  margin:0 auto 24px;
+  padding:0 18px;
+  text-align:center;
+}
+
+.discover-eyebrow{
+  margin:0 0 8px;
+  color:#a4864e;
+  font-size:9px;
+  letter-spacing:3px;
+  font-weight:600;
+}
+
+.discover-heading h2{
+  margin:0 0 9px;
+  color:#171512;
+  font:normal clamp(25px,2.3vw,34px)/1.1 Georgia,"Times New Roman",serif;
+  letter-spacing:-.5px;
+}
+
+.discover-heading > p:last-child{
+  max-width:420px;
+  margin:0 auto;
+  color:#55504a;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.discover-carousel{
+  position:relative;
+  width:100%;
+  padding:0 42px;
+}
+
+.discover-viewport{
+  width:100%;
+  overflow:hidden;
+}
+
+.discover-track{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:20%;
+  gap:10px;
+  align-items:stretch;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  scroll-behavior:smooth;
+  padding:4px 0 10px;
+}
+
+.discover-track::-webkit-scrollbar{
+  display:none;
+}
+
+.discover-item{
+  min-width:0;
+  padding:0 0 12px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#1b356f;
+  text-align:left;
+  cursor:pointer;
+  scroll-snap-align:center;
+  transition:border-color .25s ease,background .25s ease;
+}
+
+.discover-item:hover{
+  border-color:#d6e1f1;
+  background:rgba(255,255,255,.72);
+}
+
+.discover-item-image{
+  width:100%;
+  aspect-ratio:1 / 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:radial-gradient(ellipse at center,#fff 0%,#edf3fa 68%,#e2ebf6 100%);
+}
+
+.discover-item-image img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+  transition:transform .55s ease;
+}
+
+.discover-item:hover .discover-item-image img{
+  transform:scale(1.055);
+}
+
+.discover-item-title{
+  display:block;
+  min-height:40px;
+  padding:12px 10px 4px;
+  color:#1b356f;
+  font:16px/1.25 Georgia,"Times New Roman",serif;
+  text-align:left;
+}
+
+.discover-item-subtitle{
+  display:block;
+  padding:3px 10px 0;
+  color:#7185a7;
+  font-size:10px;
+  letter-spacing:.35px;
+  text-align:left;
+}
+
+.discover-arrow{
+  position:absolute;
+  z-index:3;
+  top:46%;
+  transform:translateY(-50%);
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d9d2c7;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  color:#171512;
+  font:26px/1 Georgia,serif;
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease;
+}
+
+.discover-arrow:hover{
+  background:#171512;
+  border-color:#171512;
+  color:#fff;
+}
+
+.discover-prev{left:5px}
+.discover-next{right:5px}
+
+.discover-loading{
+  grid-column:1/-1;
+  padding:55px 15px;
+  color:#8a8175;
+  text-align:center;
+  font:16px Georgia,serif;
+}
+
+.discover-empty{
+  grid-column:1/-1;
+  padding:40px 15px;
+  color:#8a8175;
+  text-align:center;
+  font:15px Georgia,serif;
+}
+
+/* Give the product listing a clear transition after the editorial sections */
+#collectionToolbar{
+  margin-top:0;
+  padding-top:5px;
+}
+
+@media(max-width:1050px){
+  .category-showcase-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .category-card{
+    aspect-ratio:1.12 / 1;
+  }
+  .discover-track{
+    grid-auto-columns:25%;
+  }
+}
+
+@media(max-width:700px){
+  .category-showcase{
+    margin:0 0 38px;
+  }
+  .category-showcase-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  .category-card{
+    aspect-ratio:1.05 / 1;
+    border-radius:10px;
+  }
+  .category-card-copy{
+    left:12px;
+    right:9px;
+    bottom:12px;
+    gap:5px;
+  }
+  .category-card-title{
+    font-size:clamp(18px,5vw,23px);
+  }
+  .category-card-link{
+    font-size:10px;
+  }
+  .discover-section{
+    margin:0 -12px 38px;
+    width:calc(100% + 24px);
+    padding:28px 0 14px;
+  }
+  .discover-heading{
+    margin-bottom:17px;
+  }
+  .discover-heading h2{
+    font-size:26px;
+  }
+  .discover-heading > p:last-child{
+    font-size:11px;
+  }
+  .discover-carousel{
+    padding:0 29px;
+  }
+  .discover-track{
+    grid-auto-columns:48%;
+    gap:4px;
+  }
+  .discover-item-image{
+    aspect-ratio:1 / 1;
+  }
+  .discover-item-title{
+    font-size:15px;
+    padding-top:10px;
+  }
+  .discover-item-subtitle{
+    font-size:9px;
+  }
+  .discover-arrow{
+    width:29px;
+    height:29px;
+    font-size:23px;
+  }
+  .discover-prev{left:2px}
+  .discover-next{right:2px}
+}
+
+@media(max-width:380px){
+  .category-showcase-grid{
+    gap:7px;
+  }
+  .category-card-copy{
+    left:9px;
+    bottom:10px;
+  }
+  .category-card-title{
+    font-size:17px;
+  }
+  .discover-track{
+    grid-auto-columns:70%;
+  }
+}
+
+
+/* =========================================================
+   LUVIRA JEWELS — COOL BLUE / NAVY BRAND THEME
+   Inspired by the supplied NetCarat-style references.
+   ========================================================= */
+
+:root{
+  --black:#1b356f;
+  --gold:#b99a62;
+  --cream:#f7f9fd;
+  --navy:#1b356f;
+  --navy-deep:#142b5e;
+  --blue-mid:#526b98;
+  --blue-soft:#eaf1fa;
+  --blue-pale:#f5f8fd;
+  --blue-line:#d6e1f1;
+  --champagne:#b99a62;
+}
+
+html{
+  background:#f7f9fd;
+  color:#1b356f;
+}
+
+body{
+  background:#f7f9fd;
+  color:#1b356f;
+}
+
+header{
+  background:#1b356f;
+  color:#fff;
+  border-bottom:2px solid #b99a62;
+}
+
+.logo{color:#fff}
+.tagline{color:#d7c39b}
+
+.section-title,
+.toolbar h2{
+  color:#1b356f;
+}
+
+.cat-btn{
+  background:#1b356f;
+  color:#fff;
+  border:1px solid #1b356f;
+}
+
+.cat-btn.active{
+  background:#dce7f5;
+  color:#1b356f;
+  border-color:#b8c9e2;
+}
+
+.search{
+  background:#fff;
+  color:#1b356f;
+  border:1px solid #d6e1f1;
+}
+
+.search:focus{
+  outline:2px solid #9db5d8;
+  border-color:#1b356f;
+}
+
+.product{
+  background:#fff;
+  border:1px solid #dfe7f2;
+}
+
+.product-image{
+  background:#eaf1fa;
+}
+
+.product-image span{
+  color:#7185a7;
+}
+
+.product-info h3{color:#1b356f}
+.product-info p{color:#657895}
+
+.view-btn,
+.pagination button{
+  background:#1b356f;
+  color:#fff;
+}
+
+.view-btn:hover,
+.pagination button:not(:disabled):hover{
+  background:#142b5e;
+}
+
+.status{color:#526b98}
+
+footer{
+  background:#1b356f;
+  color:#e7edf7;
+  border-top:2px solid #b99a62;
+}
+
+.modal{
+  background:rgba(13,29,59,.72);
+}
+
+.modal-box{
+  background:#fff;
+  color:#1b356f;
+  border:1px solid #d6e1f1;
+}
+
+.close{
+  background:#fff;
+  color:#1b356f;
+  border-color:#d6e1f1;
+}
+
+.desktop-media{
+  background:#eaf1fa;
+}
+
+.video-stage,
+.video-stage video,
+.video-stage iframe{
+  background:#eaf1fa;
+}
+
+.video-message{
+  color:#526b98;
+  background:#eaf1fa;
+}
+
+.video-retry{
+  border:1px solid #1b356f;
+  background:#1b356f;
+  color:#fff;
+}
+
+.product-sidebar{color:#1b356f}
+.gallery-kicker{color:#9a8050}
+.product-sidebar h2{color:#1b356f}
+.product-sidebar p{color:#526b98}
+.colour-title{color:#1b356f}
+
+.colour-btn{
+  border:1px solid #d6e1f1;
+  color:#1b356f;
+  background:#fff;
+}
+
+.colour-btn.active{
+  border:2px solid #1b356f;
+  background:#edf3fb;
+}
+
+.gallery-note{color:#7185a7}
+.product-details{border-top:1px solid #dce5f1}
+.detail-item{
+  background:#f5f8fd;
+  border:1px solid #dfe7f2;
+}
+.detail-item strong{color:#7185a7}
+.detail-item span{color:#1b356f}
+
+/* Homepage image category cards */
+.category-card{
+  background:#e7eff9;
+  color:#1b356f;
+  border:1px solid #e0e8f4;
+}
+
+.category-card-image{
+  background:linear-gradient(145deg,#dce8f7 0%,#edf3fa 52%,#d5e3f4 100%);
+}
+
+.category-card::after{
+  background:linear-gradient(
+    180deg,
+    rgba(225,236,249,0) 0%,
+    rgba(225,236,249,.08) 38%,
+    rgba(235,242,250,.92) 100%
+  );
+}
+
+.category-card-title,
+.category-card-link{
+  color:#1b356f;
+}
+
+.category-card-link span{color:#1b356f}
+
+.category-card:focus-visible,
+.discover-arrow:focus-visible,
+.discover-item:focus-visible{
+  outline:2px solid #1b356f;
+}
+
+/* Discover styles */
+.discover-section{
+  background:#f0f4fa;
+  border-top:1px solid #e0e8f3;
+  border-bottom:1px solid #e0e8f3;
+}
+
+.discover-eyebrow{color:#9a8050}
+.discover-heading h2{color:#1b356f}
+.discover-heading > p:last-child{color:#5b7094}
+
+.discover-item{color:#1b356f}
+.discover-item-image{
+  background:radial-gradient(
+    ellipse at center,
+    #fff 0%,
+    #edf3fa 67%,
+    #e2ebf6 100%
+  );
+}
+.discover-item-title{color:#1b356f}
+.discover-item-subtitle{color:#657b9d}
+
+.discover-arrow{
+  border:1px solid #cbd8e9;
+  background:rgba(255,255,255,.96);
+  color:#1b356f;
+}
+.discover-arrow:hover{
+  background:#1b356f;
+  border-color:#1b356f;
+  color:#fff;
+}
+.discover-loading,
+.discover-empty{color:#7185a7}
+
+/* Make headings, controls and fields feel consistent */
+button,input,select,textarea{font-family:inherit}
+button{transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+a{color:#1b356f}
+a:hover{color:#526b98}
+
+@media(max-width:700px){
+  header{
+    padding:20px 14px;
+  }
+  .logo{
+    font-size:25px;
+    letter-spacing:3px;
+  }
+  .tagline{
+    font-size:9px;
+    letter-spacing:2px;
+  }
+  .category-card{
+    background:#e7eff9;
+  }
+}
+
+
+/* =========================================================
+   HOMEPAGE VISUAL — MATCHING THE CLIENT'S LUVIRA REFERENCE
+   ========================================================= */
+
+body{
+  background:#f7f9fd;
+  color:#1b356f;
+}
+
+.site-header{
+  position:relative;
+  z-index:5;
+  padding:12px 5.5% 0;
+  background:#1b356f;
+  color:#fff;
+  border-bottom:0;
+  text-align:center;
+}
+
+.brand-lockup{
+  padding:0 0 12px;
+}
+
+.site-header .logo{
+  color:#fff;
+  font:700 27px/1.05 Georgia,"Times New Roman",serif;
+  letter-spacing:5px;
+}
+
+.site-header .tagline{
+  margin-top:5px;
+  color:#d9c69f;
+  font-size:8px;
+  letter-spacing:2px;
+}
+
+.main-navigation{
+  min-height:39px;
+  display:flex;
+  align-items:center;
+  gap:clamp(15px,2.2vw,31px);
+  border-top:1px solid rgba(255,255,255,.14);
+  text-align:left;
+}
+
+.nav-link,.nav-icon{
+  flex:0 0 auto;
+  padding:10px 0;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:11px;
+  cursor:pointer;
+  transition:color .2s ease,opacity .2s ease;
+}
+
+.nav-link:hover,.nav-icon:hover{
+  color:#e1c995;
+}
+
+.nav-spacer{flex:1}
+
+.nav-icon{
+  font-size:21px;
+  line-height:1;
+  min-width:22px;
+  text-align:center;
+}
+
+/* Wide, editorial hero banner */
+.home-hero{
+  position:relative;
+  min-height:clamp(270px,30vw,430px);
+  width:100%;
+  margin:0 0 30px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(ellipse at 75% 48%,rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 45%),
+    linear-gradient(105deg,#eaf1fa 0%,#e3edf8 45%,#d5e3f2 100%);
+  border:1px solid #e0e8f3;
+}
+
+.home-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 88% 15%,rgba(255,255,255,.68) 0 3px,transparent 4px),
+    radial-gradient(circle at 80% 25%,rgba(255,255,255,.5) 0 2px,transparent 3px),
+    radial-gradient(circle at 67% 72%,rgba(255,255,255,.65) 0 2px,transparent 3px);
+  pointer-events:none;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+  width:48%;
+  max-width:590px;
+  padding:42px 0 42px clamp(28px,6vw,90px);
+}
+
+.hero-kicker{
+  margin:0 0 13px;
+  color:#a4864e;
+  font-size:10px;
+  line-height:1.2;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+.hero-copy h1{
+  margin:0 0 15px;
+  color:#1b356f;
+  font:normal clamp(34px,4.3vw,61px)/.99 Georgia,"Times New Roman",serif;
+  letter-spacing:-1.8px;
+}
+
+.hero-description{
+  max-width:360px;
+  margin:0 0 20px;
+  color:#526b98;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:15px;
+  padding:13px 18px;
+  border:1px solid #1b356f;
+  background:#1b356f;
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .2s ease,transform .2s ease;
+}
+
+.hero-cta:hover{
+  background:#142b5e;
+  transform:translateY(-2px);
+}
+
+.hero-cta span{
+  font-size:17px;
+  line-height:10px;
+}
+
+.hero-art{
+  position:absolute;
+  inset:0 0 0 43%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.hero-glow{
+  position:absolute;
+  width:76%;
+  height:78%;
+  right:3%;
+  top:11%;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,255,255,.75),rgba(255,255,255,0) 68%);
+}
+
+.hero-art img{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  mix-blend-mode:multiply;
+  filter:drop-shadow(0 18px 22px rgba(37,57,89,.13));
+}
+
+.hero-image-loading{
+  position:relative;
+  z-index:1;
+  color:rgba(27,53,111,.28);
+  font:italic 22px Georgia,serif;
+  letter-spacing:5px;
+}
+
+.container{
+  max-width:1540px;
+  padding:0 28px 30px;
+}
+
+.category-showcase{
+  margin:0 0 44px;
+}
+
+.collection-heading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  margin:0 0 18px;
+  text-align:center;
+}
+
+.collection-heading span{
+  width:27px;
+  height:1px;
+  background:#b99a62;
+}
+
+.collection-heading h2{
+  margin:0;
+  color:#1b356f;
+  font:normal clamp(22px,2.2vw,30px)/1.2 Georgia,"Times New Roman",serif;
+  letter-spacing:-.5px;
+}
+
+.category-showcase-grid{
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+
+.category-card{
+  aspect-ratio:1 / 1.12;
+  border-radius:8px;
+  background:#eaf1fa;
+  border:1px solid #e2eaf5;
+  box-shadow:none;
+}
+
+.category-card-image{
+  background:linear-gradient(145deg,#eaf1fa,#dce8f6);
+}
+
+.category-card-image img{
+  object-fit:cover;
+  object-position:center;
+}
+
+.category-card::after{
+  inset:60% 0 0;
+  background:linear-gradient(180deg,rgba(239,245,252,0) 0%,rgba(239,245,252,.78) 100%);
+}
+
+.category-card-copy{
+  left:10px;
+  right:10px;
+  bottom:12px;
+  align-items:center;
+  gap:5px;
+  text-align:center;
+}
+
+.category-card-title{
+  color:#1b356f;
+  font:600 clamp(14px,1.2vw,18px)/1.15 Georgia,"Times New Roman",serif;
+  letter-spacing:0;
+}
+
+.category-card-link{
+  color:#1b356f;
+  font-size:10px;
+  font-weight:600;
+}
+
+.category-card-link span{
+  font-size:16px;
+}
+
+.discover-section{
+  margin-top:20px;
+}
+
+@media(max-width:800px){
+  .site-header{padding:12px 16px 0}
+  .site-header .logo{font-size:24px;letter-spacing:4px}
+  .main-navigation{
+    gap:17px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .main-navigation::-webkit-scrollbar{display:none}
+  .nav-spacer{display:none}
+  .nav-icon{display:none}
+  .home-hero{
+    min-height:310px;
+    align-items:flex-start;
+  }
+  .hero-copy{
+    width:60%;
+    padding:36px 0 32px 22px;
+  }
+  .hero-copy h1{font-size:clamp(31px,6vw,46px)}
+  .hero-description{font-size:11px;max-width:240px}
+  .hero-art{left:38%;opacity:.92}
+  .container{padding:0 14px 25px}
+  .category-showcase-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  .category-card{aspect-ratio:1 / 1.08}
+}
+
+@media(max-width:520px){
+  .site-header .logo{font-size:21px;letter-spacing:3px}
+  .site-header .tagline{font-size:7px;letter-spacing:1.7px}
+  .main-navigation{gap:18px;min-height:37px}
+  .nav-link{font-size:10px}
+  .home-hero{
+    min-height:285px;
+    margin-bottom:24px;
+  }
+  .hero-copy{
+    width:68%;
+    padding:29px 0 25px 17px;
+  }
+  .hero-kicker{font-size:8px;letter-spacing:1.4px;margin-bottom:10px}
+  .hero-copy h1{
+    font-size:clamp(27px,7.2vw,36px);
+    letter-spacing:-1px;
+  }
+  .hero-description{
+    max-width:205px;
+    font-size:10px;
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .hero-cta{padding:10px 12px;font-size:9px;gap:9px}
+  .hero-art{left:35%;opacity:.8}
+  .hero-art img{object-position:55% center}
+  .collection-heading{gap:9px;margin-bottom:13px}
+  .collection-heading span{width:17px}
+  .collection-heading h2{font-size:21px}
+  .category-showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .category-card{aspect-ratio:1 / 1.08}
+  .category-card-title{font-size:16px}
+}
+
+
+
+/* =========================================================
+   KEYZAR-INSPIRED DISCOVER STYLES PRODUCT CAROUSEL
+   Uses Luvira's own catalogue products and exact product names.
+   ========================================================= */
+
+.discover-section{
+  background:linear-gradient(180deg,#fbfcff 0%,#f4f7fc 100%);
+  padding:28px 0 24px;
+  margin:0 0 48px;
+  border-top:1px solid #e6edf7;
+  border-bottom:1px solid #e6edf7;
+}
+
+.discover-heading{
+  margin-bottom:19px;
+}
+
+.discover-eyebrow{
+  display:none;
+}
+
+.discover-heading h2{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:0 0 8px;
+  color:#1b356f;
+  font:normal clamp(24px,2.1vw,31px)/1.15 Georgia,"Times New Roman",serif;
+  letter-spacing:-.5px;
+}
+
+.discover-heading h2::before,
+.discover-heading h2::after{
+  content:"";
+  display:block;
+  width:34px;
+  height:1px;
+  background:#b99a62;
+}
+
+.discover-heading > p:last-child{
+  max-width:440px;
+  color:#657b9d;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.discover-carousel{
+  padding:0 43px;
+}
+
+.discover-viewport{
+  overflow:hidden;
+}
+
+.discover-track{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 64px)/5);
+  gap:16px;
+  align-items:start;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:0;
+  scrollbar-width:none;
+  scroll-behavior:smooth;
+  padding:2px 0 5px;
+}
+
+.discover-track::-webkit-scrollbar{
+  display:none;
+}
+
+.discover-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  min-width:0;
+  padding:0 2px 5px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#1b356f;
+  text-align:center;
+  scroll-snap-align:start;
+}
+
+.discover-item:hover{
+  border:0;
+  background:transparent;
+}
+
+.discover-item-image{
+  width:100%;
+  aspect-ratio:1.55 / 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:transparent;
+}
+
+.discover-item-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+  transition:transform .35s ease;
+}
+
+.discover-item:hover .discover-item-image img{
+  transform:scale(1.06);
+}
+
+.discover-item-title{
+  display:block;
+  width:100%;
+  min-height:28px;
+  padding:8px 4px 2px;
+  color:#1b356f;
+  font:600 12px/1.25 Arial,sans-serif;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+
+.discover-item-subtitle{
+  display:none;
+}
+
+.discover-arrow{
+  top:43%;
+  width:30px;
+  height:30px;
+  border:0;
+  border-radius:50%;
+  background:#dce5f2;
+  color:#536d98;
+  font:22px/1 Georgia,serif;
+}
+
+.discover-arrow:hover{
+  background:#1b356f;
+  color:#fff;
+  border:0;
+}
+
+.discover-prev{left:3px}
+.discover-next{right:3px}
+
+.discover-pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  min-height:18px;
+  padding:9px 0 0;
+}
+
+.discover-dot{
+  display:block;
+  width:6px;
+  height:6px;
+  min-width:6px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#d0dbea;
+  cursor:pointer;
+  transition:transform .2s ease,background .2s ease;
+}
+
+.discover-dot.active{
+  background:#1b356f;
+  transform:scale(1.12);
+}
+
+.discover-dot:focus-visible{
+  outline:2px solid #1b356f;
+  outline-offset:3px;
+}
+
+@media(max-width:1050px){
+  .discover-track{
+    grid-auto-columns:calc((100% - 48px)/4);
+    gap:16px;
+  }
+}
+
+@media(max-width:700px){
+  .discover-section{
+    margin:0 -12px 36px;
+    width:calc(100% + 24px);
+    padding:25px 0 17px;
+  }
+  .discover-heading{
+    margin-bottom:15px;
+  }
+  .discover-heading h2{
+    font-size:25px;
+    gap:10px;
+  }
+  .discover-heading h2::before,
+  .discover-heading h2::after{
+    width:21px;
+  }
+  .discover-heading > p:last-child{
+    max-width:300px;
+    font-size:10px;
+  }
+  .discover-carousel{
+    padding:0 31px;
+  }
+  .discover-track{
+    grid-auto-columns:calc((100% - 14px)/2);
+    gap:14px;
+    padding-bottom:4px;
+  }
+  .discover-item-image{
+    aspect-ratio:1.35 / 1;
+  }
+  .discover-item-title{
+    font-size:11px;
+    min-height:30px;
+    padding-top:7px;
+  }
+  .discover-arrow{
+    top:42%;
+    width:26px;
+    height:26px;
+    font-size:20px;
+  }
+  .discover-prev{left:2px}
+  .discover-next{right:2px}
+}
+
+
+
+/* =========================================================
+   LUVIRA JEWELS — FINAL HOMEPAGE LAYOUT
+   Built around the supplied homepage reference.
+   ========================================================= */
+
+:root{
+  --luvira-navy:#1b356f;
+  --luvira-ice:#eaf1fa;
+  --luvira-white:#fbfcff;
+  --luvira-gold:#b99a62;
+  --luvira-muted:#657b9d;
+}
+
+html,body{
+  width:100%;
+  overflow-x:hidden;
+  background:var(--luvira-white);
+  color:var(--luvira-navy);
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.site-header{
+  width:100%;
+  padding:13px 3.2% 0;
+  background:linear-gradient(110deg,#1a3269,#203e7c);
+  color:#fff;
+  border:0;
+  box-shadow:0 2px 10px rgba(20,43,94,.12);
+}
+
+.brand-lockup{
+  padding:0 0 12px;
+}
+
+.site-header .logo{
+  color:#fff;
+  font:700 clamp(23px,2.6vw,34px)/1 Georgia,"Times New Roman",serif;
+  letter-spacing:clamp(3px,.48vw,6px);
+}
+
+.site-header .tagline{
+  margin-top:6px;
+  color:#e0e8f5;
+  font:600 9px/1.2 Arial,sans-serif;
+  letter-spacing:2px;
+}
+
+.main-navigation{
+  min-height:43px;
+  display:flex;
+  align-items:center;
+  gap:clamp(16px,2.7vw,34px);
+  border-top:1px solid rgba(255,255,255,.12);
+}
+
+.nav-link{
+  position:relative;
+  padding:13px 0 12px;
+  color:#f8faff;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.nav-link:first-child::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  background:#e1c58e;
+}
+
+.nav-icon{
+  color:#fff;
+  font-size:22px;
+}
+
+.container{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+
+/* Main image-led hero banner */
+.home-hero{
+  width:100%;
+  min-height:clamp(300px,31vw,430px);
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,rgba(235,243,252,.98) 0%,rgba(231,240,250,.91) 34%,rgba(219,233,247,.34) 67%,rgba(211,228,245,.2) 100%),
+    linear-gradient(115deg,#eaf2fb,#d9e7f5);
+}
+
+.home-hero::before{
+  background:
+    radial-gradient(circle at 91% 14%,rgba(255,255,255,.88) 0 4px,transparent 5px),
+    radial-gradient(circle at 84% 26%,rgba(255,255,255,.58) 0 3px,transparent 4px),
+    radial-gradient(circle at 73% 73%,rgba(255,255,255,.72) 0 2px,transparent 3px);
+}
+
+.hero-copy{
+  width:47%;
+  max-width:620px;
+  padding:48px 0 48px clamp(28px,7.9vw,110px);
+}
+
+.hero-kicker{
+  margin-bottom:15px;
+  color:#b18e4f;
+  font-size:11px;
+  letter-spacing:1.8px;
+}
+
+.hero-copy h1{
+  color:#1b356f;
+  font:normal clamp(38px,4.15vw,62px)/.99 Georgia,"Times New Roman",serif;
+  letter-spacing:-1.5px;
+}
+
+.hero-description{
+  max-width:390px;
+  color:#596f91;
+  font-size:14px;
+  line-height:1.65;
+}
+
+.hero-cta{
+  padding:14px 20px;
+  background:#1b356f;
+  border-color:#1b356f;
+  color:#fff;
+  font-size:12px;
+}
+
+.hero-art{
+  left:40%;
+}
+
+.hero-art img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  mix-blend-mode:multiply;
+  transform:scale(1.08);
+}
+
+/* Collection tiles beneath hero */
+.category-showcase{
+  width:100%;
+  margin:0;
+  padding:32px clamp(18px,2.8vw,42px) 36px;
+  background:#fff;
+}
+
+.collection-heading{
+  gap:16px;
+  margin:0 0 25px;
+}
+
+.collection-heading span{
+  width:40px;
+  background:#c6a260;
+}
+
+.collection-heading h2{
+  color:#1b356f;
+  font-size:clamp(25px,2.5vw,34px);
+}
+
+.category-showcase-grid{
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+
+.category-card{
+  aspect-ratio:1 / 1.12;
+  border-radius:11px;
+  border:1px solid #e3ebf5;
+  background:#eaf1fa;
+  box-shadow:none;
+}
+
+.category-card-image{
+  background:linear-gradient(145deg,#edf4fc,#dfeafa);
+}
+
+.category-card-image img{
+  object-fit:contain;
+  object-position:center;
+  mix-blend-mode:multiply;
+  padding:5px;
+}
+
+.category-card::after{
+  inset:61% 0 0;
+  background:linear-gradient(180deg,rgba(234,241,250,0) 0%,rgba(234,241,250,.35) 35%,rgba(234,241,250,.96) 100%);
+}
+
+.category-card-copy{
+  left:8px;
+  right:8px;
+  bottom:15px;
+  align-items:center;
+  text-align:center;
+  gap:6px;
+}
+
+.category-card-title{
+  color:#1b356f;
+  font:600 clamp(15px,1.4vw,20px)/1.1 Georgia,"Times New Roman",serif;
+}
+
+.category-card-link{
+  color:#1b356f;
+  font-size:11px;
+  font-weight:600;
+}
+
+/* Discover Styles section — Keyzar-inspired layout, Luvira products */
+.discover-section{
+  width:100%;
+  margin:0;
+  padding:34px clamp(10px,2.5vw,36px) 24px;
+  background:linear-gradient(180deg,#f8faff 0%,#f1f6fc 100%);
+  border:0;
+}
+
+.discover-heading{
+  margin:0 auto 24px;
+}
+
+.discover-heading h2{
+  color:#1b356f;
+  font:normal clamp(27px,2.5vw,36px)/1.15 Georgia,"Times New Roman",serif;
+}
+
+.discover-heading > p:last-child{
+  color:#62799b;
+  font-size:13px;
+}
+
+.discover-carousel{
+  max-width:1500px;
+  margin:0 auto;
+  padding:0 45px;
+}
+
+.discover-track{
+  grid-auto-columns:calc((100% - 64px)/5);
+  gap:16px;
+}
+
+.discover-item-image{
+  aspect-ratio:1.55 / 1;
+}
+
+.discover-item-title{
+  color:#1b356f;
+  font-size:13px;
+  font-weight:600;
+}
+
+.discover-arrow{
+  background:#dce5f2;
+  color:#536d98;
+}
+
+.discover-dot.active{
+  background:#1b356f;
+}
+
+/* Existing product listing remains below the homepage sections */
+.toolbar,
+#status,
+#products,
+.pagination{
+  margin-left:auto;
+  margin-right:auto;
+  width:calc(100% - clamp(28px,5.6vw,84px));
+  max-width:1500px;
+}
+
+.toolbar{
+  margin-top:34px;
+}
+
+footer{
+  margin-top:40px;
+  background:#1b356f;
+  color:#fff;
+  border-top:2px solid #b99a62;
+}
+
+/* Mobile: compact navigation, stacked hero, touch carousel */
+@media(max-width:800px){
+  .site-header{
+    padding:12px 17px 0;
+  }
+
+  .main-navigation{
+    gap:19px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+
+  .main-navigation::-webkit-scrollbar{display:none}
+  .nav-spacer{display:none}
+  .nav-icon{display:none}
+
+  .home-hero{
+    min-height:300px;
+  }
+
+  .hero-copy{
+    width:65%;
+    padding:34px 0 34px 24px;
+  }
+
+  .hero-copy h1{
+    font-size:clamp(32px,6.4vw,46px);
+  }
+
+  .hero-description{
+    max-width:260px;
+    font-size:12px;
+  }
+
+  .hero-art{left:34%}
+
+  .category-showcase{
+    padding:27px 17px 30px;
+  }
+
+  .category-showcase-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .category-card{aspect-ratio:1 / 1.12}
+
+  .discover-carousel{padding:0 32px}
+  .discover-track{
+    grid-auto-columns:calc((100% - 14px)/2);
+    gap:14px;
+  }
+}
+
+@media(max-width:520px){
+  .site-header .logo{
+    font-size:22px;
+    letter-spacing:3px;
+  }
+
+  .site-header .tagline{
+    font-size:7px;
+    letter-spacing:1.6px;
+  }
+
+  .main-navigation{
+    gap:18px;
+    min-height:39px;
+  }
+
+  .nav-link{font-size:10px}
+
+  .home-hero{
+    min-height:280px;
+  }
+
+  .hero-copy{
+    width:70%;
+    padding:29px 0 27px 17px;
+  }
+
+  .hero-kicker{
+    font-size:8px;
+    letter-spacing:1.2px;
+  }
+
+  .hero-copy h1{
+    font-size:clamp(27px,7.3vw,36px);
+    letter-spacing:-.8px;
+  }
+
+  .hero-description{
+    max-width:205px;
+    font-size:10px;
+    line-height:1.5;
+  }
+
+  .hero-cta{
+    padding:10px 12px;
+    font-size:9px;
+  }
+
+  .hero-art{
+    left:32%;
+    opacity:.78;
+  }
+
+  .category-showcase{
+    padding:23px 12px 25px;
+  }
+
+  .collection-heading{
+    gap:9px;
+    margin-bottom:16px;
+  }
+
+  .collection-heading span{width:19px}
+  .collection-heading h2{font-size:22px}
+
+  .category-showcase-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+
+  .category-card-title{font-size:16px}
+
+  .discover-section{
+    padding:27px 0 18px;
+  }
+
+  .discover-heading h2{
+    font-size:25px;
+  }
+
+  .discover-heading > p:last-child{
+    max-width:290px;
+    font-size:10px;
+  }
+
+  .discover-carousel{
+    padding:0 30px;
+  }
+
+  .discover-track{
+    grid-auto-columns:calc((100% - 12px)/2);
+    gap:12px;
+  }
+
+  .discover-item-title{
+    font-size:11px;
+  }
+
+  .toolbar,
+  #status,
+  #products,
+  .pagination{
+    width:calc(100% - 24px);
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
 
-  <div class="logo">LUVIRA JEWELS</div>
-
-  <div class="tagline">
-    EXCLUSIVE JEWELLERY COLLECTION
+  <div class="brand-lockup">
+    <div class="logo">LUVIRA JEWELS</div>
+    <div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
   </div>
+
+  <nav class="main-navigation" aria-label="Main navigation">
+    <button type="button" class="nav-link" data-nav-category="All Products">Home</button>
+    <button type="button" class="nav-link" data-nav-category="Rings">Rings</button>
+    <button type="button" class="nav-link" data-nav-category="Earrings">Earrings</button>
+    <button type="button" class="nav-link" data-nav-category="Necklaces">Necklaces</button>
+    <button type="button" class="nav-link" data-nav-category="Bracelets">Bracelets</button>
+    <button type="button" class="nav-link" data-nav-category="Pendants">Pendants</button>
+    <span class="nav-spacer"></span>
+    <button type="button" class="nav-icon" id="navSearch" aria-label="Search products">⌕</button>
+    <button type="button" class="nav-icon" aria-label="Wishlist">♡</button>
+    <button type="button" class="nav-icon" aria-label="Shopping bag">♧</button>
+  </nav>
 
 </header>
 
 <main class="container">
 
-  <h1 class="section-title">
-    Explore Our Collections
-  </h1>
+  <!-- LUXURY JEWELLERY HERO -->
+  <section class="home-hero" aria-label="Featured jewellery collection">
+    <div class="hero-copy">
+      <p class="hero-kicker">FINE DIAMOND JEWELLERY</p>
+      <h1>Timeless Designs<br>for Every Occasion</h1>
+      <p class="hero-description">Discover a curated collection of diamond jewellery crafted for life's most meaningful moments.</p>
+      <button type="button" class="hero-cta" id="heroShopButton">Shop the Collection <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <span class="hero-image-loading">LUVIRA</span>
+    </div>
+  </section>
 
-  <div class="categories">
+  <!-- LUXURY CATEGORY IMAGE CARDS -->
+  <section class="category-showcase" aria-label="Shop by category">
+    <div class="collection-heading">
+      <span></span>
+      <h2>Explore Our Collections</h2>
+      <span></span>
+    </div>
+    <div class="category-showcase-grid" id="categoryShowcase">
+      <button class="category-card" data-category="Rings" type="button">
+        <span class="category-card-image"></span>
+        <span class="category-card-copy">
+          <span class="category-card-title">Rings</span>
+          <span class="category-card-link">Shop Now <span aria-hidden="true">›</span></span>
+        </span>
+      </button>
 
-    <button class="cat-btn active" data-cat="All Products">
-      ALL
-    </button>
+      <button class="category-card" data-category="Earrings" type="button">
+        <span class="category-card-image"></span>
+        <span class="category-card-copy">
+          <span class="category-card-title">Earrings</span>
+          <span class="category-card-link">Shop Now <span aria-hidden="true">›</span></span>
+        </span>
+      </button>
 
-    <button class="cat-btn" data-cat="Rings">
-      RINGS
-    </button>
+      <button class="category-card" data-category="Necklaces" type="button">
+        <span class="category-card-image"></span>
+        <span class="category-card-copy">
+          <span class="category-card-title">Necklaces</span>
+          <span class="category-card-link">Shop Now <span aria-hidden="true">›</span></span>
+        </span>
+      </button>
 
-    <button class="cat-btn" data-cat="Earrings">
-      EARRINGS
-    </button>
+      <button class="category-card" data-category="Bracelets" type="button">
+        <span class="category-card-image"></span>
+        <span class="category-card-copy">
+          <span class="category-card-title">Bracelets</span>
+          <span class="category-card-link">Shop Now <span aria-hidden="true">›</span></span>
+        </span>
+      </button>
 
-    <button class="cat-btn" data-cat="Pendants">
-      PENDANTS
-    </button>
+      <button class="category-card" data-category="Pendants" type="button">
+        <span class="category-card-image"></span>
+        <span class="category-card-copy">
+          <span class="category-card-title">Pendants</span>
+          <span class="category-card-link">Shop Now <span aria-hidden="true">›</span></span>
+        </span>
+      </button>
+    </div>
+  </section>
 
-    <button class="cat-btn" data-cat="Necklaces">
-      NECKLACES
-    </button>
+  <!-- DISCOVER STYLES -->
+  <section class="discover-section" aria-label="Discover jewellery styles">
+    <div class="discover-heading">
+      <p class="discover-eyebrow">LUVIRA JEWELS</p>
+      <h2>DISCOVER STYLES</h2>
+      <p>Explore selected pieces from the Luvira Jewels collection.</p>
+    </div>
 
-    <button class="cat-btn" data-cat="Bracelets">
-      BRACELETS
-    </button>
+    <div class="discover-carousel">
+      <button class="discover-arrow discover-prev" id="stylePrev" type="button" aria-label="Previous styles">‹</button>
+      <div class="discover-viewport">
+        <div class="discover-track" id="discoverTrack">
+          <div class="discover-loading">Discovering our styles...</div>
+        </div>
+      </div>
+      <button class="discover-arrow discover-next" id="styleNext" type="button" aria-label="Next styles">›</button>
+    </div>
+    <div class="discover-pagination" id="discoverPagination" aria-label="Discover products pages"></div>
+  </section>
 
-  </div>
-
-  <div class="toolbar">
+  <div class="toolbar" id="collectionToolbar">
 
     <h2 id="heading">All Products</h2>
 
@@ -1395,6 +3140,333 @@ let currentPage=1;
 
 const perPage=12;
 
+
+/* =========================================================
+   HOMEPAGE CATEGORY CARDS
+   Images are loaded from each category's existing Drive folder.
+   ========================================================= */
+
+const HOME_CATEGORIES=[
+  {name:"Rings",title:"Rings"},
+  {name:"Earrings",title:"Earrings"},
+  {name:"Necklaces",title:"Necklaces"},
+  {name:"Bracelets",title:"Bracelets"},
+  {name:"Pendants",title:"Pendants"}
+];
+
+function renderHeroBanner(){
+
+  const art=document.getElementById("heroArt");
+  if(!art)return;
+
+  const heroProduct=
+    allProducts.find(p=>String(p.category||"").toLowerCase()==="rings" && p.imageFolder) ||
+    allProducts.find(p=>p.imageFolder);
+
+  if(heroProduct && heroProduct.imageFolder){
+
+    fetchProductMedia(heroProduct.imageFolder).then(media=>{
+
+      if(!media.images || !media.images.length)return;
+
+      const img=document.createElement("img");
+      img.alt="Featured Luvira diamond jewellery";
+      img.loading="eager";
+      img.decoding="async";
+      img.referrerPolicy="no-referrer";
+
+      art.replaceChildren(
+        Object.assign(document.createElement("div"),{className:"hero-glow"}),
+        img
+      );
+
+      loadDriveImage(img,media.images[0],()=>img.remove(),1600);
+
+    }).catch(error=>console.warn("Hero image:",error));
+
+  }
+
+  document.getElementById("heroShopButton")?.addEventListener("click",()=>{
+
+    currentCategory="All Products";
+    currentPage=1;
+    renderProducts();
+
+    document.getElementById("collectionToolbar")
+      ?.scrollIntoView({behavior:"smooth",block:"start"});
+
+  });
+
+  document.querySelectorAll(".nav-link").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      currentCategory=button.dataset.navCategory || "All Products";
+      currentPage=1;
+      renderProducts();
+
+      if(currentCategory==="All Products"){
+        window.scrollTo({top:0,behavior:"smooth"});
+      }else{
+        document.getElementById("collectionToolbar")
+          ?.scrollIntoView({behavior:"smooth",block:"start"});
+      }
+
+    });
+
+  });
+
+  document.getElementById("navSearch")?.addEventListener("click",()=>{
+
+    document.getElementById("searchInput")?.focus();
+    document.getElementById("collectionToolbar")
+      ?.scrollIntoView({behavior:"smooth",block:"start"});
+
+  });
+
+}
+
+function renderCategoryShowcase(){
+
+  const root=document.getElementById("categoryShowcase");
+  if(!root)return;
+
+  const cards=[...root.querySelectorAll(".category-card")];
+
+  cards.forEach(card=>{
+
+    const category=card.dataset.category;
+    const product=allProducts.find(p=>p.category===category);
+    const imageBox=card.querySelector(".category-card-image");
+
+    if(!product||!product.imageFolder||!imageBox)return;
+
+    fetchProductMedia(product.imageFolder).then(media=>{
+
+      if(!media.images||!media.images.length)return;
+
+      const img=document.createElement("img");
+      img.alt=category+" jewellery collection";
+      img.loading="lazy";
+      img.decoding="async";
+      img.referrerPolicy="no-referrer";
+
+      imageBox.replaceChildren(img);
+
+      loadDriveImage(img,media.images[0],()=>img.remove(),1400);
+
+    }).catch(error=>console.warn("Category image:",category,error));
+
+  });
+
+  cards.forEach(card=>{
+
+    card.onclick=()=>{
+
+      currentCategory=card.dataset.category;
+      currentPage=1;
+
+      renderProducts();
+
+      document.getElementById("collectionToolbar")
+        ?.scrollIntoView({behavior:"smooth",block:"start"});
+
+    };
+
+  });
+
+}
+
+/* =========================================================
+   DISCOVER STYLES
+   Picks real ring products from the existing product sheet.
+   Each style tile opens its matching product.
+   ========================================================= */
+
+/*
+  Discover Styles uses up to 10 real products from the live catalogue.
+  The displayed title is always the exact Product Name from Google Sheets.
+  Clicking a card opens that product's existing detail popup.
+*/
+function getDiscoverStyleProducts(){
+
+  const selected=[];
+  const used=new Set();
+
+  // Prefer products that have an image folder, then fill from the full catalogue.
+  const ordered=[
+    ...allProducts.filter(p=>p.imageFolder),
+    ...allProducts.filter(p=>!p.imageFolder)
+  ];
+
+  ordered.forEach(product=>{
+
+    if(selected.length>=10)return;
+
+    const key=String(product.code||product.name||"").trim();
+
+    if(!key||used.has(key))return;
+
+    used.add(key);
+
+    selected.push({
+      product,
+      label:String(product.name||"")
+    });
+
+  });
+
+  return selected;
+
+}
+
+function renderDiscoverStyles(){
+
+  const track=document.getElementById("discoverTrack");
+  const dotsRoot=document.getElementById("discoverPagination");
+  if(!track)return;
+
+  const styles=getDiscoverStyleProducts();
+
+  if(!styles.length){
+    track.innerHTML=
+      '<div class="discover-empty">Our jewellery collection is coming soon.</div>';
+    if(dotsRoot)dotsRoot.innerHTML="";
+    return;
+  }
+
+  track.innerHTML="";
+  if(dotsRoot)dotsRoot.innerHTML="";
+
+  styles.forEach(({product,label})=>{
+
+    const card=document.createElement("button");
+
+    card.type="button";
+    card.className="discover-item";
+    card.setAttribute("aria-label","View "+label);
+
+    card.innerHTML=`
+      <span class="discover-item-image">
+        <span class="discover-loading"> </span>
+      </span>
+      <span class="discover-item-title">${safe(product.name)}</span>
+    `;
+
+    card.onclick=()=>openProduct(product);
+    track.appendChild(card);
+
+    const imageBox=card.querySelector(".discover-item-image");
+
+    if(product.imageFolder){
+
+      fetchProductMedia(product.imageFolder).then(media=>{
+
+        if(!media.images||!media.images.length){
+          imageBox.innerHTML="";
+          return;
+        }
+
+        const img=document.createElement("img");
+        img.alt=label;
+        img.loading="lazy";
+        img.decoding="async";
+        img.referrerPolicy="no-referrer";
+
+        imageBox.replaceChildren(img);
+        loadDriveImage(img,media.images[0],()=>img.remove(),1400);
+
+      }).catch(error=>{
+        console.warn("Discover product image:",label,error);
+        imageBox.innerHTML="";
+      });
+
+    }else{
+      imageBox.innerHTML="";
+    }
+
+  });
+
+  const prev=document.getElementById("stylePrev");
+  const next=document.getElementById("styleNext");
+
+  const getStep=()=>{
+    const first=track.querySelector(".discover-item");
+    if(!first)return track.clientWidth;
+    const styles=getComputedStyle(track);
+    const gap=parseFloat(styles.columnGap||styles.gap||0)||0;
+    return (first.getBoundingClientRect().width+gap)*
+      (window.innerWidth<=700?2:5);
+  };
+
+  const getPageCount=()=>{
+    const step=getStep();
+    return Math.max(1,Math.ceil(track.scrollWidth/Math.max(step,1)));
+  };
+
+  const buildDots=()=>{
+    if(!dotsRoot)return;
+    const count=getPageCount();
+    dotsRoot.innerHTML="";
+    for(let i=0;i<count;i++){
+      const dot=document.createElement("button");
+      dot.type="button";
+      dot.className="discover-dot"+(i===0?" active":"");
+      dot.setAttribute("aria-label","Show product group "+(i+1));
+      dot.setAttribute("aria-current",i===0?"true":"false");
+      dot.addEventListener("click",()=>{
+        track.scrollTo({left:i*getStep(),behavior:"smooth"});
+      });
+      dotsRoot.appendChild(dot);
+    }
+  };
+
+  const updateDots=()=>{
+    if(!dotsRoot)return;
+    const step=getStep();
+    const index=Math.min(
+      getPageCount()-1,
+      Math.round(track.scrollLeft/Math.max(step,1))
+    );
+    [...dotsRoot.children].forEach((dot,i)=>{
+      dot.classList.toggle("active",i===index);
+      dot.setAttribute("aria-current",i===index?"true":"false");
+    });
+  };
+
+  if(prev){
+    prev.onclick=()=>{
+      track.scrollBy({left:-getStep(),behavior:"smooth"});
+    };
+  }
+
+  if(next){
+    next.onclick=()=>{
+      track.scrollBy({left:getStep(),behavior:"smooth"});
+    };
+  }
+
+  if(track._discoverScrollHandler){
+    track.removeEventListener("scroll",track._discoverScrollHandler);
+  }
+  track._discoverScrollHandler=()=>updateDots();
+  track.addEventListener("scroll",track._discoverScrollHandler,{passive:true});
+
+  requestAnimationFrame(()=>{
+    buildDots();
+    updateDots();
+  });
+
+  if(!track._discoverResizeHandler){
+    track._discoverResizeHandler=()=>{
+      buildDots();
+      updateDots();
+    };
+    window.addEventListener("resize",track._discoverResizeHandler);
+  }
+
+}
+
 async function loadProducts(){
 
   const status=document.getElementById("status");
@@ -1451,6 +3523,9 @@ async function loadProducts(){
 
     status.style.display="none";
 
+    renderHeroBanner();
+    renderCategoryShowcase();
+    renderDiscoverStyles();
     renderProducts();
 
   }catch(error){
@@ -1856,30 +3931,86 @@ function renderDetails(){
 
 }
 
+/* VIMEO FAST START */
+let vimeoFrameCounter=0;
+const vimeoPlayers=new WeakMap();
+
+function initVimeoFrame(iframe,attempt=0){
+  if(!iframe || !iframe.isConnected)return;
+
+  if(!window.Vimeo || !window.Vimeo.Player){
+    if(attempt<40){
+      setTimeout(()=>initVimeoFrame(iframe,attempt+1),100);
+    }
+    return;
+  }
+
+  if(vimeoPlayers.has(iframe))return;
+
+  const stage=iframe.closest(".vimeo-video-stage");
+  if(!stage)return;
+
+  try{
+    const player=new Vimeo.Player(iframe);
+    vimeoPlayers.set(iframe,player);
+
+    player.on("playing",()=>{
+      stage.classList.add("is-playing");
+    });
+
+    player.on("error",error=>{
+      console.warn("Vimeo playback issue:",error);
+    });
+
+    // Re-assert muted autoplay after the embedded player becomes ready.
+    player.ready().then(()=>{
+      player.setMuted(true).catch(()=>{});
+      player.play().catch(()=>{});
+    }).catch(()=>{});
+
+  }catch(error){
+    console.warn("Vimeo player initialization failed:",error);
+  }
+}
+
 /* CLEAN AUTOPLAY VIDEO */
 
 function videoHTML(item,index){
 
-  // Vimeo background mode hides the play, volume, settings and fullscreen controls.
+  // Vimeo background mode hides controls. A Drive product image stays visible
+  // until Vimeo confirms that playback has actually started.
   if(item && item.vimeoId){
     const privacyHash=item.hash
       ? "&h="+encodeURIComponent(item.hash)
       : "";
+    const frameId="luv-vimeo-frame-"+(++vimeoFrameCounter);
     const vimeoSrc=
       "https://player.vimeo.com/video/"+
       encodeURIComponent(item.vimeoId)+
-      "?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"+
+      "?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&autopause=0&api=1&player_id="+
+      encodeURIComponent(frameId)+
       privacyHash;
-
-    return `
+return `
       <div class="video-stage vimeo-video-stage">
+        ${posterUrl?`
+          <img
+            class="vimeo-poster"
+            src="${safe(posterUrl)}"
+            alt=""
+            loading="eager"
+            decoding="async"
+          >
+        `:""}
         <iframe
+          id="${safe(frameId)}"
           src="${safe(vimeoSrc)}"
           title="Luvira Jewels product video ${index+1}"
           loading="eager"
+          fetchpriority="high"
           allow="autoplay; fullscreen; picture-in-picture"
           referrerpolicy="strict-origin-when-cross-origin"
           playsinline
+          onload="initVimeoFrame(this)"
         ></iframe>
       </div>
     `;
@@ -3203,27 +5334,7 @@ document.getElementById("imageLightbox").onclick=e=>{
 
 /* CATEGORY FILTER */
 
-document.querySelectorAll(".cat-btn").forEach(btn=>{
-
-  btn.onclick=()=>{
-
-    document.querySelectorAll(".cat-btn").forEach(b=>{
-
-      b.classList.remove("active");
-
-    });
-
-    btn.classList.add("active");
-
-    currentCategory=btn.dataset.cat;
-
-    currentPage=1;
-
-    renderProducts();
-
-  };
-
-});
+/* Category image cards are bound by renderCategoryShowcase(). */
 
 /* SEARCH */
 
@@ -3381,6 +5492,13 @@ document.addEventListener("visibilitychange",()=>{
 
   );
 
+});
+
+/* Initialize Vimeo frames if the Vimeo SDK arrives after the iframe load. */
+window.addEventListener("load",()=>{
+  document.querySelectorAll(".vimeo-video-stage iframe").forEach(frame=>{
+    initVimeoFrame(frame);
+  });
 });
 
 /* START WEBSITE */
