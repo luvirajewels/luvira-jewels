@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,104 +11,592 @@
   --gold:#c8a45d;
   --cream:#faf8f3;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);font-family:Arial,sans-serif;color:#29251f}
-header{background:var(--black);color:white;text-align:center;padding:24px;border-bottom:3px solid var(--gold)}
-.logo{font:bold 32px Georgia;letter-spacing:5px}
-.tagline{font-size:11px;color:var(--gold);letter-spacing:3px;margin-top:8px}
-.container{max-width:1400px;margin:auto;padding:25px 18px}
-.section-title{font:26px Georgia;margin-bottom:22px}
-.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-.cat-btn{background:var(--black);color:var(--gold);border:1px solid var(--gold);padding:18px 5px;cursor:pointer}
-.cat-btn.active{background:var(--gold);color:var(--black)}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0}
-.toolbar h2{font:25px Georgia}
-.search{padding:13px;width:300px;max-width:100%;border:1px solid #ddd}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.product{background:white;border:1px solid #eee;cursor:pointer}
-.product-image{aspect-ratio:1;background:#f5f3ef;position:relative;overflow:hidden}
-.product-image img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
-.product-info{padding:13px}
-.product-info h3{font:17px Georgia}
-.product-info p{font-size:12px;color:#777}
-.view-btn{width:100%;padding:11px;background:var(--black);color:var(--gold);border:0;cursor:pointer}
-.status{text-align:center;padding:30px}
-.pagination{display:flex;justify-content:center;align-items:center;gap:15px;padding:25px}
-.pagination button{padding:10px 18px;background:var(--black);color:var(--gold);border:0;cursor:pointer}
-.pagination button:disabled{opacity:.4}
-footer{background:var(--black);color:var(--gold);text-align:center;padding:25px;margin-top:35px}
 
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:1000;overflow-y:auto;padding:18px}
-.modal-box{background:white;max-width:1500px;margin:15px auto;padding:25px;position:relative;max-height:calc(100vh - 30px);overflow-y:auto}
-.close{position:sticky;float:right;top:0;z-index:20;border:1px solid #ddd;background:white;border-radius:50%;width:38px;height:38px;font-size:26px;cursor:pointer}
-
-.product-layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;clear:both}
-.desktop-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
-.desktop-media{aspect-ratio:1;background:#f7f6f3;overflow:hidden;position:relative}
-.desktop-media img{width:100%;height:100%;object-fit:contain;display:block}
-
-/* VIDEO */
-.desktop-media video,
-.mobile-video-stage video{
-  display:block;
-  width:100%;
-  height:auto;
-  max-width:100%;
-  object-fit:contain;
-  background:#f8f7f4;
+*{
+  box-sizing:border-box;
 }
-.desktop-media video{
+
+body{
+  margin:0;
+  background:var(--cream);
+  font-family:Arial,sans-serif;
+  color:#29251f;
+}
+
+header{
+  background:var(--black);
+  color:white;
+  text-align:center;
+  padding:24px;
+  border-bottom:3px solid var(--gold);
+}
+
+.logo{
+  font:bold 32px Georgia;
+  letter-spacing:5px;
+}
+
+.tagline{
+  font-size:11px;
+  color:var(--gold);
+  letter-spacing:3px;
+  margin-top:8px;
+}
+
+.container{
+  max-width:1400px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.section-title{
+  font:26px Georgia;
+  margin-bottom:22px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.cat-btn{
+  background:var(--black);
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:18px 5px;
+  cursor:pointer;
+}
+
+.cat-btn.active{
+  background:var(--gold);
+  color:var(--black);
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:25px 0;
+}
+
+.toolbar h2{
+  font:25px Georgia;
+}
+
+.search{
+  padding:13px;
+  width:300px;
+  max-width:100%;
+  border:1px solid #ddd;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product{
+  background:white;
+  border:1px solid #eee;
+  cursor:pointer;
+}
+
+.product-image{
+  aspect-ratio:1;
+  background:#f5f3ef;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.product-image span{
+  font:12px Georgia;
+  color:#b4a17f;
+  letter-spacing:2px;
+}
+
+.product-image img{
   width:100%;
   height:100%;
   object-fit:contain;
+  position:absolute;
+  inset:0;
+}
+
+.product-info{
+  padding:13px;
+}
+
+.product-info h3{
+  font:17px Georgia;
+}
+
+.product-info p{
+  font-size:12px;
+  color:#777;
+}
+
+.view-btn{
+  width:100%;
+  padding:11px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  cursor:pointer;
+}
+
+.status{
+  text-align:center;
+  padding:30px;
+}
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  padding:25px;
+}
+
+.pagination button{
+  padding:10px 18px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  cursor:pointer;
+}
+
+.pagination button:disabled{
+  opacity:.4;
+}
+
+footer{
+  background:var(--black);
+  color:var(--gold);
+  text-align:center;
+  padding:25px;
+  margin-top:35px;
+}
+
+/* PRODUCT MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:1000;
+  overflow-y:auto;
+  padding:18px;
+}
+
+.modal-box{
+  background:white;
+  max-width:1500px;
+  margin:15px auto;
+  padding:25px;
+  position:relative;
+  max-height:calc(100dvh - 66px);
+  overflow-y:auto;
+}
+
+.close{
+  position:sticky;
+  float:right;
+  top:0;
+  z-index:20;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:50%;
+  width:38px;
+  height:38px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.product-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 360px;
+  gap:28px;
+  clear:both;
+}
+
+.desktop-gallery{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  align-content:start;
+}
+
+.desktop-media{
+  aspect-ratio:1;
+  background:#f7f6f3;
+  overflow:hidden;
+  position:relative;
+  min-width:0;
+}
+
+.desktop-media img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  cursor:zoom-in;
+}
+
+/* FIXED VIDEO PLAYER */
+
+.video-stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  background:#f8f7f4;
+  overflow:hidden;
+  display:block;
+}
+
+.desktop-media .video-stage{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  aspect-ratio:auto;
+  margin:0;
+}
+
+.video-stage video,
+.video-stage iframe{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  border:0;
+  object-fit:contain;
   background:#f8f7f4;
 }
 
-.product-sidebar{padding:8px 4px;min-width:0;position:sticky;top:10px}
-.gallery-kicker{color:#9a793e;font-size:11px;letter-spacing:2px;font-weight:bold}
-.product-sidebar h2{font:30px/1.25 Georgia;margin:12px 0 18px}
-.product-sidebar p{font-size:14px;line-height:1.6}
-.colour-title{font-weight:bold;margin:24px 0 10px}
-.colour-options{display:flex;gap:9px;flex-wrap:wrap}
-.colour-btn{display:flex;align-items:center;gap:7px;padding:9px 11px;border:1px solid #ddd;background:white;border-radius:30px;cursor:pointer}
-.colour-btn.active{border:2px solid var(--gold);background:#fffaf0}
-.colour-swatch{width:17px;height:17px;border-radius:50%;border:1px solid #aaa}
-.swatch-yl{background:linear-gradient(135deg,#fff1a8,#c99b24)}
-.swatch-wh{background:linear-gradient(135deg,#fff,#aeb4bb)}
-.swatch-rs{background:linear-gradient(135deg,#f7d1bd,#b8795c)}
-.swatch-pt{background:linear-gradient(135deg,#eee,#85898e)}
-.gallery-note{font-size:12px!important;color:#927b56}
+.video-error{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  text-align:center;
+  color:#927b56;
+  font-size:13px;
+}
 
-.product-details{margin-top:25px;padding-top:20px;border-top:1px solid #e8e2d8}
-.product-details h3{font:23px Georgia;margin-bottom:15px}
-.details-grid{display:grid;grid-template-columns:1fr;gap:9px}
-.detail-item{background:#faf8f3;border:1px solid #eee7da;padding:12px;min-width:0}
-.detail-item strong{display:block;font-size:12px;color:#8c7449;margin-bottom:6px}
-.detail-item span{font-size:13px;overflow-wrap:anywhere}
+.mobile-gallery .video-stage{
+  margin-bottom:14px;
+}
 
-.mobile-gallery{display:none}
+/* PRODUCT SIDEBAR */
+
+.product-sidebar{
+  padding:8px 4px;
+  min-width:0;
+  position:sticky;
+  top:10px;
+  align-self:start;
+}
+
+.gallery-kicker{
+  color:#9a793e;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:bold;
+}
+
+.product-sidebar h2{
+  font:30px/1.25 Georgia;
+  margin:12px 0 18px;
+}
+
+.product-sidebar p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.colour-title{
+  font-weight:bold;
+  margin:24px 0 10px;
+}
+
+.colour-options{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.colour-btn{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 11px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.colour-btn.active{
+  border:2px solid var(--gold);
+  background:#fffaf0;
+}
+
+.colour-swatch{
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  border:1px solid #aaa;
+}
+
+.swatch-yl{
+  background:linear-gradient(135deg,#fff1a8,#c99b24);
+}
+
+.swatch-wh{
+  background:linear-gradient(135deg,#fff,#aeb4bb);
+}
+
+.swatch-rs{
+  background:linear-gradient(135deg,#f7d1bd,#b8795c);
+}
+
+.swatch-pt{
+  background:linear-gradient(135deg,#eee,#85898e);
+}
+
+.gallery-note{
+  font-size:12px!important;
+  color:#927b56;
+}
+
+.product-details{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid #e8e2d8;
+}
+
+.product-details h3{
+  font:23px Georgia;
+  margin-bottom:15px;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+}
+
+.detail-item{
+  background:#faf8f3;
+  border:1px solid #eee7da;
+  padding:12px;
+  min-width:0;
+}
+
+.detail-item strong{
+  display:block;
+  font-size:12px;
+  color:#8c7449;
+  margin-bottom:6px;
+}
+
+.detail-item span{
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+
+/* IMAGE ZOOM */
+
+.zoomable-image{
+  cursor:zoom-in;
+}
+
+.image-lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:60px 65px;
+  color:white;
+}
+
+.image-lightbox.active{
+  display:flex;
+}
+
+.image-lightbox img{
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  min-width:0;
+  min-height:0;
+  object-fit:contain;
+}
+
+.lightbox-close,
+.lightbox-arrow{
+  position:absolute;
+  z-index:10;
+  border:0;
+  border-radius:50%;
+  background:white;
+  color:#171512;
+  width:44px;
+  height:44px;
+  font-size:28px;
+  cursor:pointer;
+  line-height:1;
+}
+
+.lightbox-close{
+  top:15px;
+  right:20px;
+}
+
+.lightbox-arrow{
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.lightbox-arrow.prev{
+  left:10px;
+}
+
+.lightbox-arrow.next{
+  right:10px;
+}
+
+.lightbox-arrow[hidden]{
+  display:none;
+}
+
+.lightbox-caption{
+  position:absolute;
+  bottom:18px;
+  left:0;
+  right:0;
+  text-align:center;
+  color:white;
+  font-size:13px;
+  pointer-events:none;
+}
+
+/* MOBILE GALLERY */
+
+.mobile-gallery{
+  display:none;
+}
+
+.mobile-empty{
+  text-align:center;
+  padding:35px;
+  color:#927b56;
+  font-size:13px;
+}
 
 @media(max-width:1000px){
-  .grid{grid-template-columns:repeat(3,1fr)}
-  .product-layout{grid-template-columns:minmax(0,1fr) 310px}
+
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .product-layout{
+    grid-template-columns:minmax(0,1fr) 310px;
+  }
+
 }
 
 @media(max-width:700px){
-  .container{padding:18px 12px}
-  .categories{grid-template-columns:repeat(3,1fr);gap:8px}
-  .cat-btn{padding:12px 4px;font-size:11px}
-  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .product-info{padding:9px}
-  .product-info h3{font-size:14px}
-  .toolbar h2{font-size:21px}
-  .search{width:100%}
-  .modal{padding:0}
-  .modal-box{margin:0;min-height:100%;max-height:100%;padding:14px}
-  .desktop-gallery{display:none}
-  .product-layout{display:flex;flex-direction:column;gap:0}
-  .product-sidebar{position:static;order:2;padding:22px 5px}
-  .product-sidebar h2{font-size:25px}
-  .mobile-gallery{display:block;order:1;width:100%}
+
+  .container{
+    padding:18px 12px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .cat-btn{
+    padding:12px 4px;
+    font-size:11px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-info{
+    padding:9px;
+  }
+
+  .product-info h3{
+    font-size:14px;
+  }
+
+  .toolbar h2{
+    font-size:21px;
+  }
+
+  .search{
+    width:100%;
+  }
+
+  .modal{
+    padding:0;
+  }
+
+  .modal-box{
+    margin:0;
+    min-height:100%;
+    max-height:100%;
+    padding:14px;
+  }
+
+  .desktop-gallery{
+    display:none;
+  }
+
+  .product-layout{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  .product-sidebar{
+    position:static;
+    order:2;
+    padding:22px 5px;
+    width:100%;
+  }
+
+  .product-sidebar h2{
+    font-size:25px;
+  }
+
+  .mobile-gallery{
+    display:block;
+    order:1;
+    width:100%;
+  }
 
   .mobile-image-stage{
     width:100%;
@@ -118,54 +605,119 @@ footer{background:var(--black);color:var(--gold);text-align:center;padding:25px;
     position:relative;
     overflow:hidden;
   }
-  .mobile-image-stage img{
-    width:100%;height:100%;object-fit:contain;display:block
-  }
 
-  .mobile-video-stage{
-    width:100%;
-    aspect-ratio:1 / 1;
-    background:#f8f7f4;
-    position:relative;
-    overflow:hidden;
-    margin:0 auto 14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .mobile-video-stage video{
-    display:block;
+  .mobile-image-stage img{
     width:100%;
     height:100%;
-    max-width:100%;
     object-fit:contain;
-    background:#f8f7f4;
+    display:block;
+    cursor:zoom-in;
   }
 
   .mobile-arrow{
-    position:absolute;top:50%;transform:translateY(-50%);
-    width:38px;height:38px;border:0;border-radius:50%;
-    background:#ffffffdd;font-size:25px;cursor:pointer
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#ffffffdd;
+    font-size:25px;
+    cursor:pointer;
   }
-  .mobile-arrow.prev{left:8px}
-  .mobile-arrow.next{right:8px}
-  .mobile-dots{display:flex;justify-content:center;gap:8px;padding:14px}
-  .mobile-dot{width:8px;height:8px;border:0;border-radius:50%;background:#ddd;padding:0;cursor:pointer}
-  .mobile-dot.active{background:#333}
 
-  .mobile-tabs{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin-top:5px}
-  .mobile-tab{background:white;border:0;padding:15px 8px;font-size:14px;color:#555;border-bottom:2px solid transparent;cursor:pointer}
-  .mobile-tab.active{border-bottom-color:#171512;color:#171512;font-weight:bold}
-  .mobile-tab-content{padding-top:12px}
-  .mobile-empty{text-align:center;padding:35px;color:#927b56;font-size:13px}
-  .details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .detail-item{padding:10px}
-  .detail-item span{font-size:12px}
+  .mobile-arrow.prev{
+    left:8px;
+  }
+
+  .mobile-arrow.next{
+    right:8px;
+  }
+
+  .mobile-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:14px;
+  }
+
+  .mobile-dot{
+    width:8px;
+    height:8px;
+    border:0;
+    border-radius:50%;
+    background:#ddd;
+    padding:0;
+    cursor:pointer;
+  }
+
+  .mobile-dot.active{
+    background:#333;
+  }
+
+  .mobile-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    margin-top:5px;
+  }
+
+  .mobile-tab{
+    background:white;
+    border:0;
+    padding:15px 8px;
+    font-size:14px;
+    color:#555;
+    border-bottom:2px solid transparent;
+    cursor:pointer;
+  }
+
+  .mobile-tab.active{
+    border-bottom-color:#171512;
+    color:#171512;
+    font-weight:bold;
+  }
+
+  .mobile-tab-content{
+    padding-top:12px;
+  }
+
+  .details-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .detail-item{
+    padding:10px;
+  }
+
+  .detail-item span{
+    font-size:12px;
+  }
+
+  .image-lightbox{
+    padding:55px 12px;
+  }
+
+  .lightbox-arrow{
+    width:36px;
+    height:36px;
+    background:#ffffffdd;
+  }
+
 }
 
 @media(max-width:350px){
-  .categories{grid-template-columns:repeat(2,1fr)}
-  .grid{gap:7px}
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    gap:7px;
+  }
+
 }
 </style>
 </head>
@@ -174,45 +726,140 @@ footer{background:var(--black);color:var(--gold);text-align:center;padding:25px;
 
 <header>
   <div class="logo">LUVIRA JEWELS</div>
-  <div class="tagline">EXCLUSIVE JEWELLERY COLLECTION</div>
+  <div class="tagline">
+    EXCLUSIVE JEWELLERY COLLECTION
+  </div>
 </header>
 
 <main class="container">
 
-  <h1 class="section-title">Explore Our Collections</h1>
+  <h1 class="section-title">
+    Explore Our Collections
+  </h1>
 
   <div class="categories">
-    <button class="cat-btn active" data-cat="All Products">ALL</button>
-    <button class="cat-btn" data-cat="Rings">RINGS</button>
-    <button class="cat-btn" data-cat="Earrings">EARRINGS</button>
-    <button class="cat-btn" data-cat="Pendants">PENDANTS</button>
-    <button class="cat-btn" data-cat="Necklaces">NECKLACES</button>
-    <button class="cat-btn" data-cat="Bracelets">BRACELETS</button>
+
+    <button class="cat-btn active" data-cat="All Products">
+      ALL
+    </button>
+
+    <button class="cat-btn" data-cat="Rings">
+      RINGS
+    </button>
+
+    <button class="cat-btn" data-cat="Earrings">
+      EARRINGS
+    </button>
+
+    <button class="cat-btn" data-cat="Pendants">
+      PENDANTS
+    </button>
+
+    <button class="cat-btn" data-cat="Necklaces">
+      NECKLACES
+    </button>
+
+    <button class="cat-btn" data-cat="Bracelets">
+      BRACELETS
+    </button>
+
   </div>
 
   <div class="toolbar">
+
     <h2 id="heading">All Products</h2>
-    <input class="search" id="search" placeholder="Search product name or code...">
+
+    <input
+      class="search"
+      id="search"
+      placeholder="Search product name or code..."
+    >
+
   </div>
 
-  <div id="status" class="status">Loading collections...</div>
+  <div id="status" class="status">
+    Loading collections...
+  </div>
+
   <div class="grid" id="products"></div>
 
   <div class="pagination" id="pagination" style="display:none">
+
     <button id="prev">Previous</button>
+
     <span id="page"></span>
+
     <button id="next">Next</button>
+
   </div>
 
 </main>
 
-<footer>LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION</footer>
+<footer>
+  LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
+</footer>
+
+<!-- PRODUCT MODAL -->
 
 <div class="modal" id="modal">
+
   <div class="modal-box">
-    <button class="close" id="close">&times;</button>
+
+    <button class="close" id="close" aria-label="Close product">
+      &times;
+    </button>
+
     <div id="modal-content"></div>
+
   </div>
+
+</div>
+
+<!-- FULLSCREEN IMAGE ZOOM -->
+
+<div
+  class="image-lightbox"
+  id="imageLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged product image"
+>
+
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Close image"
+  >
+    &times;
+  </button>
+
+  <button
+    class="lightbox-arrow prev"
+    id="lightboxPrev"
+    aria-label="Previous image"
+  >
+    ‹
+  </button>
+
+  <img
+    id="lightboxImage"
+    alt="Enlarged product image"
+  >
+
+  <button
+    class="lightbox-arrow next"
+    id="lightboxNext"
+    aria-label="Next image"
+  >
+    ›
+  </button>
+
+  <div
+    class="lightbox-caption"
+    id="lightboxCaption"
+    aria-live="polite"
+  ></div>
+
 </div>
 
 <script>
@@ -220,11 +867,17 @@ footer{background:var(--black);color:var(--gold);text-align:center;padding:25px;
 /* GOOGLE SHEETS CONNECTION */
 
 const SHEETS={
-"Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
-"Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
-"Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
-"Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
-"Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+
+  "Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
+
+  "Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
+
+  "Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
+
+  "Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
+
+  "Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+
 };
 
 const MEDIA_API="https://script.google.com/macros/s/AKfycbxUrGRyZzOG_8ca0jF1bAE0U1X5KzCuZWWWeQUD2gkN-vZZKA0iyGxChdD3RDz8LKAkpA/exec";
@@ -238,7 +891,10 @@ function fetchProductMedia(folder){
   folder=String(folder||"").trim();
 
   if(!folder){
-    return Promise.resolve({images:[],videos:[]});
+    return Promise.resolve({
+      images:[],
+      videos:[]
+    });
   }
 
   if(mediaCache.has(folder)){
@@ -247,51 +903,82 @@ function fetchProductMedia(folder){
 
   const request=new Promise((resolve,reject)=>{
 
-    const callback="luvMedia_"+Date.now()+"_"+Math.floor(Math.random()*1000000);
+    const callback=
+      "luvMedia_"+
+      Date.now()+
+      "_"+
+      Math.floor(Math.random()*1000000);
+
     const script=document.createElement("script");
+
     let finished=false;
 
     const cleanup=()=>{
+
       if(finished)return;
+
       finished=true;
+
       clearTimeout(timer);
+
       delete window[callback];
+
       script.remove();
+
     };
 
     const timer=setTimeout(()=>{
+
       cleanup();
+
       mediaCache.delete(folder);
+
       reject(new Error("Media API timeout"));
+
     },60000);
 
     window[callback]=data=>{
+
       cleanup();
 
       if(data&&data.success){
+
         resolve(data);
+
       }else{
+
         mediaCache.delete(folder);
+
         reject(new Error("Media API failed"));
+
       }
+
     };
 
     script.onerror=()=>{
+
       cleanup();
+
       mediaCache.delete(folder);
+
       reject(new Error("Media API connection failed"));
+
     };
 
-    script.src=MEDIA_API+
+    script.src=
+      MEDIA_API+
       "?folder="+encodeURIComponent(folder)+
       "&callback="+encodeURIComponent(callback)+
       "&_="+Date.now();
 
     document.head.appendChild(script);
+
   });
 
   mediaCache.set(folder,request);
+
   return request;
+
 }
 
 /* GOOGLE DRIVE FILE ID */
@@ -301,82 +988,152 @@ function getDriveFileId(item){
   if(!item)return "";
 
   if(item.id)return String(item.id);
+
   if(item.fileId)return String(item.fileId);
 
-  const url=String(item.url||"");
+  const url=String(
+    item.url||
+    item.directUrl||
+    item.downloadUrl||
+    ""
+  );
 
   const patterns=[
+
     /\/file\/d\/([a-zA-Z0-9_-]+)/,
+
     /[?&]id=([a-zA-Z0-9_-]+)/,
+
     /\/d\/([a-zA-Z0-9_-]+)/
+
   ];
 
   for(const pattern of patterns){
+
     const match=url.match(pattern);
+
     if(match)return match[1];
+
   }
 
   return "";
+
 }
 
-/* IMAGE LOADER */
+/* GOOGLE DRIVE IMAGE LOADER */
 
 function loadDriveImage(img,item,onFail){
 
   const id=getDriveFileId(item);
+
   const urls=[];
 
   if(item&&item.url){
+
     urls.push(String(item.url));
+
   }
 
   if(id){
-    urls.push("https://lh3.googleusercontent.com/d/"+id+"=w1200");
-    urls.push("https://drive.google.com/thumbnail?id="+id+"&sz=w1200");
-    urls.push("https://drive.google.com/uc?export=view&id="+id);
+
+    urls.push(
+      "https://lh3.googleusercontent.com/d/"+id+"=w1200"
+    );
+
+    urls.push(
+      "https://drive.google.com/thumbnail?id="+id+"&sz=w1200"
+    );
+
+    urls.push(
+      "https://drive.google.com/uc?export=view&id="+id
+    );
+
   }
 
   const unique=[...new Set(urls.filter(Boolean))];
+
   let index=0;
 
   img.onerror=()=>{
+
     index++;
 
     if(index<unique.length){
+
       img.src=unique[index];
+
     }else{
+
       img.onerror=null;
-      if(onFail)onFail();
-      else img.remove();
+
+      if(onFail){
+
+        onFail();
+
+      }else{
+
+        img.remove();
+
+      }
+
     }
+
   };
 
   if(unique.length){
+
     img.src=unique[0];
+
   }else if(onFail){
+
     onFail();
+
   }
+
 }
 
-/* DIRECT VIDEO URL FROM APPS SCRIPT */
+/* DIRECT VIDEO URL */
+
 function getDriveVideoUrl(item){
-  if(!item) return "";
-  if(item.directUrl) return String(item.directUrl);
-  if(item.downloadUrl) return String(item.downloadUrl);
+
+  if(!item)return "";
+
+  if(item.directUrl){
+
+    return String(item.directUrl);
+
+  }
+
+  if(item.downloadUrl){
+
+    return String(item.downloadUrl);
+
+  }
+
   return "";
+
 }
 
 /* SAFE TEXT */
 
 function safe(value){
-  return String(value==null||value===""?"-":value)
-    .replace(/[&<>"']/g,c=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-    })[c]);
+
+  return String(
+    value==null||value===""?"-":value
+  ).replace(/[&<>"']/g,c=>({
+
+    "&":"&amp;",
+
+    "<":"&lt;",
+
+    ">":"&gt;",
+
+    '"':"&quot;",
+
+    "'":"&#39;"
+
+  })[c]);
+
 }
 
 /* CSV PARSER */
@@ -384,8 +1141,11 @@ function safe(value){
 function parseCSV(text){
 
   const rows=[];
+
   let row=[];
+
   let cell="";
+
   let quoted=false;
 
   for(let i=0;i<text.length;i++){
@@ -395,15 +1155,21 @@ function parseCSV(text){
     if(c==='"'){
 
       if(quoted&&text[i+1]==='"'){
+
         cell+='"';
+
         i++;
+
       }else{
+
         quoted=!quoted;
+
       }
 
     }else if(c===','&&!quoted){
 
       row.push(cell);
+
       cell="";
 
     }else if((c==='\n'||c==='\r')&&!quoted){
@@ -413,31 +1179,43 @@ function parseCSV(text){
       row.push(cell);
 
       if(row.some(v=>v.trim())){
+
         rows.push(row);
+
       }
 
       row=[];
+
       cell="";
 
     }else{
+
       cell+=c;
+
     }
+
   }
 
   row.push(cell);
 
   if(row.some(v=>v.trim())){
+
     rows.push(row);
+
   }
 
   return rows;
+
 }
 
 /* PRODUCTS */
 
 let allProducts=[];
+
 let currentCategory="All Products";
+
 let currentPage=1;
+
 const perPage=12;
 
 async function loadProducts(){
@@ -453,24 +1231,37 @@ async function loadProducts(){
         const response=await fetch(url);
 
         if(!response.ok){
+
           throw new Error(category+" loading failed");
+
         }
 
         const rows=parseCSV(await response.text());
 
         return rows.slice(1)
+
           .filter(r=>r[0]&&r[0].trim())
+
           .map(r=>({
 
             code:r[0]||"",
+
             name:r[1]||"",
+
             description:r[2]||"",
+
             material:r[3]||"",
+
             metalWeight:r[4]||"",
+
             diamondWeight:r[5]||"",
+
             size:r[6]||"",
+
             imageFolder:r[7]||"",
+
             videoFolder:r[8]||"",
+
             category
 
           }));
@@ -487,11 +1278,13 @@ async function loadProducts(){
 
   }catch(error){
 
-    status.textContent="Unable to load products. Check Google Sheets publishing settings.";
+    status.textContent=
+      "Unable to load products. Check Google Sheets publishing settings.";
 
     console.error(error);
 
   }
+
 }
 
 /* PRODUCT GRID */
@@ -500,42 +1293,60 @@ function renderProducts(){
 
   const grid=document.getElementById("products");
 
-  const search=document.getElementById("search").value.toLowerCase();
+  const search=document
+    .getElementById("search")
+    .value
+    .toLowerCase();
 
   const filtered=allProducts.filter(p=>
 
-    (currentCategory==="All Products"||p.category===currentCategory)&&
+    (
+      currentCategory==="All Products"||
+      p.category===currentCategory
+    )&&
 
-    (p.name+" "+p.code+" "+p.category).toLowerCase().includes(search)
+    (
+      p.name+" "+p.code+" "+p.category
+    ).toLowerCase().includes(search)
 
   );
 
-  const total=Math.max(1,Math.ceil(filtered.length/perPage));
+  const total=Math.max(
+    1,
+    Math.ceil(filtered.length/perPage)
+  );
 
   currentPage=Math.min(currentPage,total);
 
   const list=filtered.slice(
+
     (currentPage-1)*perPage,
+
     currentPage*perPage
+
   );
 
   grid.innerHTML="";
 
   if(!filtered.length){
 
-    grid.innerHTML='<div class="status" style="grid-column:1/-1">No products found.</div>';
+    grid.innerHTML=
+      '<div class="status" style="grid-column:1/-1">No products found.</div>';
 
   }
 
   list.forEach(p=>{
 
     const card=document.createElement("div");
+
     card.className="product";
 
     const image=document.createElement("div");
+
     image.className="product-image";
 
     const placeholder=document.createElement("span");
+
     placeholder.textContent="LUVIRA JEWELS";
 
     image.appendChild(placeholder);
@@ -549,32 +1360,49 @@ function renderProducts(){
         const img=document.createElement("img");
 
         img.alt=p.name;
+
         img.loading="lazy";
+
         img.referrerPolicy="no-referrer";
 
         img.onload=()=>placeholder.remove();
 
         image.appendChild(img);
 
-        loadDriveImage(img,media.images[0],()=>img.remove());
+        loadDriveImage(
+          img,
+          media.images[0],
+          ()=>img.remove()
+        );
 
       }).catch(console.warn);
 
     }
 
     const info=document.createElement("div");
+
     info.className="product-info";
 
     info.innerHTML=`
+
       <h3>${safe(p.name)}</h3>
+
       <p>Product Code: ${safe(p.code)}</p>
+
       <p>${safe(p.category)}</p>
-      <button class="view-btn">View Details</button>
+
+      <button class="view-btn">
+        View Details
+      </button>
+
     `;
 
     info.querySelector("button").onclick=e=>{
+
       e.stopPropagation();
+
       openProduct(p);
+
     };
 
     card.append(image,info);
@@ -585,7 +1413,8 @@ function renderProducts(){
 
   });
 
-  document.getElementById("heading").textContent=currentCategory;
+  document.getElementById("heading").textContent=
+    currentCategory;
 
   document.getElementById("pagination").style.display=
     filtered.length?"flex":"none";
@@ -593,36 +1422,68 @@ function renderProducts(){
   document.getElementById("page").textContent=
     `Page ${currentPage} of ${total}`;
 
-  document.getElementById("prev").disabled=currentPage===1;
+  document.getElementById("prev").disabled=
+    currentPage===1;
 
-  document.getElementById("next").disabled=currentPage===total;
+  document.getElementById("next").disabled=
+    currentPage===total;
 
 }
 
 /* GALLERY STATE */
 
+let productRequest=0;
+
 let mediaState={
+
   product:null,
+
   images:[],
+
   videos:[],
+
   imageGroups:{},
+
   videoGroups:{},
+
   colour:"",
+
   imageIndex:0,
+
   tab:"images"
+
 };
 
 const COLOURS={
-  YL:{label:"Yellow Gold",swatch:"swatch-yl"},
-  WH:{label:"White Gold",swatch:"swatch-wh"},
-  RS:{label:"Rose Gold",swatch:"swatch-rs"},
-  PT:{label:"Platinum",swatch:"swatch-pt"}
+
+  YL:{
+    label:"Yellow Gold",
+    swatch:"swatch-yl"
+  },
+
+  WH:{
+    label:"White Gold",
+    swatch:"swatch-wh"
+  },
+
+  RS:{
+    label:"Rose Gold",
+    swatch:"swatch-rs"
+  },
+
+  PT:{
+    label:"Platinum",
+    swatch:"swatch-pt"
+  }
+
 };
 
 function getColour(name){
 
   const match=String(name||"")
+
     .toUpperCase()
+
     .match(/-(YL|WH|RS|PT)(?:[-_.]|$)/);
 
   return match?match[1]:"OTHER";
@@ -637,10 +1498,13 @@ function imagesForColour(){
 
 function videosForColour(){
 
-  const matching=mediaState.videoGroups[mediaState.colour]||[];
+  const matching=
+    mediaState.videoGroups[mediaState.colour]||[];
 
   return matching.length?
+
     matching:
+
     (mediaState.videoGroups.OTHER||[]);
 
 }
@@ -651,12 +1515,17 @@ function renderColours(){
 
   return Object.keys(mediaState.imageGroups)
 
-    .filter(c=>c!=="OTHER"&&mediaState.imageGroups[c].length)
+    .filter(c=>
+      c!=="OTHER"&&
+      mediaState.imageGroups[c].length
+    )
 
     .map(c=>`
 
-      <button class="colour-btn ${mediaState.colour===c?"active":""}"
-        data-colour="${c}">
+      <button
+        class="colour-btn ${mediaState.colour===c?"active":""}"
+        data-colour="${c}"
+      >
 
         <span class="colour-swatch ${COLOURS[c].swatch}"></span>
 
@@ -677,12 +1546,19 @@ function renderDetails(){
   const fields=[
 
     ["Product Name",p.name],
+
     ["Product Code",p.code],
+
     ["Category",p.category],
+
     ["Description",p.description],
+
     ["Material",p.material],
+
     ["Metal Weight",p.metalWeight],
+
     ["Diamond Weight",p.diamondWeight],
+
     ["Size",p.size]
 
   ];
@@ -715,41 +1591,98 @@ function renderDetails(){
 
 }
 
-/* HTML5 VIDEO PLAYER */
+/* FIXED VIDEO PLAYER */
+
 function videoHTML(item,index){
 
   const url=getDriveVideoUrl(item);
 
-  if(!url){
+  const id=getDriveFileId(item);
 
-    return '<div class="mobile-empty">Video URL unavailable. Check Apps Script deployment and Drive sharing.</div>';
+  const preview=
+
+    id&&/^[a-zA-Z0-9_-]+$/.test(id)
+
+    ?
+
+    "https://drive.google.com/file/d/"+id+"/preview"
+
+    :
+
+    "";
+
+  const isPreview=
+    /drive\.google\.com\/file\/d\/[^/]+\/(?:preview|view)/i.test(url);
+
+  const title=
+    "Luvira Jewels Product Video "+(index+1);
+
+  if((!url||isPreview)&&preview){
+
+    return `
+
+      <div class="video-stage">
+
+        <iframe
+          src="${safe(preview)}"
+          title="${title}"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+
+      </div>
+
+    `;
 
   }
 
-  const mime=item.mimeType || "video/mp4";
+  if(!url){
+
+    return `
+
+      <div class="video-stage">
+
+        <div class="video-error">
+          Video URL unavailable.
+        </div>
+
+      </div>
+
+    `;
+
+  }
 
   return `
 
-    <div class="mobile-video-stage">
+    <div
+      class="video-stage"
+      data-preview="${preview?safe(preview):""}"
+    >
 
       <video
+
         class="product-video"
-        autoplay
+
         muted
+
         loop
+
         playsinline
+
         webkit-playsinline
+
         controls
+
         preload="metadata"
-        controlslist="nodownload noplaybackrate noremoteplayback"
-        aria-label="Luvira Jewels Product Video ${index+1}"
-      >
 
-        <source src="${safe(url)}" type="${safe(mime)}">
+        controlslist="nodownload noremoteplayback"
 
-        Your browser cannot play this video format.
+        aria-label="${title}"
 
-      </video>
+        src="${safe(url)}"
+
+      ></video>
 
     </div>
 
@@ -757,7 +1690,7 @@ function videoHTML(item,index){
 
 }
 
-/* START HTML5 VIDEOS */
+/* VIDEO AUTOPLAY AND FALLBACK */
 
 function startVisibleVideos(root){
 
@@ -765,24 +1698,100 @@ function startVisibleVideos(root){
 
   root.querySelectorAll("video.product-video").forEach(video=>{
 
+    const stage=video.parentElement;
+
+    if(!video.dataset.bound){
+
+      video.dataset.bound="1";
+
+      const fallback=()=>{
+
+        if(!video.isConnected)return;
+
+        const preview=stage.dataset.preview;
+
+        if(preview&&preview!=="-"){
+
+          const frame=document.createElement("iframe");
+
+          frame.src=preview;
+
+          frame.title=video.getAttribute("aria-label");
+
+          frame.allow="autoplay; fullscreen";
+
+          frame.allowFullscreen=true;
+
+          stage.replaceChildren(frame);
+
+        }else{
+
+          stage.innerHTML=`
+
+            <div class="video-error">
+
+              Video could not load.
+              Please check Google Drive sharing.
+
+            </div>
+
+          `;
+
+        }
+
+      };
+
+      video.addEventListener(
+        "error",
+        fallback,
+        {once:true}
+      );
+
+      if(video.error){
+
+        fallback();
+
+        return;
+
+      }
+
+    }
+
+    if(!video.getClientRects().length){
+
+      video.pause();
+
+      return;
+
+    }
+
     video.muted=true;
+
     video.defaultMuted=true;
+
     video.loop=true;
+
     video.playsInline=true;
 
-    const playAttempt=video.play();
+    const attempt=video.play();
 
-    if(playAttempt&&typeof playAttempt.catch==="function"){
+    if(attempt&&typeof attempt.catch==="function"){
 
-      playAttempt.catch(error=>{
-        console.warn("Browser prevented video autoplay:",error);
-      });
+      attempt.catch(()=>{});
 
     }
 
   });
 
 }
+
+window.addEventListener("resize",()=>{
+
+  startVisibleVideos(
+    document.getElementById("modal-content")
+  );
+
+});
 
 /* MOBILE IMAGE GALLERY */
 
@@ -797,15 +1806,28 @@ function renderMobileImages(){
     <div class="mobile-image-stage">
 
       ${images[i]?
-        '<img id="mobile-main-image" alt="Product image">':
+
+        '<img id="mobile-main-image" alt="Product image">'
+
+        :
+
         '<div class="mobile-empty">No images available.</div>'
+
       }
 
       ${images.length>1?`
 
-        <button class="mobile-arrow prev" id="prev-image">‹</button>
+        <button
+          class="mobile-arrow prev"
+          id="prev-image"
+          aria-label="Previous image"
+        >‹</button>
 
-        <button class="mobile-arrow next" id="next-image">›</button>
+        <button
+          class="mobile-arrow next"
+          id="next-image"
+          aria-label="Next image"
+        >›</button>
 
       `:""}
 
@@ -815,9 +1837,15 @@ function renderMobileImages(){
 
       ${images.map((x,n)=>`
 
-        <button class="mobile-dot ${n===i?"active":""}"
+        <button
+
+          class="mobile-dot ${n===i?"active":""}"
+
           data-dot="${n}"
-          aria-label="Image ${n+1}"></button>
+
+          aria-label="Image ${n+1}"
+
+        ></button>
 
       `).join("")}
 
@@ -839,13 +1867,15 @@ function renderMobileVideos(){
 
   }
 
-  return videos.map((v,i)=>videoHTML(v,i)).join("");
+  return videos.map(
+    (v,i)=>videoHTML(v,i)
+  ).join("");
 
 }
 
-/* DESKTOP GALLERY */
+/* DESKTOP GALLERY ITEMS */
 
-function renderDesktop(){
+function getDesktopItems(){
 
   const images=imagesForColour();
 
@@ -855,21 +1885,42 @@ function renderDesktop(){
 
   if(images.length){
 
-    items.push({type:"image",item:images[0]});
+    items.push({
+      type:"image",
+      item:images[0],
+      imageIndex:0
+    });
 
   }
 
   videos.forEach(v=>{
 
-    items.push({type:"video",item:v});
+    items.push({
+      type:"video",
+      item:v
+    });
 
   });
 
-  images.slice(1).forEach(v=>{
+  images.slice(1).forEach((v,index)=>{
 
-    items.push({type:"image",item:v});
+    items.push({
+      type:"image",
+      item:v,
+      imageIndex:index+1
+    });
 
   });
+
+  return items;
+
+}
+
+/* DESKTOP GALLERY */
+
+function renderDesktop(){
+
+  const items=getDesktopItems();
 
   if(!items.length){
 
@@ -885,7 +1936,15 @@ function renderDesktop(){
 
         <div class="desktop-media">
 
-          <img data-desktop="${i}" alt="Product image">
+          <img
+
+            data-desktop="${i}"
+
+            class="zoomable-image"
+
+            alt="Product image"
+
+          >
 
         </div>
 
@@ -907,7 +1966,7 @@ function renderDesktop(){
 
 }
 
-/* MAIN GALLERY */
+/* MAIN PRODUCT GALLERY */
 
 function renderGallery(){
 
@@ -927,8 +1986,13 @@ function renderGallery(){
 
       <div class="mobile-gallery">
 
-        <div id="mobile-image-view"
-          style="${mediaState.tab==="images"?"":"display:none"}">
+        <div
+
+          id="mobile-image-view"
+
+          style="${mediaState.tab==="images"?"":"display:none"}"
+
+        >
 
           ${renderMobileImages()}
 
@@ -936,15 +2000,25 @@ function renderGallery(){
 
         <div class="mobile-tabs">
 
-          <button class="mobile-tab ${mediaState.tab==="images"?"active":""}"
-            data-tab="images">
+          <button
+
+            class="mobile-tab ${mediaState.tab==="images"?"active":""}"
+
+            data-tab="images"
+
+          >
 
             ▧ &nbsp; Images
 
           </button>
 
-          <button class="mobile-tab ${mediaState.tab==="videos"?"active":""}"
-            data-tab="videos">
+          <button
+
+            class="mobile-tab ${mediaState.tab==="videos"?"active":""}"
+
+            data-tab="videos"
+
+          >
 
             ▷ &nbsp; Videos
 
@@ -952,7 +2026,10 @@ function renderGallery(){
 
         </div>
 
-        <div class="mobile-tab-content" id="mobile-video-view">
+        <div
+          class="mobile-tab-content"
+          id="mobile-video-view"
+        >
 
           ${mediaState.tab==="videos"?renderMobileVideos():""}
 
@@ -962,17 +2039,37 @@ function renderGallery(){
 
       <aside class="product-sidebar">
 
-        <div class="gallery-kicker">Luvira Jewels</div>
+        <div class="gallery-kicker">
+
+          Luvira Jewels
+
+        </div>
 
         <h2>${safe(p.name)}</h2>
 
-        <p><strong>Product Code:</strong> ${safe(p.code)}</p>
+        <p>
 
-        <p><strong>Category:</strong> ${safe(p.category)}</p>
+          <strong>Product Code:</strong>
+
+          ${safe(p.code)}
+
+        </p>
+
+        <p>
+
+          <strong>Category:</strong>
+
+          ${safe(p.category)}
+
+        </p>
 
         <p>${safe(p.description)}</p>
 
-        <div class="colour-title">Choose your colour</div>
+        <div class="colour-title">
+
+          Choose your colour
+
+        </div>
 
         <div class="colour-options">
 
@@ -981,7 +2078,9 @@ function renderGallery(){
         </div>
 
         <p class="gallery-note">
+
           Select a colour to view matching images and videos.
+
         </p>
 
         ${renderDetails()}
@@ -992,29 +2091,21 @@ function renderGallery(){
 
   `;
 
-  /* DESKTOP IMAGE LOADING */
-
-  const images=imagesForColour();
-
-  const videos=videosForColour();
-
-  const items=[];
-
-  if(images.length)items.push({type:"image",item:images[0]});
-
-  videos.forEach(v=>items.push({type:"video",item:v}));
-
-  images.slice(1).forEach(v=>items.push({type:"image",item:v}));
+  const items=getDesktopItems();
 
   items.forEach((m,i)=>{
 
     if(m.type!=="image")return;
 
-    const img=content.querySelector(`[data-desktop="${i}"]`);
+    const img=content.querySelector(
+      `[data-desktop="${i}"]`
+    );
 
     if(img){
 
       loadDriveImage(img,m.item);
+
+      bindZoom(img,m.imageIndex);
 
     }
 
@@ -1040,11 +2131,13 @@ function loadMobileImage(){
 
     loadDriveImage(img,item);
 
+    bindZoom(img,mediaState.imageIndex);
+
   }
 
 }
 
-/* IMAGE NAVIGATION */
+/* MOBILE IMAGE NAVIGATION */
 
 function renderImageView(){
 
@@ -1128,13 +2221,18 @@ function bindGalleryEvents(){
 
       document.querySelectorAll("[data-tab]").forEach(b=>{
 
-        b.classList.toggle("active",b.dataset.tab===mediaState.tab);
+        b.classList.toggle(
+          "active",
+          b.dataset.tab===mediaState.tab
+        );
 
       });
 
-      const imageView=document.getElementById("mobile-image-view");
+      const imageView=
+        document.getElementById("mobile-image-view");
 
-      const videoView=document.getElementById("mobile-video-view");
+      const videoView=
+        document.getElementById("mobile-video-view");
 
       if(mediaState.tab==="images"){
 
@@ -1178,6 +2276,8 @@ function bindGalleryEvents(){
 
 async function openProduct(p){
 
+  const requestId=++productRequest;
+
   const modal=document.getElementById("modal");
 
   const content=document.getElementById("modal-content");
@@ -1206,7 +2306,17 @@ async function openProduct(p){
 
   document.body.style.overflow="hidden";
 
-  content.innerHTML='<div class="status">Loading product images and videos...</div>';
+  document.querySelector(".modal-box").scrollTop=0;
+
+  content.innerHTML=`
+
+    <div class="status">
+
+      Loading product images and videos...
+
+    </div>
+
+  `;
 
   try{
 
@@ -1218,11 +2328,23 @@ async function openProduct(p){
 
     ]);
 
-    const imageData=results[0].status==="fulfilled"?
-      results[0].value:{images:[]};
+    if(requestId!==productRequest)return;
 
-    const videoData=results[1].status==="fulfilled"?
-      results[1].value:{videos:[]};
+    const imageData=
+
+      results[0].status==="fulfilled"?
+
+      results[0].value:
+
+      {images:[]};
+
+    const videoData=
+
+      results[1].status==="fulfilled"?
+
+      results[1].value:
+
+      {videos:[]};
 
     mediaState.images=imageData.images||[];
 
@@ -1261,6 +2383,7 @@ async function openProduct(p){
     });
 
     const available=Object.keys(mediaState.imageGroups)
+
       .filter(c=>c!=="OTHER");
 
     mediaState.colour=
@@ -1283,14 +2406,231 @@ async function openProduct(p){
 
   }catch(error){
 
+    if(requestId!==productRequest)return;
+
     console.error(error);
 
     content.innerHTML=
+
       '<div class="status">Unable to load product media. Please try again.</div>';
 
   }
 
 }
+
+/* FULLSCREEN IMAGE ZOOM */
+
+let lightboxIndex=0;
+
+let zoomTrigger=null;
+
+function bindZoom(img,index){
+
+  img.classList.add("zoomable-image");
+
+  img.tabIndex=0;
+
+  img.setAttribute("role","button");
+
+  img.setAttribute(
+    "aria-label",
+    "Enlarge product image"
+  );
+
+  img.onclick=()=>{
+
+    openImageLightbox(index,img);
+
+  };
+
+  img.onkeydown=e=>{
+
+    if(e.key==="Enter"||e.key===" "){
+
+      e.preventDefault();
+
+      openImageLightbox(index,img);
+
+    }
+
+  };
+
+}
+
+/* HIGH RESOLUTION IMAGE */
+
+function showLightboxImage(index){
+
+  const images=imagesForColour();
+
+  if(!images.length)return;
+
+  lightboxIndex=
+
+    (index+images.length)%images.length;
+
+  const item=images[lightboxIndex];
+
+  const img=document.getElementById("lightboxImage");
+
+  const id=getDriveFileId(item);
+
+  const urls=[];
+
+  if(id){
+
+    urls.push(
+
+      "https://lh3.googleusercontent.com/d/"+id+"=w2400"
+
+    );
+
+    urls.push(
+
+      "https://drive.google.com/thumbnail?id="+id+"&sz=w2400"
+
+    );
+
+  }
+
+  if(item.url){
+
+    urls.push(item.url);
+
+  }
+
+  if(id){
+
+    urls.push(
+
+      "https://drive.google.com/uc?export=view&id="+id
+
+    );
+
+  }
+
+  const unique=[...new Set(urls.filter(Boolean))];
+
+  const caption=
+    document.getElementById("lightboxCaption");
+
+  caption.textContent=
+
+    (lightboxIndex+1)+" / "+images.length;
+
+  img.onerror=null;
+
+  img.removeAttribute("src");
+
+  let n=0;
+
+  img.onerror=()=>{
+
+    n++;
+
+    if(n<unique.length){
+
+      img.src=unique[n];
+
+    }else{
+
+      img.onerror=null;
+
+      caption.textContent="Image could not load.";
+
+    }
+
+  };
+
+  if(unique.length){
+
+    img.src=unique[0];
+
+  }else{
+
+    caption.textContent="Image unavailable.";
+
+  }
+
+  document.getElementById("lightboxPrev").hidden=
+
+    images.length<2;
+
+  document.getElementById("lightboxNext").hidden=
+
+    images.length<2;
+
+}
+
+/* OPEN FULLSCREEN IMAGE */
+
+function openImageLightbox(index,trigger){
+
+  if(!imagesForColour().length)return;
+
+  zoomTrigger=trigger;
+
+  document.getElementById("imageLightbox")
+
+    .classList.add("active");
+
+  showLightboxImage(index);
+
+  document.getElementById("lightboxClose").focus();
+
+}
+
+/* CLOSE FULLSCREEN IMAGE */
+
+function closeImageLightbox(){
+
+  document.getElementById("imageLightbox")
+
+    .classList.remove("active");
+
+  const img=document.getElementById("lightboxImage");
+
+  img.onerror=null;
+
+  img.removeAttribute("src");
+
+  if(zoomTrigger&&zoomTrigger.isConnected){
+
+    zoomTrigger.focus();
+
+  }
+
+  zoomTrigger=null;
+
+}
+
+/* LIGHTBOX BUTTONS */
+
+document.getElementById("lightboxClose").onclick=
+
+  closeImageLightbox;
+
+document.getElementById("lightboxPrev").onclick=()=>{
+
+  showLightboxImage(lightboxIndex-1);
+
+};
+
+document.getElementById("lightboxNext").onclick=()=>{
+
+  showLightboxImage(lightboxIndex+1);
+
+};
+
+document.getElementById("imageLightbox").onclick=e=>{
+
+  if(e.target.id==="imageLightbox"){
+
+    closeImageLightbox();
+
+  }
+
+};
 
 /* CATEGORY FILTER */
 
@@ -1298,9 +2638,11 @@ document.querySelectorAll(".cat-btn").forEach(btn=>{
 
   btn.onclick=()=>{
 
-    document.querySelectorAll(".cat-btn").forEach(b=>
-      b.classList.remove("active")
-    );
+    document.querySelectorAll(".cat-btn").forEach(b=>{
+
+      b.classList.remove("active");
+
+    });
 
     btn.classList.add("active");
 
@@ -1334,7 +2676,13 @@ document.getElementById("prev").onclick=()=>{
 
     renderProducts();
 
-    window.scrollTo({top:0,behavior:"smooth"});
+    window.scrollTo({
+
+      top:0,
+
+      behavior:"smooth"
+
+    });
 
   }
 
@@ -1346,13 +2694,23 @@ document.getElementById("next").onclick=()=>{
 
   renderProducts();
 
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
 
 };
 
 /* CLOSE PRODUCT */
 
 function closeModal(){
+
+  closeImageLightbox();
+
+  ++productRequest;
 
   document.getElementById("modal").style.display="none";
 
@@ -1366,13 +2724,53 @@ document.getElementById("close").onclick=closeModal;
 
 document.getElementById("modal").onclick=e=>{
 
-  if(e.target.id==="modal")closeModal();
+  if(e.target.id==="modal"){
+
+    closeModal();
+
+  }
 
 };
 
+/* KEYBOARD CONTROLS */
+
 document.addEventListener("keydown",e=>{
 
-  if(e.key==="Escape")closeModal();
+  const lightboxOpen=
+
+    document.getElementById("imageLightbox")
+
+    .classList.contains("active");
+
+  if(lightboxOpen){
+
+    if(e.key==="Escape"){
+
+      closeImageLightbox();
+
+    }
+
+    if(e.key==="ArrowRight"){
+
+      showLightboxImage(lightboxIndex+1);
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+      showLightboxImage(lightboxIndex-1);
+
+    }
+
+    return;
+
+  }
+
+  if(e.key==="Escape"){
+
+    closeModal();
+
+  }
 
 });
 
