@@ -8,778 +8,778 @@
 <style>
 
 :root{
---black:#171512;
---gold:#c8a45d;
---cream:#faf8f3;
+  --black:#171512;
+  --gold:#c8a45d;
+  --cream:#faf8f3;
 }
 
 *{box-sizing:border-box}
 
 body{
-margin:0;
-background:var(--cream);
-font-family:Arial,sans-serif;
-color:#29251f;
+  margin:0;
+  background:var(--cream);
+  font-family:Arial,sans-serif;
+  color:#29251f;
 }
 
 header{
-background:var(--black);
-color:white;
-text-align:center;
-padding:24px;
-border-bottom:3px solid var(--gold);
+  background:var(--black);
+  color:white;
+  text-align:center;
+  padding:24px;
+  border-bottom:3px solid var(--gold);
 }
 
 .logo{
-font:bold 32px Georgia;
-letter-spacing:5px;
+  font:bold 32px Georgia;
+  letter-spacing:5px;
 }
 
 .tagline{
-font-size:11px;
-color:var(--gold);
-letter-spacing:3px;
-margin-top:8px;
+  font-size:11px;
+  color:var(--gold);
+  letter-spacing:3px;
+  margin-top:8px;
 }
 
 .container{
-max-width:1400px;
-margin:auto;
-padding:25px 18px;
+  max-width:1400px;
+  margin:auto;
+  padding:25px 18px;
 }
 
 .section-title{
-font:26px Georgia;
-margin-bottom:22px;
+  font:26px Georgia;
+  margin-bottom:22px;
 }
 
 .categories{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:10px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
 }
 
 .cat-btn{
-background:var(--black);
-color:var(--gold);
-border:1px solid var(--gold);
-padding:18px 5px;
-cursor:pointer;
+  background:var(--black);
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:18px 5px;
+  cursor:pointer;
 }
 
 .cat-btn.active{
-background:var(--gold);
-color:var(--black);
+  background:var(--gold);
+  color:var(--black);
 }
 
 .toolbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:12px;
-flex-wrap:wrap;
-margin:25px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:25px 0;
 }
 
 .toolbar h2{
-font:25px Georgia;
+  font:25px Georgia;
 }
 
 .search{
-padding:13px;
-width:300px;
-max-width:100%;
-border:1px solid #ddd;
+  padding:13px;
+  width:300px;
+  max-width:100%;
+  border:1px solid #ddd;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
 .product{
-background:white;
-border:1px solid #eee;
-cursor:pointer;
+  background:white;
+  border:1px solid #eee;
+  cursor:pointer;
 }
 
 .product-image{
-aspect-ratio:1;
-background:#f5f3ef;
-position:relative;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
+  aspect-ratio:1;
+  background:#f5f3ef;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .product-image span{
-color:#b4a17f;
-font:12px Georgia;
-letter-spacing:2px;
+  color:#b4a17f;
+  font:12px Georgia;
+  letter-spacing:2px;
 }
 
 .product-image img{
-width:100%;
-height:100%;
-object-fit:contain;
-position:absolute;
-inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  position:absolute;
+  inset:0;
 }
 
 .product-info{
-padding:13px;
+  padding:13px;
 }
 
 .product-info h3{
-font:17px Georgia;
+  font:17px Georgia;
 }
 
 .product-info p{
-font-size:12px;
-color:#777;
+  font-size:12px;
+  color:#777;
 }
 
 .view-btn{
-width:100%;
-padding:11px;
-background:var(--black);
-color:var(--gold);
-border:0;
-cursor:pointer;
+  width:100%;
+  padding:11px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  cursor:pointer;
 }
 
 .status{
-text-align:center;
-padding:30px;
+  text-align:center;
+  padding:30px;
 }
 
 .pagination{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:15px;
-padding:25px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  padding:25px;
 }
 
 .pagination button{
-padding:10px 18px;
-background:var(--black);
-color:var(--gold);
-border:0;
-cursor:pointer;
+  padding:10px 18px;
+  background:var(--black);
+  color:var(--gold);
+  border:0;
+  cursor:pointer;
 }
 
 .pagination button:disabled{
-opacity:.4;
+  opacity:.4;
 }
 
 footer{
-background:var(--black);
-color:var(--gold);
-text-align:center;
-padding:25px;
-margin-top:35px;
+  background:var(--black);
+  color:var(--gold);
+  text-align:center;
+  padding:25px;
+  margin-top:35px;
 }
 
 /* PRODUCT POPUP */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:#000b;
-z-index:1000;
-overflow-y:auto;
-padding:18px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:1000;
+  overflow-y:auto;
+  padding:18px;
 }
 
 .modal-box{
-background:white;
-max-width:1500px;
-margin:15px auto;
-padding:25px;
-position:relative;
-max-height:calc(100vh - 66px);
-max-height:calc(100dvh - 66px);
-overflow-y:auto;
+  background:white;
+  max-width:1500px;
+  margin:15px auto;
+  padding:25px;
+  position:relative;
+  max-height:calc(100vh - 66px);
+  max-height:calc(100dvh - 66px);
+  overflow-y:auto;
 }
 
 .close{
-position:sticky;
-float:right;
-top:0;
-z-index:20;
-border:1px solid #ddd;
-background:white;
-color:#171512;
-border-radius:50%;
-width:38px;
-height:38px;
-font-size:26px;
-cursor:pointer;
+  position:sticky;
+  float:right;
+  top:0;
+  z-index:20;
+  border:1px solid #ddd;
+  background:white;
+  color:#171512;
+  border-radius:50%;
+  width:38px;
+  height:38px;
+  font-size:26px;
+  cursor:pointer;
 }
 
 .product-layout{
-display:grid;
-grid-template-columns:minmax(0,1fr) 360px;
-gap:28px;
-clear:both;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 360px;
+  gap:28px;
+  clear:both;
 }
 
 .desktop-gallery{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:10px;
-align-content:start;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  align-content:start;
 }
 
 .desktop-media{
-aspect-ratio:1;
-background:#f7f6f3;
-overflow:hidden;
-position:relative;
-min-width:0;
+  aspect-ratio:1;
+  background:#f7f6f3;
+  overflow:hidden;
+  position:relative;
+  min-width:0;
 }
 
 .desktop-media img{
-width:100%;
-height:100%;
-object-fit:contain;
-display:block;
-cursor:zoom-in;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  cursor:zoom-in;
 }
 
 /* CLEAN VIDEO PLAYER */
 
 .video-stage{
-width:100%;
-aspect-ratio:1/1;
-position:relative;
-background:#f8f7f4;
-overflow:hidden;
-display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  position:relative;
+  background:#f8f7f4;
+  overflow:hidden;
+  display:block;
 }
 
 .desktop-media .video-stage{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-margin:0;
-aspect-ratio:auto;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  aspect-ratio:auto;
 }
 
 .video-stage video{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-display:block;
-object-fit:contain;
-background:#f8f7f4;
-border:0;
-outline:0;
-pointer-events:none;
--webkit-touch-callout:none;
-user-select:none;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:contain;
+  background:#f8f7f4;
+  border:0;
+  outline:0;
+  pointer-events:none;
+  -webkit-touch-callout:none;
+  user-select:none;
 }
 
 /* VIMEO BACKGROUND PLAYER: no visible Vimeo controls */
 .video-stage iframe{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-display:block;
-border:0;
-outline:0;
-background:#f8f7f4;
-pointer-events:none;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  outline:0;
+  background:#f8f7f4;
+  pointer-events:none;
 }
 
 /* HIDE VIDEO CONTROLS */
 
 .video-stage video::-webkit-media-controls{
-display:none!important;
+  display:none!important;
 }
 
 .video-stage video::-webkit-media-controls-panel{
-display:none!important;
+  display:none!important;
 }
 
 .video-stage video::-webkit-media-controls-enclosure{
-display:none!important;
+  display:none!important;
 }
 
 .video-stage video::-webkit-media-controls-start-playback-button{
-display:none!important;
--webkit-appearance:none;
+  display:none!important;
+  -webkit-appearance:none;
 }
 
 .video-stage video::-webkit-media-controls-play-button{
-display:none!important;
+  display:none!important;
 }
 
 .video-stage video::-webkit-media-controls-overlay-play-button{
-display:none!important;
+  display:none!important;
 }
 
 .video-stage video::-webkit-media-controls-fullscreen-button{
-display:none!important;
+  display:none!important;
 }
 
 .video-message{
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-color:#927b56;
-font-size:13px;
-background:#f8f7f4;
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  color:#927b56;
+  font-size:13px;
+  background:#f8f7f4;
 }
 
 .video-retry{
-border:1px solid #c8a45d;
-background:#171512;
-color:#c8a45d;
-padding:10px 18px;
-cursor:pointer;
-margin-top:12px;
+  border:1px solid #c8a45d;
+  background:#171512;
+  color:#c8a45d;
+  padding:10px 18px;
+  cursor:pointer;
+  margin-top:12px;
 }
 
 .video-message[hidden]{
-display:none;
+  display:none;
 }
 
 /* PRODUCT INFORMATION */
 
 .product-sidebar{
-padding:8px 4px;
-min-width:0;
-position:sticky;
-top:10px;
-align-self:start;
+  padding:8px 4px;
+  min-width:0;
+  position:sticky;
+  top:10px;
+  align-self:start;
 }
 
 .gallery-kicker{
-color:#9a793e;
-font-size:11px;
-letter-spacing:2px;
-font-weight:bold;
+  color:#9a793e;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:bold;
 }
 
 .product-sidebar h2{
-font:30px/1.25 Georgia;
-margin:12px 0 18px;
+  font:30px/1.25 Georgia;
+  margin:12px 0 18px;
 }
 
 .product-sidebar p{
-font-size:14px;
-line-height:1.6;
+  font-size:14px;
+  line-height:1.6;
 }
 
 .colour-title{
-font-weight:bold;
-margin:24px 0 10px;
+  font-weight:bold;
+  margin:24px 0 10px;
 }
 
 .colour-options{
-display:flex;
-gap:9px;
-flex-wrap:wrap;
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
 }
 
 .colour-btn{
-display:flex;
-align-items:center;
-gap:7px;
-padding:9px 11px;
-border:1px solid #ddd;
-background:white;
-border-radius:30px;
-cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 11px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:30px;
+  cursor:pointer;
 }
 
 .colour-btn.active{
-border:2px solid var(--gold);
-background:#fffaf0;
+  border:2px solid var(--gold);
+  background:#fffaf0;
 }
 
 .colour-swatch{
-width:17px;
-height:17px;
-border-radius:50%;
-border:1px solid #aaa;
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  border:1px solid #aaa;
 }
 
 .swatch-yl{
-background:linear-gradient(135deg,#fff1a8,#c99b24);
+  background:linear-gradient(135deg,#fff1a8,#c99b24);
 }
 
 .swatch-wh{
-background:linear-gradient(135deg,#fff,#aeb4bb);
+  background:linear-gradient(135deg,#fff,#aeb4bb);
 }
 
 .swatch-rs{
-background:linear-gradient(135deg,#f7d1bd,#b8795c);
+  background:linear-gradient(135deg,#f7d1bd,#b8795c);
 }
 
 .swatch-pt{
-background:linear-gradient(135deg,#eee,#85898e);
+  background:linear-gradient(135deg,#eee,#85898e);
 }
 
 .gallery-note{
-font-size:12px!important;
-color:#927b56;
+  font-size:12px!important;
+  color:#927b56;
 }
 
 /* PRODUCT DETAILS */
 
 .product-details{
-margin-top:25px;
-padding-top:20px;
-border-top:1px solid #e8e2d8;
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid #e8e2d8;
 }
 
 .product-details h3{
-font:23px Georgia;
-margin-bottom:15px;
+  font:23px Georgia;
+  margin-bottom:15px;
 }
 
 .details-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:9px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
 }
 
 .detail-item{
-background:#faf8f3;
-border:1px solid #eee7da;
-padding:12px;
-min-width:0;
+  background:#faf8f3;
+  border:1px solid #eee7da;
+  padding:12px;
+  min-width:0;
 }
 
 .detail-item strong{
-display:block;
-font-size:12px;
-color:#8c7449;
-margin-bottom:6px;
+  display:block;
+  font-size:12px;
+  color:#8c7449;
+  margin-bottom:6px;
 }
 
 .detail-item span{
-font-size:13px;
-overflow-wrap:anywhere;
+  font-size:13px;
+  overflow-wrap:anywhere;
 }
 
 /* IMAGE FULLSCREEN */
 
 .zoomable-image{
-cursor:zoom-in;
+  cursor:zoom-in;
 }
 
 .image-lightbox{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-z-index:3000;
-align-items:center;
-justify-content:center;
-padding:55px 65px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:55px 65px;
 }
 
 .image-lightbox.active{
-display:flex;
+  display:flex;
 }
 
 .image-lightbox img{
-display:block;
-max-width:100%;
-max-height:100%;
-width:auto;
-height:auto;
-object-fit:contain;
-min-width:0;
-min-height:0;
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  min-width:0;
+  min-height:0;
 }
 
 .lightbox-close,
 .lightbox-arrow{
-position:absolute;
-z-index:10;
-border:0;
-border-radius:50%;
-background:white;
-color:#171512;
-width:44px;
-height:44px;
-font-size:28px;
-cursor:pointer;
-line-height:1;
+  position:absolute;
+  z-index:10;
+  border:0;
+  border-radius:50%;
+  background:white;
+  color:#171512;
+  width:44px;
+  height:44px;
+  font-size:28px;
+  cursor:pointer;
+  line-height:1;
 }
 
 .lightbox-close{
-top:15px;
-right:20px;
+  top:15px;
+  right:20px;
 }
 
 .lightbox-arrow{
-top:50%;
-transform:translateY(-50%);
+  top:50%;
+  transform:translateY(-50%);
 }
 
 .lightbox-arrow.prev{
-left:10px;
+  left:10px;
 }
 
 .lightbox-arrow.next{
-right:10px;
+  right:10px;
 }
 
 .lightbox-arrow[hidden]{
-display:none;
+  display:none;
 }
 
 .lightbox-caption{
-position:absolute;
-bottom:18px;
-left:0;
-right:0;
-text-align:center;
-color:white;
-font-size:13px;
-pointer-events:none;
+  position:absolute;
+  bottom:18px;
+  left:0;
+  right:0;
+  text-align:center;
+  color:white;
+  font-size:13px;
+  pointer-events:none;
 }
 
 /* MOBILE GALLERY */
 
 .mobile-gallery{
-display:none;
+  display:none;
 }
 
 .mobile-empty{
-text-align:center;
-padding:35px;
-color:#927b56;
-font-size:13px;
+  text-align:center;
+  padding:35px;
+  color:#927b56;
+  font-size:13px;
 }
 
 @media(max-width:1000px){
 
-.grid{
-grid-template-columns:repeat(3,1fr);
-}
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
 
-.product-layout{
-grid-template-columns:minmax(0,1fr) 310px;
-}
+  .product-layout{
+    grid-template-columns:minmax(0,1fr) 310px;
+  }
 
 }
 
 @media(max-width:700px){
 
-.container{
-padding:18px 12px;
-}
+  .container{
+    padding:18px 12px;
+  }
 
-.categories{
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-}
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
 
-.cat-btn{
-padding:12px 4px;
-font-size:11px;
-}
+  .cat-btn{
+    padding:12px 4px;
+    font-size:11px;
+  }
 
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
 
-.product-info{
-padding:9px;
-}
+  .product-info{
+    padding:9px;
+  }
 
-.product-info h3{
-font-size:14px;
-}
+  .product-info h3{
+    font-size:14px;
+  }
 
-.toolbar h2{
-font-size:21px;
-}
+  .toolbar h2{
+    font-size:21px;
+  }
 
-.search{
-width:100%;
-}
+  .search{
+    width:100%;
+  }
 
-.modal{
-padding:0;
-}
+  .modal{
+    padding:0;
+  }
 
-.modal-box{
-margin:0;
-min-height:100%;
-max-height:100%;
-padding:14px;
-}
+  .modal-box{
+    margin:0;
+    min-height:100%;
+    max-height:100%;
+    padding:14px;
+  }
 
-.desktop-gallery{
-display:none;
-}
+  .desktop-gallery{
+    display:none;
+  }
 
-.product-layout{
-display:flex;
-flex-direction:column;
-gap:0;
-}
+  .product-layout{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
 
-.product-sidebar{
-position:static;
-order:2;
-padding:22px 5px;
-width:100%;
-}
+  .product-sidebar{
+    position:static;
+    order:2;
+    padding:22px 5px;
+    width:100%;
+  }
 
-.product-sidebar h2{
-font-size:25px;
-}
+  .product-sidebar h2{
+    font-size:25px;
+  }
 
-.mobile-gallery{
-display:block;
-order:1;
-width:100%;
-}
+  .mobile-gallery{
+    display:block;
+    order:1;
+    width:100%;
+  }
 
-.mobile-image-stage{
-width:100%;
-aspect-ratio:1/1;
-background:#f8f7f4;
-position:relative;
-overflow:hidden;
-}
+  .mobile-image-stage{
+    width:100%;
+    aspect-ratio:1/1;
+    background:#f8f7f4;
+    position:relative;
+    overflow:hidden;
+  }
 
-.mobile-image-stage img{
-width:100%;
-height:100%;
-object-fit:contain;
-display:block;
-cursor:zoom-in;
-}
+  .mobile-image-stage img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    cursor:zoom-in;
+  }
 
-.mobile-gallery .video-stage{
-margin-bottom:14px;
-}
+  .mobile-gallery .video-stage{
+    margin-bottom:14px;
+  }
 
-.mobile-arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-width:38px;
-height:38px;
-border:0;
-border-radius:50%;
-background:#ffffffdd;
-color:#171512;
-font-size:25px;
-cursor:pointer;
-}
+  .mobile-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#ffffffdd;
+    color:#171512;
+    font-size:25px;
+    cursor:pointer;
+  }
 
-.mobile-arrow.prev{
-left:8px;
-}
+  .mobile-arrow.prev{
+    left:8px;
+  }
 
-.mobile-arrow.next{
-right:8px;
-}
+  .mobile-arrow.next{
+    right:8px;
+  }
 
-.mobile-dots{
-display:flex;
-justify-content:center;
-gap:8px;
-padding:14px;
-}
+  .mobile-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:14px;
+  }
 
-.mobile-dot{
-width:8px;
-height:8px;
-border:0;
-border-radius:50%;
-background:#ddd;
-padding:0;
-cursor:pointer;
-}
+  .mobile-dot{
+    width:8px;
+    height:8px;
+    border:0;
+    border-radius:50%;
+    background:#ddd;
+    padding:0;
+    cursor:pointer;
+  }
 
-.mobile-dot.active{
-background:#333;
-}
+  .mobile-dot.active{
+    background:#333;
+  }
 
-.mobile-tabs{
-display:grid;
-grid-template-columns:1fr 1fr;
-border-top:1px solid #ddd;
-border-bottom:1px solid #ddd;
-margin-top:5px;
-}
+  .mobile-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    margin-top:5px;
+  }
 
-.mobile-tab{
-background:white;
-border:0;
-padding:15px 8px;
-font-size:14px;
-color:#555;
-border-bottom:2px solid transparent;
-cursor:pointer;
-}
+  .mobile-tab{
+    background:white;
+    border:0;
+    padding:15px 8px;
+    font-size:14px;
+    color:#555;
+    border-bottom:2px solid transparent;
+    cursor:pointer;
+  }
 
-.mobile-tab.active{
-border-bottom-color:#171512;
-color:#171512;
-font-weight:bold;
-}
+  .mobile-tab.active{
+    border-bottom-color:#171512;
+    color:#171512;
+    font-weight:bold;
+  }
 
-.mobile-tab-content{
-padding-top:12px;
-}
+  .mobile-tab-content{
+    padding-top:12px;
+  }
 
-.details-grid{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
+  .details-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 
-.detail-item{
-padding:10px;
-}
+  .detail-item{
+    padding:10px;
+  }
 
-.detail-item span{
-font-size:12px;
-}
+  .detail-item span{
+    font-size:12px;
+  }
 
-.image-lightbox{
-padding:55px 12px;
-}
+  .image-lightbox{
+    padding:55px 12px;
+  }
 
-.lightbox-arrow{
-width:36px;
-height:36px;
-}
+  .lightbox-arrow{
+    width:36px;
+    height:36px;
+  }
 
 }
 
 @media(max-width:350px){
 
-.categories{
-grid-template-columns:repeat(2,1fr);
-}
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.grid{
-gap:7px;
-}
+  .grid{
+    gap:7px;
+  }
 
 }
 
@@ -790,145 +790,145 @@ gap:7px;
 
 <header>
 
-<div class="logo">LUVIRA JEWELS</div>
+  <div class="logo">LUVIRA JEWELS</div>
 
-<div class="tagline">
-EXCLUSIVE JEWELLERY COLLECTION
-</div>
+  <div class="tagline">
+    EXCLUSIVE JEWELLERY COLLECTION
+  </div>
 
 </header>
 
 <main class="container">
 
-<h1 class="section-title">
-Explore Our Collections
-</h1>
+  <h1 class="section-title">
+    Explore Our Collections
+  </h1>
 
-<div class="categories">
+  <div class="categories">
 
-<button class="cat-btn active" data-cat="All Products">
-ALL
-</button>
+    <button class="cat-btn active" data-cat="All Products">
+      ALL
+    </button>
 
-<button class="cat-btn" data-cat="Rings">
-RINGS
-</button>
+    <button class="cat-btn" data-cat="Rings">
+      RINGS
+    </button>
 
-<button class="cat-btn" data-cat="Earrings">
-EARRINGS
-</button>
+    <button class="cat-btn" data-cat="Earrings">
+      EARRINGS
+    </button>
 
-<button class="cat-btn" data-cat="Pendants">
-PENDANTS
-</button>
+    <button class="cat-btn" data-cat="Pendants">
+      PENDANTS
+    </button>
 
-<button class="cat-btn" data-cat="Necklaces">
-NECKLACES
-</button>
+    <button class="cat-btn" data-cat="Necklaces">
+      NECKLACES
+    </button>
 
-<button class="cat-btn" data-cat="Bracelets">
-BRACELETS
-</button>
+    <button class="cat-btn" data-cat="Bracelets">
+      BRACELETS
+    </button>
 
-</div>
+  </div>
 
-<div class="toolbar">
+  <div class="toolbar">
 
-<h2 id="heading">All Products</h2>
+    <h2 id="heading">All Products</h2>
 
-<input
-class="search"
-id="search"
-placeholder="Search product name or code..."
->
+    <input
+      class="search"
+      id="search"
+      placeholder="Search product name or code..."
+    >
 
-</div>
+  </div>
 
-<div id="status" class="status">
-Loading collections...
-</div>
+  <div id="status" class="status">
+    Loading collections...
+  </div>
 
-<div class="grid" id="products"></div>
+  <div class="grid" id="products"></div>
 
-<div class="pagination" id="pagination" style="display:none">
+  <div class="pagination" id="pagination" style="display:none">
 
-<button id="prev">Previous</button>
+    <button id="prev">Previous</button>
 
-<span id="page"></span>
+    <span id="page"></span>
 
-<button id="next">Next</button>
+    <button id="next">Next</button>
 
-</div>
+  </div>
 
 </main>
 
 <footer>
-LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
+  LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
 </footer>
 
 <!-- PRODUCT POPUP -->
 
 <div class="modal" id="modal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button
-class="close"
-id="close"
-aria-label="Close product"
->
-&times;
-</button>
+    <button
+      class="close"
+      id="close"
+      aria-label="Close product"
+    >
+      &times;
+    </button>
 
-<div id="modal-content"></div>
+    <div id="modal-content"></div>
 
-</div>
+  </div>
 
 </div>
 
 <!-- FULLSCREEN IMAGE -->
 
 <div
-class="image-lightbox"
-id="imageLightbox"
-role="dialog"
-aria-modal="true"
-aria-label="Enlarged product image"
+  class="image-lightbox"
+  id="imageLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged product image"
 >
 
-<button
-class="lightbox-close"
-id="lightboxClose"
-aria-label="Close image"
->
-&times;
-</button>
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Close image"
+  >
+    &times;
+  </button>
 
-<button
-class="lightbox-arrow prev"
-id="lightboxPrev"
-aria-label="Previous image"
->
-‹
-</button>
+  <button
+    class="lightbox-arrow prev"
+    id="lightboxPrev"
+    aria-label="Previous image"
+  >
+    ‹
+  </button>
 
-<img
-id="lightboxImage"
-alt="Enlarged product image"
->
+  <img
+    id="lightboxImage"
+    alt="Enlarged product image"
+  >
 
-<button
-class="lightbox-arrow next"
-id="lightboxNext"
-aria-label="Next image"
->
-›
-</button>
+  <button
+    class="lightbox-arrow next"
+    id="lightboxNext"
+    aria-label="Next image"
+  >
+    ›
+  </button>
 
-<div
-class="lightbox-caption"
-id="lightboxCaption"
-></div>
+  <div
+    class="lightbox-caption"
+    id="lightboxCaption"
+  ></div>
 
 </div>
 
@@ -938,15 +938,15 @@ id="lightboxCaption"
 
 const SHEETS={
 
-Rings:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
+  "Rings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=0&single=true&output=csv",
 
-Earrings:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
+  "Earrings":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=547971000&single=true&output=csv",
 
-Pendants:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
+  "Pendants":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=318107255&single=true&output=csv",
 
-Necklaces:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
+  "Necklaces":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=1426609771&single=true&output=csv",
 
-Bracelets:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
+  "Bracelets":"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIUK_4obXBbYYtUc-99UspPpgSKowLEJcnCZy7kSfTkYO3QF16MWWWE34nE545rx3obmoloGKsJ9Bz/pub?gid=121305611&single=true&output=csv"
 
 };
 
@@ -958,104 +958,104 @@ const mediaCache=new Map();
 
 function fetchProductMedia(folder){
 
-folder=String(folder||"").trim();
+  folder=String(folder||"").trim();
 
-if(!folder){
+  if(!folder){
 
-return Promise.resolve({
-images:[],
-videos:[]
-});
+    return Promise.resolve({
+      images:[],
+      videos:[]
+    });
 
-}
+  }
 
-if(mediaCache.has(folder)){
+  if(mediaCache.has(folder)){
 
-return mediaCache.get(folder);
+    return mediaCache.get(folder);
 
-}
+  }
 
-const request=new Promise((resolve,reject)=>{
+  const request=new Promise((resolve,reject)=>{
 
-const callback=
-luvMedia_+
-Date.now()+
-_+
-Math.floor(Math.random()*1000000);
+    const callback=
+      "luvMedia_"+
+      Date.now()+
+      "_"+
+      Math.floor(Math.random()*1000000);
 
-const script=document.createElement("script");
+    const script=document.createElement("script");
 
-let finished=false;
+    let finished=false;
 
-const cleanup=()=>{
+    const cleanup=()=>{
 
-if(finished)return;
+      if(finished)return;
 
-finished=true;
+      finished=true;
 
-clearTimeout(timer);
+      clearTimeout(timer);
 
-delete window[callback];
+      delete window[callback];
 
-script.remove();
+      script.remove();
 
-};
+    };
 
-const timer=setTimeout(()=>{
+    const timer=setTimeout(()=>{
 
-cleanup();
+      cleanup();
 
-mediaCache.delete(folder);
+      mediaCache.delete(folder);
 
-reject(new Error("Media API timeout"));
+      reject(new Error("Media API timeout"));
 
-},60000);
+    },60000);
 
-window[callback]=data=>{
+    window[callback]=data=>{
 
-cleanup();
+      cleanup();
 
-if(data&&data.success){
+      if(data&&data.success){
 
-resolve(data);
+        resolve(data);
 
-}else{
+      }else{
 
-mediaCache.delete(folder);
+        mediaCache.delete(folder);
 
-reject(new Error("Media API failed"));
+        reject(new Error("Media API failed"));
 
-}
+      }
 
-};
+    };
 
-script.onerror=()=>{
+    script.onerror=()=>{
 
-cleanup();
+      cleanup();
 
-mediaCache.delete(folder);
+      mediaCache.delete(folder);
 
-reject(new Error("Media API connection failed"));
+      reject(new Error("Media API connection failed"));
 
-};
+    };
 
-script.src=
+    script.src=
 
-MEDIA_API+
+      MEDIA_API+
 
-?folder=+encodeURIComponent(folder)+
+      "?folder="+encodeURIComponent(folder)+
 
-&callback=+encodeURIComponent(callback)+
+      "&callback="+encodeURIComponent(callback)+
 
-&_=+Date.now();
+      "&_="+Date.now();
 
-document.head.appendChild(script);
+    document.head.appendChild(script);
 
-});
+  });
 
-mediaCache.set(folder,request);
+  mediaCache.set(folder,request);
 
-return request;
+  return request;
 
 }
 
@@ -1063,46 +1063,46 @@ return request;
 
 function getDriveFileId(item){
 
-if(!item)return "";
+  if(!item)return "";
 
-if(item.id)return String(item.id);
+  if(item.id)return String(item.id);
 
-if(item.fileId)return String(item.fileId);
+  if(item.fileId)return String(item.fileId);
 
-const urls=[
+  const urls=[
 
-item.url,
-item.directUrl,
-item.downloadUrl,
-item.previewUrl
+    item.url,
+    item.directUrl,
+    item.downloadUrl,
+    item.previewUrl
 
-];
+  ];
 
-for(const value of urls){
+  for(const value of urls){
 
-const url=String(value||"");
+    const url=String(value||"");
 
-const patterns=[
+    const patterns=[
 
-/\/file\/d\/([a-zA-Z0-9_-]+)/,
+      /\/file\/d\/([a-zA-Z0-9_-]+)/,
 
-/[?&]id=([a-zA-Z0-9_-]+)/,
+      /[?&]id=([a-zA-Z0-9_-]+)/,
 
-/\/d\/([a-zA-Z0-9_-]+)/
+      /\/d\/([a-zA-Z0-9_-]+)/
 
-];
+    ];
 
-for(const pattern of patterns){
+    for(const pattern of patterns){
 
-const match=url.match(pattern);
+      const match=url.match(pattern);
 
-if(match)return match[1];
+      if(match)return match[1];
 
-}
+    }
 
-}
+  }
 
-return "";
+  return "";
 
 }
 
@@ -1110,49 +1110,49 @@ return "";
 
 function getImageSources(item,size=1200){
 
-if(!item)return [];
+  if(!item)return [];
 
-const id=getDriveFileId(item);
+  const id=getDriveFileId(item);
 
-const urls=[];
+  const urls=[];
 
-if(size<=1200 && item.url){
+  if(size<=1200 && item.url){
 
-urls.push(String(item.url));
+    urls.push(String(item.url));
 
-}
+  }
 
-if(id){
+  if(id){
 
-urls.push(
+    urls.push(
 
-https://lh3.googleusercontent.com/d/+
-id+"=w"+size
+      "https://lh3.googleusercontent.com/d/"+
+      id+"=w"+size
 
-);
+    );
 
-urls.push(
+    urls.push(
 
-https://drive.google.com/thumbnail?id=+
-id+"&sz=w"+size
+      "https://drive.google.com/thumbnail?id="+
+      id+"&sz=w"+size
 
-);
+    );
 
-urls.push(
+    urls.push(
 
-https://drive.google.com/uc?export=view&id=+id
+      "https://drive.google.com/uc?export=view&id="+id
 
-);
+    );
 
-}
+  }
 
-if(item.url){
+  if(item.url){
 
-urls.push(String(item.url));
+    urls.push(String(item.url));
 
-}
+  }
 
-return [...new Set(urls.filter(Boolean))];
+  return [...new Set(urls.filter(Boolean))];
 
 }
 
@@ -1160,45 +1160,45 @@ return [...new Set(urls.filter(Boolean))];
 
 function loadDriveImage(img,item,onFail,size=1200){
 
-const urls=getImageSources(item,size);
+  const urls=getImageSources(item,size);
 
-let index=0;
+  let index=0;
 
-img.onerror=()=>{
+  img.onerror=()=>{
 
-index++;
+    index++;
 
-if(index<urls.length){
+    if(index<urls.length){
 
-img.src=urls[index];
+      img.src=urls[index];
 
-}else{
+    }else{
 
-img.onerror=null;
+      img.onerror=null;
 
-if(onFail){
+      if(onFail){
 
-onFail();
+        onFail();
 
-}else{
+      }else{
 
-img.remove();
+        img.remove();
 
-}
+      }
 
-}
+    }
 
-};
+  };
 
-if(urls.length){
+  if(urls.length){
 
-img.src=urls[0];
+    img.src=urls[0];
 
-}else if(onFail){
+  }else if(onFail){
 
-onFail();
+    onFail();
 
-}
+  }
 
 }
 
@@ -1206,23 +1206,23 @@ onFail();
 
 function safe(value){
 
-return String(
+  return String(
 
-value==null||value===""?"-":value
+    value==null||value===""?"-":value
 
-).replace(/[&<>"']/g,c=>({
+  ).replace(/[&<>"']/g,c=>({
 
-&:"&amp;",
+    "&":"&amp;",
 
-<:"&lt;",
+    "<":"&lt;",
 
->:"&gt;",
+    ">":"&gt;",
 
-"':"&quot;",
+    '"':"&quot;",
 
-:"&#39;"
+    "'":"&#39;"
 
-})[c]);
+  })[c]);
 
 }
 
@@ -1230,33 +1230,33 @@ value==null||value===""?"-":value
 
 function validVideoURL(value){
 
-if(!value)return "";
+  if(!value)return "";
 
-try{
+  try{
 
-const url=new URL(String(value),location.href);
+    const url=new URL(String(value),location.href);
 
-if(url.protocol!=="https:")return "";
+    if(url.protocol!=="https:")return "";
 
-if(
+    if(
 
-url.hostname==="drive.google.com" &&
+      url.hostname==="drive.google.com" &&
 
-/\/file\/d\/[^/]+\/(view|preview)/i.test(url.pathname)
+      /\/file\/d\/[^/]+\/(view|preview)/i.test(url.pathname)
 
-){
+    ){
 
-return "";
+      return "";
 
-}
+    }
 
-return url.href;
+    return url.href;
 
-}catch(error){
+  }catch(error){
 
-return "";
+    return "";
 
-}
+  }
 
 }
 
@@ -1264,52 +1264,52 @@ return "";
 
 function getVideoSources(item){
 
-if(!item)return [];
+  if(!item)return [];
 
-const sources=[];
+  const sources=[];
 
-const add=url=>{
+  const add=url=>{
 
-const valid=validVideoURL(url);
+    const valid=validVideoURL(url);
 
-if(valid&&!sources.includes(valid)){
+    if(valid&&!sources.includes(valid)){
 
-sources.push(valid);
+      sources.push(valid);
 
-}
+    }
 
-};
+  };
 
-add(item.streamUrl);
+  add(item.streamUrl);
 
-add(item.videoUrl);
+  add(item.videoUrl);
 
-add(item.directUrl);
+  add(item.directUrl);
 
-add(item.downloadUrl);
+  add(item.downloadUrl);
 
-add(item.url);
+  add(item.url);
 
-const id=getDriveFileId(item);
+  const id=getDriveFileId(item);
 
-if(id&&/^[a-zA-Z0-9_-]+$/.test(id)){
+  if(id&&/^[a-zA-Z0-9_-]+$/.test(id)){
 
-add(
+    add(
 
-https://drive.google.com/uc?export=download&id=+id
+      "https://drive.google.com/uc?export=download&id="+id
 
-);
+    );
 
-add(
+    add(
 
-https://drive.usercontent.google.com/download?id=+
-id+"&export=download&confirm=t"
+      "https://drive.usercontent.google.com/download?id="+
+      id+"&export=download&confirm=t"
 
-);
+    );
 
-}
+  }
 
-return sources;
+  return sources;
 
 }
 
@@ -1317,71 +1317,71 @@ return sources;
 
 function parseCSV(text){
 
-const rows=[];
+  const rows=[];
 
-let row=[];
+  let row=[];
 
-let cell="";
+  let cell="";
 
-let quoted=false;
+  let quoted=false;
 
-for(let i=0;i<text.length;i++){
+  for(let i=0;i<text.length;i++){
 
-const c=text[i];
+    const c=text[i];
 
-if(c==='"'){
+    if(c==='"'){
 
-if(quoted&&text[i+1]==='"'){
+      if(quoted&&text[i+1]==='"'){
 
-cell+='"';
+        cell+='"';
 
-i++;
+        i++;
 
-}else{
+      }else{
 
-quoted=!quoted;
+        quoted=!quoted;
 
-}
+      }
 
-}else if(c===','&&!quoted){
+    }else if(c===','&&!quoted){
 
-row.push(cell);
+      row.push(cell);
 
-cell="";
+      cell="";
 
-}else if((c==='\n'||c==='\r')&&!quoted){
+    }else if((c==='\n'||c==='\r')&&!quoted){
 
-if(c==='\r'&&text[i+1]==='\n')i++;
+      if(c==='\r'&&text[i+1]==='\n')i++;
 
-row.push(cell);
+      row.push(cell);
 
-if(row.some(v=>v.trim())){
+      if(row.some(v=>v.trim())){
 
-rows.push(row);
+        rows.push(row);
 
-}
+      }
 
-row=[];
+      row=[];
 
-cell="";
+      cell="";
 
-}else{
+    }else{
 
-cell+=c;
+      cell+=c;
 
-}
+    }
 
-}
+  }
 
-row.push(cell);
+  row.push(cell);
 
-if(row.some(v=>v.trim())){
+  if(row.some(v=>v.trim())){
 
-rows.push(row);
+    rows.push(row);
 
-}
+  }
 
-return rows;
+  return rows;
 
 }
 
@@ -1397,71 +1397,71 @@ const perPage=12;
 
 async function loadProducts(){
 
-const status=document.getElementById("status");
+  const status=document.getElementById("status");
 
-try{
+  try{
 
-const results=await Promise.all(
+    const results=await Promise.all(
 
-Object.entries(SHEETS).map(async([category,url])=>{
+      Object.entries(SHEETS).map(async([category,url])=>{
 
-const response=await fetch(url);
+        const response=await fetch(url);
 
-if(!response.ok){
+        if(!response.ok){
 
-throw new Error(category+" loading failed");
+          throw new Error(category+" loading failed");
 
-}
+        }
 
-const rows=parseCSV(await response.text());
+        const rows=parseCSV(await response.text());
 
-return rows.slice(1)
+        return rows.slice(1)
 
-.filter(r=>r[0]&&r[0].trim())
+          .filter(r=>r[0]&&r[0].trim())
 
-.map(r=>({
+          .map(r=>({
 
-code:r[0]||"",
+            code:r[0]||"",
 
-name:r[1]||"",
+            name:r[1]||"",
 
-description:r[2]||"",
+            description:r[2]||"",
 
-material:r[3]||"",
+            material:r[3]||"",
 
-metalWeight:r[4]||"",
+            metalWeight:r[4]||"",
 
-diamondWeight:r[5]||"",
+            diamondWeight:r[5]||"",
 
-size:r[6]||"",
+            size:r[6]||"",
 
-imageFolder:r[7]||"",
+            imageFolder:r[7]||"",
 
-videoFolder:r[8]||"",
+            videoFolder:r[8]||"",
 
-category
+            category
 
-}));
+          }));
 
-})
+      })
 
-);
+    );
 
-allProducts=results.flat();
+    allProducts=results.flat();
 
-status.style.display="none";
+    status.style.display="none";
 
-renderProducts();
+    renderProducts();
 
-}catch(error){
+  }catch(error){
 
-status.textContent=
+    status.textContent=
 
-Unable to load products. Check Google Sheets publishing settings.;
+      "Unable to load products. Check Google Sheets publishing settings.";
 
-console.error(error);
+    console.error(error);
 
-}
+  }
 
 }
 
@@ -1469,163 +1469,163 @@ console.error(error);
 
 function renderProducts(){
 
-const grid=document.getElementById("products");
+  const grid=document.getElementById("products");
 
-const search=document
+  const search=document
 
-.getElementById("search")
+    .getElementById("search")
 
-.value
+    .value
 
-.toLowerCase();
+    .toLowerCase();
 
-const filtered=allProducts.filter(p=>
+  const filtered=allProducts.filter(p=>
 
-(
+    (
 
-currentCategory==="All Products"||
+      currentCategory==="All Products"||
 
-p.category===currentCategory
+      p.category===currentCategory
 
-)&&
+    )&&
 
-(
+    (
 
-p.name+" "+p.code+" "+p.category
+      p.name+" "+p.code+" "+p.category
 
-).toLowerCase().includes(search)
+    ).toLowerCase().includes(search)
 
-);
+  );
 
-const total=Math.max(
+  const total=Math.max(
 
-1,
+    1,
 
-Math.ceil(filtered.length/perPage)
+    Math.ceil(filtered.length/perPage)
 
-);
+  );
 
-currentPage=Math.min(currentPage,total);
+  currentPage=Math.min(currentPage,total);
 
-const list=filtered.slice(
+  const list=filtered.slice(
 
-(currentPage-1)*perPage,
+    (currentPage-1)*perPage,
 
-currentPage*perPage
+    currentPage*perPage
 
-);
+  );
 
-grid.innerHTML="";
+  grid.innerHTML="";
 
-if(!filtered.length){
+  if(!filtered.length){
 
-grid.innerHTML=
+    grid.innerHTML=
 
-<div class="status" style="grid-column:1/-1">No products found.</div>';
+      '<div class="status" style="grid-column:1/-1">No products found.</div>';
 
-}
+  }
 
-list.forEach(p=>{
+  list.forEach(p=>{
 
-const card=document.createElement("div");
+    const card=document.createElement("div");
 
-card.className="product";
+    card.className="product";
 
-const image=document.createElement("div");
+    const image=document.createElement("div");
 
-image.className="product-image";
+    image.className="product-image";
 
-const placeholder=document.createElement("span");
+    const placeholder=document.createElement("span");
 
-placeholder.textContent="LUVIRA JEWELS";
+    placeholder.textContent="LUVIRA JEWELS";
 
-image.appendChild(placeholder);
+    image.appendChild(placeholder);
 
-if(p.imageFolder){
+    if(p.imageFolder){
 
-fetchProductMedia(p.imageFolder).then(media=>{
+      fetchProductMedia(p.imageFolder).then(media=>{
 
-if(!media.images||!media.images.length)return;
+        if(!media.images||!media.images.length)return;
 
-const img=document.createElement("img");
+        const img=document.createElement("img");
 
-img.alt=p.name;
+        img.alt=p.name;
 
-img.loading="lazy";
+        img.loading="lazy";
 
-img.referrerPolicy="no-referrer";
+        img.referrerPolicy="no-referrer";
 
-img.onload=()=>placeholder.remove();
+        img.onload=()=>placeholder.remove();
 
-image.appendChild(img);
+        image.appendChild(img);
 
-loadDriveImage(
+        loadDriveImage(
 
-img,
+          img,
 
-media.images[0],
+          media.images[0],
 
-()=>img.remove()
+          ()=>img.remove()
 
-);
+        );
 
-}).catch(console.warn);
+      }).catch(console.warn);
 
-}
+    }
 
-const info=document.createElement("div");
+    const info=document.createElement("div");
 
-info.className="product-info";
+    info.className="product-info";
 
-info.innerHTML=`
+    info.innerHTML=`
 
-<h3>${safe(p.name)}</h3>
+      <h3>${safe(p.name)}</h3>
 
-<p>Product Code: ${safe(p.code)}</p>
+      <p>Product Code: ${safe(p.code)}</p>
 
-<p>${safe(p.category)}</p>
+      <p>${safe(p.category)}</p>
 
-<button class="view-btn">
-View Details
-</button>
+      <button class="view-btn">
+        View Details
+      </button>
 
-`;
+    `;
 
-info.querySelector("button").onclick=e=>{
+    info.querySelector("button").onclick=e=>{
 
-e.stopPropagation();
+      e.stopPropagation();
 
-openProduct(p);
+      openProduct(p);
 
-};
+    };
 
-card.append(image,info);
+    card.append(image,info);
 
-card.onclick=()=>openProduct(p);
+    card.onclick=()=>openProduct(p);
 
-grid.appendChild(card);
+    grid.appendChild(card);
 
-});
+  });
 
-document.getElementById("heading").textContent=
+  document.getElementById("heading").textContent=
 
-currentCategory;
+    currentCategory;
 
-document.getElementById("pagination").style.display=
+  document.getElementById("pagination").style.display=
 
-filtered.length?"flex":"none";
+    filtered.length?"flex":"none";
 
-document.getElementById("page").textContent=
+  document.getElementById("page").textContent=
 
-`Page ${currentPage} of ${total}`;
+    `Page ${currentPage} of ${total}`;
 
-document.getElementById("prev").disabled=
+  document.getElementById("prev").disabled=
 
-currentPage===1;
+    currentPage===1;
 
-document.getElementById("next").disabled=
+  document.getElementById("next").disabled=
 
-currentPage===total;
+    currentPage===total;
 
 }
 
@@ -1635,134 +1635,134 @@ let productRequest=0;
 
 let mediaState={
 
-product:null,
+  product:null,
 
-images:[],
+  images:[],
 
-videos:[],
+  videos:[],
 
-imageGroups:{},
+  imageGroups:{},
 
-videoGroups:{},
+  videoGroups:{},
 
-colour:"",
+  colour:"",
 
-imageIndex:0,
+  imageIndex:0,
 
-tab:"images"
+  tab:"images"
 
 };
 
 const COLOURS={
 
-YL:{
-label:"Yellow Gold",
-swatch:"swatch-yl"
-},
+  YL:{
+    label:"Yellow Gold",
+    swatch:"swatch-yl"
+  },
 
-WH:{
-label:"White Gold",
-swatch:"swatch-wh"
-},
+  WH:{
+    label:"White Gold",
+    swatch:"swatch-wh"
+  },
 
-RS:{
-label:"Rose Gold",
-swatch:"swatch-rs"
-},
+  RS:{
+    label:"Rose Gold",
+    swatch:"swatch-rs"
+  },
 
-PT:{
-label:"Platinum",
-swatch:"swatch-pt"
-}
+  PT:{
+    label:"Platinum",
+    swatch:"swatch-pt"
+  }
 
 };
 
 /*
-VIMEO VIDEOS
-Current product LJ002221 uses the three links supplied.
-For every future product, add its Vimeo links in the Google Sheet
-videoFolder column using this format:
-RS=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
-YL=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
-WH=https://vimeo.com/VIDEO_ID/PRIVACY_HASH
+  VIMEO VIDEOS
+  Current product LJ002221 uses the three links supplied.
+  For every future product, add its Vimeo links in the Google Sheet
+  videoFolder column using this format:
+  RS=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
+  YL=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
+  WH=https://vimeo.com/VIDEO_ID/PRIVACY_HASH
 */
 const VIMEO_PRODUCT_MAP={
-LJ002221:{
-RS:"https://vimeo.com/1249559319/ba27aa7c1b",
-YL:"https://vimeo.com/1249559318/d55ac4f0ba",
-WH:"https://vimeo.com/1249559320/898a317c21"
-}
+  "LJ002221":{
+    RS:"https://vimeo.com/1249559319/ba27aa7c1b",
+    YL:"https://vimeo.com/1249559318/d55ac4f0ba",
+    WH:"https://vimeo.com/1249559320/898a317c21"
+  }
 };
 
 function parseVimeoUrl(value,colour,productCode){
-const raw=String(value||"").trim();
-const match=raw.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/i);
-if(!match)return null;
-return {
-name:String(productCode||"PRODUCT")+"-"+colour,
-id:match[1],
-vimeoId:match[1],
-hash:match[2]||"",
-colour:colour,
-vimeoUrl:raw
-};
+  const raw=String(value||"").trim();
+  const match=raw.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/i);
+  if(!match)return null;
+  return {
+    name:String(productCode||"PRODUCT")+"-"+colour,
+    id:match[1],
+    vimeoId:match[1],
+    hash:match[2]||"",
+    colour:colour,
+    vimeoUrl:raw
+  };
 }
 
 function getVimeoVideosForProduct(product){
-const result=[];
-const raw=String(product.videoFolder||"").trim();
+  const result=[];
+  const raw=String(product.videoFolder||"").trim();
 
-// Preferred scalable method: store colour-specific Vimeo URLs in Sheet column I.
-const pattern=/(?:^|[;|\n])\s*(RS|WH|YL)\s*[:=]\s*(https?:\/\/(?:www\.)?vimeo\.com\/[^;|\s]+)/gi;
-let match;
-while((match=pattern.exec(raw))!==null){
-const item=parseVimeoUrl(match[2],match[1].toUpperCase(),product.code);
-if(item)result.push(item);
-}
+  // Preferred scalable method: store colour-specific Vimeo URLs in Sheet column I.
+  const pattern=/(?:^|[;|\n])\s*(RS|WH|YL)\s*[:=]\s*(https?:\/\/(?:www\.)?vimeo\.com\/[^;|\s]+)/gi;
+  let match;
+  while((match=pattern.exec(raw))!==null){
+    const item=parseVimeoUrl(match[2],match[1].toUpperCase(),product.code);
+    if(item)result.push(item);
+  }
 
-// Built-in first-product setup, so LJ002221 works even before Sheet column I is changed.
-if(!result.length){
-const saved=VIMEO_PRODUCT_MAP[String(product.code||"").trim().toUpperCase()];
-if(saved){
-Object.entries(saved).forEach(([colour,url])=>{
-const item=parseVimeoUrl(url,colour,product.code);
-if(item)result.push(item);
-});
-}
-}
+  // Built-in first-product setup, so LJ002221 works even before Sheet column I is changed.
+  if(!result.length){
+    const saved=VIMEO_PRODUCT_MAP[String(product.code||"").trim().toUpperCase()];
+    if(saved){
+      Object.entries(saved).forEach(([colour,url])=>{
+        const item=parseVimeoUrl(url,colour,product.code);
+        if(item)result.push(item);
+      });
+    }
+  }
 
-return result;
+  return result;
 }
 
 function getColour(name){
 
-const match=String(name||"")
+  const match=String(name||"")
 
-.toUpperCase()
+    .toUpperCase()
 
-.match(/[-_](YL|WH|RS|PT)(?:[-_.]|$)/);
+    .match(/[-_](YL|WH|RS|PT)(?:[-_.]|$)/);
 
-return match?match[1]:"OTHER";
+  return match?match[1]:"OTHER";
 
 }
 
 function imagesForColour(){
 
-return mediaState.imageGroups[mediaState.colour]||[];
+  return mediaState.imageGroups[mediaState.colour]||[];
 
 }
 
 function videosForColour(){
 
-const matching=
+  const matching=
 
-mediaState.videoGroups[mediaState.colour]||[];
+    mediaState.videoGroups[mediaState.colour]||[];
 
-return matching.length?
+  return matching.length?
 
-matching:
+    matching:
 
-(mediaState.videoGroups.OTHER||[]);
+    (mediaState.videoGroups.OTHER||[]);
 
 }
 
@@ -1770,35 +1770,35 @@ matching:
 
 function renderColours(){
 
-const colours=[...new Set([
+  const colours=[...new Set([
 
-...Object.keys(mediaState.imageGroups),
+    ...Object.keys(mediaState.imageGroups),
 
-...Object.keys(mediaState.videoGroups)
+    ...Object.keys(mediaState.videoGroups)
 
-])];
+  ])];
 
-return colours
+  return colours
 
-.filter(c=>COLOURS[c])
+    .filter(c=>COLOURS[c])
 
-.map(c=>`
+    .map(c=>`
 
-<button
+      <button
 
-class="colour-btn ${mediaState.colour===c?"active":""}"
+        class="colour-btn ${mediaState.colour===c?"active":""}"
 
-data-colour="${c}"
+        data-colour="${c}"
 
->
+      >
 
-<span class="colour-swatch ${COLOURS[c].swatch}"></span>
+        <span class="colour-swatch ${COLOURS[c].swatch}"></span>
 
-${COLOURS[c].label}
+        ${COLOURS[c].label}
 
-</button>
+      </button>
 
-`).join("");
+    `).join("");
 
 }
 
@@ -1806,53 +1806,53 @@ ${COLOURS[c].label}
 
 function renderDetails(){
 
-const p=mediaState.product;
+  const p=mediaState.product;
 
-const fields=[
+  const fields=[
 
-["Product Name",p.name],
+    ["Product Name",p.name],
 
-["Product Code",p.code],
+    ["Product Code",p.code],
 
-["Category",p.category],
+    ["Category",p.category],
 
-["Description",p.description],
+    ["Description",p.description],
 
-["Material",p.material],
+    ["Material",p.material],
 
-["Metal Weight",p.metalWeight],
+    ["Metal Weight",p.metalWeight],
 
-["Diamond Weight",p.diamondWeight],
+    ["Diamond Weight",p.diamondWeight],
 
-["Size",p.size]
+    ["Size",p.size]
 
-];
+  ];
 
-return `
+  return `
 
-<section class="product-details">
+    <section class="product-details">
 
-<h3>Product Details</h3>
+      <h3>Product Details</h3>
 
-<div class="details-grid">
+      <div class="details-grid">
 
-${fields.map(([a,b])=>`
+        ${fields.map(([a,b])=>`
 
-<div class="detail-item">
+          <div class="detail-item">
 
-<strong>${a}</strong>
+            <strong>${a}</strong>
 
-<span>${safe(b)}</span>
+            <span>${safe(b)}</span>
 
-</div>
+          </div>
 
-`).join("")}
+        `).join("")}
 
-</div>
+      </div>
 
-</section>
+    </section>
 
-`;
+  `;
 
 }
 
@@ -1860,112 +1860,112 @@ ${fields.map(([a,b])=>`
 
 function videoHTML(item,index){
 
-// Vimeo background mode hides the play, volume, settings and fullscreen controls.
-if(item && item.vimeoId){
-const privacyHash=item.hash
-? "&h="+encodeURIComponent(item.hash)
-: "";
-const vimeoSrc=
-https://player.vimeo.com/video/+
-encodeURIComponent(item.vimeoId)+
-?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1+
-privacyHash;
+  // Vimeo background mode hides the play, volume, settings and fullscreen controls.
+  if(item && item.vimeoId){
+    const privacyHash=item.hash
+      ? "&h="+encodeURIComponent(item.hash)
+      : "";
+    const vimeoSrc=
+      "https://player.vimeo.com/video/"+
+      encodeURIComponent(item.vimeoId)+
+      "?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"+
+      privacyHash;
 
-return `
-<div class="video-stage vimeo-video-stage">
-<iframe
-src="${safe(vimeoSrc)}"
-title="Luvira Jewels product video ${index+1}"
-loading="eager"
-allow="autoplay; fullscreen; picture-in-picture"
-referrerpolicy="strict-origin-when-cross-origin"
-playsinline
-></iframe>
-</div>
-`;
-}
+    return `
+      <div class="video-stage vimeo-video-stage">
+        <iframe
+          src="${safe(vimeoSrc)}"
+          title="Luvira Jewels product video ${index+1}"
+          loading="eager"
+          allow="autoplay; fullscreen; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          playsinline
+        ></iframe>
+      </div>
+    `;
+  }
 
-const sources=getVideoSources(item);
+  const sources=getVideoSources(item);
 
-if(!sources.length){
+  if(!sources.length){
 
-return `
+    return `
 
-<div class="video-stage">
+      <div class="video-stage">
 
-<div class="video-message">
+        <div class="video-message">
 
-Video unavailable.
+          Video unavailable.
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-`;
+    `;
 
-}
+  }
 
-const posterItem=imagesForColour()[0];
+  const posterItem=imagesForColour()[0];
 
-const posterSources=getImageSources(posterItem);
+  const posterSources=getImageSources(posterItem);
 
-const poster=posterSources[0]||"";
+  const poster=posterSources[0]||"";
 
-return `
+  return `
 
-<div
+    <div
 
-class="video-stage"
+      class="video-stage"
 
-data-sources="${safe(JSON.stringify(sources))}"
+      data-sources="${safe(JSON.stringify(sources))}"
 
->
+    >
 
-<video
+      <video
 
-class="product-video"
+        class="product-video"
 
-autoplay
+        autoplay
 
-muted
+        muted
 
-loop
+        loop
 
-playsinline
+        playsinline
 
-webkit-playsinline
+        webkit-playsinline
 
-disablepictureinpicture
+        disablepictureinpicture
 
-disableremoteplayback
+        disableremoteplayback
 
-preload="none"
+        preload="none"
 
-${poster?`poster="${safe(poster)}"`:""}
+        ${poster?`poster="${safe(poster)}"`:""}
 
-aria-label="Luvira Jewels Product Video ${index+1}"
+        aria-label="Luvira Jewels Product Video ${index+1}"
 
-></video>
+      ></video>
 
-<div class="video-message" hidden>
+      <div class="video-message" hidden>
 
-<span class="video-message-text">
+        <span class="video-message-text">
 
-Video could not load.
+          Video could not load.
 
-</span>
+        </span>
 
-<button class="video-retry">
+        <button class="video-retry">
 
-Retry Video
+          Retry Video
 
-</button>
+        </button>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-`;
+  `;
 
 }
 
@@ -1975,291 +1975,291 @@ const videoPlayers=new WeakMap();
 
 function isVideoVisible(video){
 
-return (
+  return (
 
-video.isConnected &&
+    video.isConnected &&
 
-video.getClientRects().length>0 &&
+    video.getClientRects().length>0 &&
 
-!document.hidden &&
+    !document.hidden &&
 
-document.getElementById("modal").style.display==="block"
+    document.getElementById("modal").style.display==="block"
 
-);
+  );
 
 }
 
 function prepareVideo(video){
 
-if(videoPlayers.has(video)){
+  if(videoPlayers.has(video)){
 
-return videoPlayers.get(video);
+    return videoPlayers.get(video);
 
-}
+  }
 
-const stage=video.parentElement;
+  const stage=video.parentElement;
 
-const message=stage.querySelector(".video-message");
+  const message=stage.querySelector(".video-message");
 
-const messageText=stage.querySelector(".video-message-text");
+  const messageText=stage.querySelector(".video-message-text");
 
-const retryButton=stage.querySelector(".video-retry");
+  const retryButton=stage.querySelector(".video-retry");
 
-let sources=[];
+  let sources=[];
 
-try{
+  try{
 
-sources=JSON.parse(stage.dataset.sources||"[]");
+    sources=JSON.parse(stage.dataset.sources||"[]");
 
-}catch(error){
+  }catch(error){
 
-sources=[];
+    sources=[];
 
-}
+  }
 
-const state={
+  const state={
 
-index:0,
+    index:0,
 
-loaded:false,
+    loaded:false,
 
-failed:false,
+    failed:false,
 
-sources
+    sources
 
-};
+  };
 
-videoPlayers.set(video,state);
+  videoPlayers.set(video,state);
 
-video.controls=false;
+  video.controls=false;
 
-video.removeAttribute("controls");
+  video.removeAttribute("controls");
 
-video.muted=true;
+  video.muted=true;
 
-video.defaultMuted=true;
+  video.defaultMuted=true;
 
-video.autoplay=true;
+  video.autoplay=true;
 
-video.loop=true;
+  video.loop=true;
 
-video.playsInline=true;
+  video.playsInline=true;
 
-video.setAttribute("muted","");
+  video.setAttribute("muted","");
 
-video.setAttribute("autoplay","");
+  video.setAttribute("autoplay","");
 
-video.setAttribute("playsinline","");
+  video.setAttribute("playsinline","");
 
-video.setAttribute("webkit-playsinline","");
+  video.setAttribute("webkit-playsinline","");
 
-function showMessage(text){
+  function showMessage(text){
 
-if(messageText){
+    if(messageText){
 
-messageText.textContent=text;
+      messageText.textContent=text;
 
-}
+    }
 
-if(message){
+    if(message){
 
-message.hidden=false;
+      message.hidden=false;
 
-}
+    }
 
-}
+  }
 
-function playVideo(){
+  function playVideo(){
 
-if(!isVideoVisible(video))return;
+    if(!isVideoVisible(video))return;
 
-if(state.failed)return;
+    if(state.failed)return;
 
-video.muted=true;
+    video.muted=true;
 
-const promise=video.play();
+    const promise=video.play();
 
-if(promise&&typeof promise.catch==="function"){
+    if(promise&&typeof promise.catch==="function"){
 
-promise.catch(error=>{
+      promise.catch(error=>{
 
-if(!video.isConnected)return;
+        if(!video.isConnected)return;
 
-if(error.name==="NotAllowedError"){
+        if(error.name==="NotAllowedError"){
 
-showMessage("Tap to start video.");
+          showMessage("Tap to start video.");
 
-if(retryButton){
+          if(retryButton){
 
-retryButton.textContent="Start Video";
+            retryButton.textContent="Start Video";
 
-}
+          }
 
-}
+        }
 
-});
+      });
 
-}
+    }
 
-}
+  }
 
-function loadSource(){
+  function loadSource(){
 
-if(!video.isConnected)return;
+    if(!video.isConnected)return;
 
-if(!isVideoVisible(video)){
+    if(!isVideoVisible(video)){
 
-state.loaded=false;
+      state.loaded=false;
 
-return;
+      return;
 
-}
+    }
 
-if(state.index>=state.sources.length){
+    if(state.index>=state.sources.length){
 
-state.failed=true;
+      state.failed=true;
 
-showMessage(
+      showMessage(
 
-Video unavailable. Please check the video streaming URL.
+        "Video unavailable. Please check the video streaming URL."
 
-);
+      );
 
-if(retryButton){
+      if(retryButton){
 
-retryButton.textContent="Retry Video";
+        retryButton.textContent="Retry Video";
 
-}
+      }
 
-return;
+      return;
 
-}
+    }
 
-state.loaded=true;
+    state.loaded=true;
 
-state.failed=false;
+    state.failed=false;
 
-video.muted=true;
+    video.muted=true;
 
-video.preload="auto";
+    video.preload="auto";
 
-if(message){
+    if(message){
 
-message.hidden=true;
+      message.hidden=true;
 
-}
+    }
 
-video.src=state.sources[state.index];
+    video.src=state.sources[state.index];
 
-video.load();
+    video.load();
 
-playVideo();
+    playVideo();
 
-}
+  }
 
-video.addEventListener("loadeddata",()=>{
+  video.addEventListener("loadeddata",()=>{
 
-if(message){
+    if(message){
 
-message.hidden=true;
+      message.hidden=true;
 
-}
+    }
 
-playVideo();
+    playVideo();
 
-});
+  });
 
-video.addEventListener("canplay",playVideo);
+  video.addEventListener("canplay",playVideo);
 
-video.addEventListener("playing",()=>{
+  video.addEventListener("playing",()=>{
 
-if(message){
+    if(message){
 
-message.hidden=true;
+      message.hidden=true;
 
-}
+    }
 
-});
+  });
 
-video.addEventListener("error",()=>{
+  video.addEventListener("error",()=>{
 
-if(!video.isConnected)return;
+    if(!video.isConnected)return;
 
-state.index++;
+    state.index++;
 
-state.loaded=false;
+    state.loaded=false;
 
-loadSource();
+    loadSource();
 
-});
+  });
 
-video.addEventListener("ended",()=>{
+  video.addEventListener("ended",()=>{
 
-if(isVideoVisible(video)){
+    if(isVideoVisible(video)){
 
-video.currentTime=0;
+      video.currentTime=0;
 
-playVideo();
+      playVideo();
 
-}
+    }
 
-});
+  });
 
-if(retryButton){
+  if(retryButton){
 
-retryButton.onclick=()=>{
+    retryButton.onclick=()=>{
 
-if(message){
+      if(message){
 
-message.hidden=true;
+        message.hidden=true;
 
-}
+      }
 
-if(state.failed){
+      if(state.failed){
 
-state.index=0;
+        state.index=0;
 
-state.failed=false;
+        state.failed=false;
 
-state.loaded=false;
+        state.loaded=false;
 
-loadSource();
+        loadSource();
 
-}else{
+      }else{
 
-playVideo();
+        playVideo();
 
-}
+      }
 
-};
+    };
 
-}
+  }
 
-state.start=()=>{
+  state.start=()=>{
 
-if(!isVideoVisible(video)){
+    if(!isVideoVisible(video)){
 
-video.pause();
+      video.pause();
 
-return;
+      return;
 
-}
+    }
 
-if(state.failed)return;
+    if(state.failed)return;
 
-if(!state.loaded){
+    if(!state.loaded){
 
-loadSource();
+      loadSource();
 
-}else{
+    }else{
 
-playVideo();
+      playVideo();
 
-}
+    }
 
-};
+  };
 
-return state;
+  return state;
 
 }
 
@@ -2267,23 +2267,23 @@ return state;
 
 function startVisibleVideos(root){
 
-if(!root)return;
+  if(!root)return;
 
-root.querySelectorAll("video.product-video").forEach(video=>{
+  root.querySelectorAll("video.product-video").forEach(video=>{
 
-if(!isVideoVisible(video)){
+    if(!isVideoVisible(video)){
 
-video.pause();
+      video.pause();
 
-return;
+      return;
 
-}
+    }
 
-const player=prepareVideo(video);
+    const player=prepareVideo(video);
 
-player.start();
+    player.start();
 
-});
+  });
 
 }
 
@@ -2291,17 +2291,17 @@ player.start();
 
 function stopVideos(root){
 
-if(!root)return;
+  if(!root)return;
 
-root.querySelectorAll("video").forEach(video=>{
+  root.querySelectorAll("video").forEach(video=>{
 
-video.pause();
+    video.pause();
 
-video.removeAttribute("src");
+    video.removeAttribute("src");
 
-video.load();
+    video.load();
 
-});
+  });
 
 }
 
@@ -2309,69 +2309,69 @@ video.load();
 
 function renderMobileImages(){
 
-const images=imagesForColour();
+  const images=imagesForColour();
 
-const i=mediaState.imageIndex;
+  const i=mediaState.imageIndex;
 
-return `
+  return `
 
-<div class="mobile-image-stage">
+    <div class="mobile-image-stage">
 
-${images[i]?
+      ${images[i]?
 
-<img id="mobile-main-image" alt="Product image">'
+        '<img id="mobile-main-image" alt="Product image">'
 
-:
+        :
 
-<div class="mobile-empty">No images available.</div>'
+        '<div class="mobile-empty">No images available.</div>'
 
-}
+      }
 
-${images.length>1?`
+      ${images.length>1?`
 
-<button
+        <button
 
-class="mobile-arrow prev"
+          class="mobile-arrow prev"
 
-id="prev-image"
+          id="prev-image"
 
-aria-label="Previous image"
+          aria-label="Previous image"
 
->‹</button>
+        >‹</button>
 
-<button
+        <button
 
-class="mobile-arrow next"
+          class="mobile-arrow next"
 
-id="next-image"
+          id="next-image"
 
-aria-label="Next image"
+          aria-label="Next image"
 
->›</button>
+        >›</button>
 
-`:""}
+      `:""}
 
-</div>
+    </div>
 
-<div class="mobile-dots">
+    <div class="mobile-dots">
 
-${images.map((x,n)=>`
+      ${images.map((x,n)=>`
 
-<button
+        <button
 
-class="mobile-dot ${n===i?"active":""}"
+          class="mobile-dot ${n===i?"active":""}"
 
-data-dot="${n}"
+          data-dot="${n}"
 
-aria-label="Image ${n+1}"
+          aria-label="Image ${n+1}"
 
-></button>
+        ></button>
 
-`).join("")}
+      `).join("")}
 
-</div>
+    </div>
 
-`;
+  `;
 
 }
 
@@ -2379,19 +2379,19 @@ aria-label="Image ${n+1}"
 
 function renderMobileVideos(){
 
-const videos=videosForColour();
+  const videos=videosForColour();
 
-if(!videos.length){
+  if(!videos.length){
 
-return '<div class="mobile-empty">No videos available for this colour.</div>';
+    return '<div class="mobile-empty">No videos available for this colour.</div>';
 
-}
+  }
 
-return videos.map(
+  return videos.map(
 
-(v,i)=>videoHTML(v,i)
+    (v,i)=>videoHTML(v,i)
 
-).join("");
+  ).join("");
 
 }
 
@@ -2399,53 +2399,53 @@ return videos.map(
 
 function getDesktopItems(){
 
-const images=imagesForColour();
+  const images=imagesForColour();
 
-const videos=videosForColour();
+  const videos=videosForColour();
 
-const items=[];
+  const items=[];
 
-if(images.length){
+  if(images.length){
 
-items.push({
+    items.push({
 
-type:"image",
+      type:"image",
 
-item:images[0],
+      item:images[0],
 
-imageIndex:0
+      imageIndex:0
 
-});
+    });
 
-}
+  }
 
-videos.forEach(v=>{
+  videos.forEach(v=>{
 
-items.push({
+    items.push({
 
-type:"video",
+      type:"video",
 
-item:v
+      item:v
 
-});
+    });
 
-});
+  });
 
-images.slice(1).forEach((v,index)=>{
+  images.slice(1).forEach((v,index)=>{
 
-items.push({
+    items.push({
 
-type:"image",
+      type:"image",
 
-item:v,
+      item:v,
 
-imageIndex:index+1
+      imageIndex:index+1
 
-});
+    });
 
-});
+  });
 
-return items;
+  return items;
 
 }
 
@@ -2453,49 +2453,49 @@ return items;
 
 function renderDesktop(){
 
-const items=getDesktopItems();
+  const items=getDesktopItems();
 
-if(!items.length){
+  if(!items.length){
 
-return '<div class="mobile-empty">No product media available.</div>';
+    return '<div class="mobile-empty">No product media available.</div>';
 
-}
+  }
 
-return items.map((m,i)=>{
+  return items.map((m,i)=>{
 
-if(m.type==="image"){
+    if(m.type==="image"){
 
-return `
+      return `
 
-<div class="desktop-media">
+        <div class="desktop-media">
 
-<img
+          <img
 
-data-desktop="${i}"
+            data-desktop="${i}"
 
-class="zoomable-image"
+            class="zoomable-image"
 
-alt="Product image"
+            alt="Product image"
 
->
+          >
 
-</div>
+        </div>
 
-`;
+      `;
 
-}
+    }
 
-return `
+    return `
 
-<div class="desktop-media">
+      <div class="desktop-media">
 
-${videoHTML(m.item,i)}
+        ${videoHTML(m.item,i)}
 
-</div>
+      </div>
 
-`;
+    `;
 
-}).join("");
+  }).join("");
 
 }
 
@@ -2503,163 +2503,163 @@ ${videoHTML(m.item,i)}
 
 function renderGallery(){
 
-const p=mediaState.product;
+  const p=mediaState.product;
 
-const content=document.getElementById("modal-content");
+  const content=document.getElementById("modal-content");
 
-content.innerHTML="";
+  content.innerHTML="";
 
-content.innerHTML=`
+  content.innerHTML=`
 
-<div class="product-layout">
+    <div class="product-layout">
 
-<div class="desktop-gallery">
+      <div class="desktop-gallery">
 
-${renderDesktop()}
+        ${renderDesktop()}
 
-</div>
+      </div>
 
-<div class="mobile-gallery">
+      <div class="mobile-gallery">
 
-<div
+        <div
 
-id="mobile-image-view"
+          id="mobile-image-view"
 
-style="${mediaState.tab==="images"?"":"display:none"}"
+          style="${mediaState.tab==="images"?"":"display:none"}"
 
->
+        >
 
-${renderMobileImages()}
+          ${renderMobileImages()}
 
-</div>
+        </div>
 
-<div class="mobile-tabs">
+        <div class="mobile-tabs">
 
-<button
+          <button
 
-class="mobile-tab ${mediaState.tab==="images"?"active":""}"
+            class="mobile-tab ${mediaState.tab==="images"?"active":""}"
 
-data-tab="images"
+            data-tab="images"
 
->
+          >
 
-▧ &nbsp; Images
+            ▧ &nbsp; Images
 
-</button>
+          </button>
 
-<button
+          <button
 
-class="mobile-tab ${mediaState.tab==="videos"?"active":""}"
+            class="mobile-tab ${mediaState.tab==="videos"?"active":""}"
 
-data-tab="videos"
+            data-tab="videos"
 
->
+          >
 
-▷ &nbsp; Videos
+            ▷ &nbsp; Videos
 
-</button>
+          </button>
 
-</div>
+        </div>
 
-<div
+        <div
 
-class="mobile-tab-content"
+          class="mobile-tab-content"
 
-id="mobile-video-view"
+          id="mobile-video-view"
 
->
+        >
 
-${mediaState.tab==="videos"?renderMobileVideos():""}
+          ${mediaState.tab==="videos"?renderMobileVideos():""}
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-<aside class="product-sidebar">
+      <aside class="product-sidebar">
 
-<div class="gallery-kicker">
+        <div class="gallery-kicker">
 
-Luvira Jewels
+          Luvira Jewels
 
-</div>
+        </div>
 
-<h2>${safe(p.name)}</h2>
+        <h2>${safe(p.name)}</h2>
 
-<p>
+        <p>
 
-<strong>Product Code:</strong>
+          <strong>Product Code:</strong>
 
-${safe(p.code)}
+          ${safe(p.code)}
 
-</p>
+        </p>
 
-<p>
+        <p>
 
-<strong>Category:</strong>
+          <strong>Category:</strong>
 
-${safe(p.category)}
+          ${safe(p.category)}
 
-</p>
+        </p>
 
-<p>${safe(p.description)}</p>
+        <p>${safe(p.description)}</p>
 
-<div class="colour-title">
+        <div class="colour-title">
 
-Choose your colour
+          Choose your colour
 
-</div>
+        </div>
 
-<div class="colour-options">
+        <div class="colour-options">
 
-${renderColours()}
+          ${renderColours()}
 
-</div>
+        </div>
 
-<p class="gallery-note">
+        <p class="gallery-note">
 
-Select a colour to view matching images and videos.
+          Select a colour to view matching images and videos.
 
-</p>
+        </p>
 
-${renderDetails()}
+        ${renderDetails()}
 
-</aside>
+      </aside>
 
-</div>
+    </div>
 
-`;
+  `;
 
-const items=getDesktopItems();
+  const items=getDesktopItems();
 
-items.forEach((m,i)=>{
+  items.forEach((m,i)=>{
 
-if(m.type!=="image")return;
+    if(m.type!=="image")return;
 
-const img=content.querySelector(
+    const img=content.querySelector(
 
-`[data-desktop="${i}"]`
+      `[data-desktop="${i}"]`
 
-);
+    );
 
-if(img){
+    if(img){
 
-loadDriveImage(img,m.item);
+      loadDriveImage(img,m.item);
 
-bindZoom(img,m.imageIndex);
+      bindZoom(img,m.imageIndex);
 
-}
+    }
 
-});
+  });
 
-loadMobileImage();
+  loadMobileImage();
 
-bindGalleryEvents();
+  bindGalleryEvents();
 
-requestAnimationFrame(()=>{
+  requestAnimationFrame(()=>{
 
-startVisibleVideos(content);
+    startVisibleVideos(content);
 
-});
+  });
 
 }
 
@@ -2667,17 +2667,17 @@ startVisibleVideos(content);
 
 function loadMobileImage(){
 
-const img=document.getElementById("mobile-main-image");
+  const img=document.getElementById("mobile-main-image");
 
-const item=imagesForColour()[mediaState.imageIndex];
+  const item=imagesForColour()[mediaState.imageIndex];
 
-if(img&&item){
+  if(img&&item){
 
-loadDriveImage(img,item);
+    loadDriveImage(img,item);
 
-bindZoom(img,mediaState.imageIndex);
+    bindZoom(img,mediaState.imageIndex);
 
-}
+  }
 
 }
 
@@ -2685,105 +2685,105 @@ bindZoom(img,mediaState.imageIndex);
 
 function renderImageView(){
 
-const box=document.getElementById("mobile-image-view");
+  const box=document.getElementById("mobile-image-view");
 
-if(!box)return;
+  if(!box)return;
 
-box.innerHTML=renderMobileImages();
+  box.innerHTML=renderMobileImages();
 
-loadMobileImage();
+  loadMobileImage();
 
-bindImageEvents();
+  bindImageEvents();
 
 }
 
 function bindImageEvents(){
 
-const prev=document.getElementById("prev-image");
+  const prev=document.getElementById("prev-image");
 
-const next=document.getElementById("next-image");
+  const next=document.getElementById("next-image");
 
-const images=imagesForColour();
+  const images=imagesForColour();
 
-if(prev){
+  if(prev){
 
-prev.onclick=()=>{
+    prev.onclick=()=>{
 
-mediaState.imageIndex=
+      mediaState.imageIndex=
 
-(mediaState.imageIndex-1+images.length)%images.length;
+        (mediaState.imageIndex-1+images.length)%images.length;
 
-renderImageView();
+      renderImageView();
 
-};
+    };
 
-}
+  }
 
-if(next){
+  if(next){
 
-next.onclick=()=>{
+    next.onclick=()=>{
 
-mediaState.imageIndex=
+      mediaState.imageIndex=
 
-(mediaState.imageIndex+1)%images.length;
+        (mediaState.imageIndex+1)%images.length;
 
-renderImageView();
+      renderImageView();
 
-};
+    };
 
-}
+  }
 
-document.querySelectorAll("[data-dot]").forEach(btn=>{
+  document.querySelectorAll("[data-dot]").forEach(btn=>{
 
-btn.onclick=()=>{
+    btn.onclick=()=>{
 
-mediaState.imageIndex=Number(btn.dataset.dot);
+      mediaState.imageIndex=Number(btn.dataset.dot);
 
-renderImageView();
+      renderImageView();
 
-};
+    };
 
-});
+  });
 
-const stage=document.querySelector(".mobile-image-stage");
+  const stage=document.querySelector(".mobile-image-stage");
 
-if(stage){
+  if(stage){
 
-let startX=0;
+    let startX=0;
 
-stage.ontouchstart=e=>{
+    stage.ontouchstart=e=>{
 
-startX=e.changedTouches[0].clientX;
+      startX=e.changedTouches[0].clientX;
 
-};
+    };
 
-stage.ontouchend=e=>{
+    stage.ontouchend=e=>{
 
-const endX=e.changedTouches[0].clientX;
+      const endX=e.changedTouches[0].clientX;
 
-const difference=startX-endX;
+      const difference=startX-endX;
 
-if(Math.abs(difference)<50||images.length<2)return;
+      if(Math.abs(difference)<50||images.length<2)return;
 
-if(difference>0){
+      if(difference>0){
 
-mediaState.imageIndex=
+        mediaState.imageIndex=
 
-(mediaState.imageIndex+1)%images.length;
+          (mediaState.imageIndex+1)%images.length;
 
-}else{
+      }else{
 
-mediaState.imageIndex=
+        mediaState.imageIndex=
 
-(mediaState.imageIndex-1+images.length)%images.length;
+          (mediaState.imageIndex-1+images.length)%images.length;
 
-}
+      }
 
-renderImageView();
+      renderImageView();
 
-};
+    };
 
-}
+  }
 
 }
 
@@ -2791,79 +2791,79 @@ renderImageView();
 
 function bindGalleryEvents(){
 
-bindImageEvents();
+  bindImageEvents();
 
-document.querySelectorAll("[data-tab]").forEach(btn=>{
+  document.querySelectorAll("[data-tab]").forEach(btn=>{
 
-btn.onclick=()=>{
+    btn.onclick=()=>{
 
-mediaState.tab=btn.dataset.tab;
+      mediaState.tab=btn.dataset.tab;
 
-document.querySelectorAll("[data-tab]").forEach(b=>{
+      document.querySelectorAll("[data-tab]").forEach(b=>{
 
-b.classList.toggle(
+        b.classList.toggle(
 
-active,
+          "active",
 
-b.dataset.tab===mediaState.tab
+          b.dataset.tab===mediaState.tab
 
-);
+        );
 
-});
+      });
 
-const imageView=
+      const imageView=
 
-document.getElementById("mobile-image-view");
+        document.getElementById("mobile-image-view");
 
-const videoView=
+      const videoView=
 
-document.getElementById("mobile-video-view");
+        document.getElementById("mobile-video-view");
 
-if(mediaState.tab==="images"){
+      if(mediaState.tab==="images"){
 
-imageView.style.display="block";
+        imageView.style.display="block";
 
-videoView.innerHTML="";
+        videoView.innerHTML="";
 
-}else{
+      }else{
 
-imageView.style.display="none";
+        imageView.style.display="none";
 
-videoView.innerHTML=renderMobileVideos();
+        videoView.innerHTML=renderMobileVideos();
 
-startVisibleVideos(videoView);
+        startVisibleVideos(videoView);
 
-}
+      }
 
-};
+    };
 
-});
+  });
 
-document.querySelectorAll("[data-colour]").forEach(btn=>{
+  document.querySelectorAll("[data-colour]").forEach(btn=>{
 
-btn.onclick=()=>{
+    btn.onclick=()=>{
 
-mediaState.colour=btn.dataset.colour;
+      mediaState.colour=btn.dataset.colour;
 
-mediaState.imageIndex=0;
+      mediaState.imageIndex=0;
 
-if(
+      if(
 
-mediaState.tab==="videos"&&
+        mediaState.tab==="videos"&&
 
-!videosForColour().length
+        !videosForColour().length
 
-){
+      ){
 
-mediaState.tab="images";
+        mediaState.tab="images";
 
-}
+      }
 
-renderGallery();
+      renderGallery();
 
-};
+    };
 
-});
+  });
 
 }
 
@@ -2871,167 +2871,167 @@ renderGallery();
 
 async function openProduct(p){
 
-const requestId=++productRequest;
+  const requestId=++productRequest;
 
-const modal=document.getElementById("modal");
+  const modal=document.getElementById("modal");
 
-const content=document.getElementById("modal-content");
+  const content=document.getElementById("modal-content");
 
-mediaState={
+  mediaState={
 
-product:p,
+    product:p,
 
-images:[],
+    images:[],
 
-videos:[],
+    videos:[],
 
-imageGroups:{},
+    imageGroups:{},
 
-videoGroups:{},
+    videoGroups:{},
 
-colour:"",
+    colour:"",
 
-imageIndex:0,
+    imageIndex:0,
 
-tab:"images"
+    tab:"images"
 
-};
+  };
 
-modal.style.display="block";
+  modal.style.display="block";
 
-document.body.style.overflow="hidden";
+  document.body.style.overflow="hidden";
 
-document.querySelector(".modal-box").scrollTop=0;
+  document.querySelector(".modal-box").scrollTop=0;
 
-content.innerHTML=`
+  content.innerHTML=`
 
-<div class="status">
+    <div class="status">
 
-Loading product images and videos...
+      Loading product images and videos...
 
-</div>
+    </div>
 
-`;
+  `;
 
-try{
+  try{
 
-const vimeoVideos=getVimeoVideosForProduct(p);
+    const vimeoVideos=getVimeoVideosForProduct(p);
 
-const mediaTasks=[
-fetchProductMedia(p.imageFolder)
-];
+    const mediaTasks=[
+      fetchProductMedia(p.imageFolder)
+    ];
 
-// Do not send a Vimeo URL string to the Google Drive Apps Script.
-if(!vimeoVideos.length){
-mediaTasks.push(fetchProductMedia(p.videoFolder));
-}
+    // Do not send a Vimeo URL string to the Google Drive Apps Script.
+    if(!vimeoVideos.length){
+      mediaTasks.push(fetchProductMedia(p.videoFolder));
+    }
 
-const results=await Promise.allSettled(mediaTasks);
+    const results=await Promise.allSettled(mediaTasks);
 
-if(requestId!==productRequest)return;
+    if(requestId!==productRequest)return;
 
-const imageData=
-results[0].status==="fulfilled"?
-results[0].value:
-{images:[]};
+    const imageData=
+      results[0].status==="fulfilled"?
+      results[0].value:
+      {images:[]};
 
-const driveVideoData=
-!vimeoVideos.length && results[1] && results[1].status==="fulfilled"?
-results[1].value:
-{videos:[]};
+    const driveVideoData=
+      !vimeoVideos.length && results[1] && results[1].status==="fulfilled"?
+      results[1].value:
+      {videos:[]};
 
-mediaState.images=imageData.images||[];
-mediaState.videos=vimeoVideos.length?vimeoVideos:(driveVideoData.videos||[]);
+    mediaState.images=imageData.images||[];
+    mediaState.videos=vimeoVideos.length?vimeoVideos:(driveVideoData.videos||[]);
 
-/* GROUP IMAGES */
+    /* GROUP IMAGES */
 
-mediaState.images.forEach(item=>{
+    mediaState.images.forEach(item=>{
 
-const c=getColour(item.name);
+      const c=getColour(item.name);
 
-if(!mediaState.imageGroups[c]){
+      if(!mediaState.imageGroups[c]){
 
-mediaState.imageGroups[c]=[];
+        mediaState.imageGroups[c]=[];
 
-}
+      }
 
-mediaState.imageGroups[c].push(item);
+      mediaState.imageGroups[c].push(item);
 
-});
+    });
 
-/* GROUP VIDEOS */
+    /* GROUP VIDEOS */
 
-mediaState.videos.forEach(item=>{
+    mediaState.videos.forEach(item=>{
 
-const c=getColour(item.name);
+      const c=getColour(item.name);
 
-if(!mediaState.videoGroups[c]){
+      if(!mediaState.videoGroups[c]){
 
-mediaState.videoGroups[c]=[];
+        mediaState.videoGroups[c]=[];
 
-}
+      }
 
-mediaState.videoGroups[c].push(item);
+      mediaState.videoGroups[c].push(item);
 
-});
+    });
 
-const available=[...new Set([
+    const available=[...new Set([
 
-...Object.keys(mediaState.imageGroups),
+      ...Object.keys(mediaState.imageGroups),
 
-...Object.keys(mediaState.videoGroups)
+      ...Object.keys(mediaState.videoGroups)
 
-])].filter(c=>c!=="OTHER");
+    ])].filter(c=>c!=="OTHER");
 
-mediaState.colour=
+    mediaState.colour=
 
-["YL","WH","RS","PT"].find(c=>available.includes(c))
+      ["YL","WH","RS","PT"].find(c=>available.includes(c))
 
-||available[0]
+      ||available[0]
 
-||"OTHER";
+      ||"OTHER";
 
-if(
+    if(
 
-!imagesForColour().length &&
+      !imagesForColour().length &&
 
-mediaState.imageGroups.OTHER
+      mediaState.imageGroups.OTHER
 
-){
+    ){
 
-mediaState.imageGroups[mediaState.colour]=
+      mediaState.imageGroups[mediaState.colour]=
 
-mediaState.imageGroups.OTHER;
+        mediaState.imageGroups.OTHER;
 
-}
+    }
 
-/* MOBILE AUTO VIDEO TAB */
+    /* MOBILE AUTO VIDEO TAB */
 
-if(
+    if(
 
-window.matchMedia("(max-width:700px)").matches &&
+      window.matchMedia("(max-width:700px)").matches &&
 
-videosForColour().length
+      videosForColour().length
 
-){
+    ){
 
-mediaState.tab="videos";
+      mediaState.tab="videos";
 
-}
+    }
 
-renderGallery();
+    renderGallery();
 
-}catch(error){
+  }catch(error){
 
-if(requestId!==productRequest)return;
+    if(requestId!==productRequest)return;
 
-console.error(error);
+    console.error(error);
 
-content.innerHTML=
+    content.innerHTML=
 
-<div class="status">Unable to load product media. Please try again.</div>';
+      '<div class="status">Unable to load product media. Please try again.</div>';
 
-}
+  }
 
 }
 
@@ -3043,37 +3043,37 @@ let zoomTrigger=null;
 
 function bindZoom(img,index){
 
-img.classList.add("zoomable-image");
+  img.classList.add("zoomable-image");
 
-img.tabIndex=0;
+  img.tabIndex=0;
 
-img.setAttribute("role","button");
+  img.setAttribute("role","button");
 
-img.setAttribute(
+  img.setAttribute(
 
-aria-label,
+    "aria-label",
 
-Enlarge product image
+    "Enlarge product image"
 
-);
+  );
 
-img.onclick=()=>{
+  img.onclick=()=>{
 
-openImageLightbox(index,img);
+    openImageLightbox(index,img);
 
-};
+  };
 
-img.onkeydown=e=>{
+  img.onkeydown=e=>{
 
-if(e.key==="Enter"||e.key===" "){
+    if(e.key==="Enter"||e.key===" "){
 
-e.preventDefault();
+      e.preventDefault();
 
-openImageLightbox(index,img);
+      openImageLightbox(index,img);
 
-}
+    }
 
-};
+  };
 
 }
 
@@ -3081,53 +3081,53 @@ openImageLightbox(index,img);
 
 function showLightboxImage(index){
 
-const images=imagesForColour();
+  const images=imagesForColour();
 
-if(!images.length)return;
+  if(!images.length)return;
 
-lightboxIndex=
+  lightboxIndex=
 
-(index+images.length)%images.length;
+    (index+images.length)%images.length;
 
-const item=images[lightboxIndex];
+  const item=images[lightboxIndex];
 
-const img=document.getElementById("lightboxImage");
+  const img=document.getElementById("lightboxImage");
 
-const caption=
+  const caption=
 
-document.getElementById("lightboxCaption");
+    document.getElementById("lightboxCaption");
 
-caption.textContent=
+  caption.textContent=
 
-(lightboxIndex+1)+" / "+images.length;
+    (lightboxIndex+1)+" / "+images.length;
 
-img.onerror=null;
+  img.onerror=null;
 
-img.removeAttribute("src");
+  img.removeAttribute("src");
 
-loadDriveImage(
+  loadDriveImage(
 
-img,
+    img,
 
-item,
+    item,
 
-()=>{
+    ()=>{
 
-caption.textContent="Image could not load.";
+      caption.textContent="Image could not load.";
 
-},
+    },
 
-2400
+    2400
 
-);
+  );
 
-document.getElementById("lightboxPrev").hidden=
+  document.getElementById("lightboxPrev").hidden=
 
-images.length<2;
+    images.length<2;
 
-document.getElementById("lightboxNext").hidden=
+  document.getElementById("lightboxNext").hidden=
 
-images.length<2;
+    images.length<2;
 
 }
 
@@ -3135,17 +3135,17 @@ images.length<2;
 
 function openImageLightbox(index,trigger){
 
-if(!imagesForColour().length)return;
+  if(!imagesForColour().length)return;
 
-zoomTrigger=trigger;
+  zoomTrigger=trigger;
 
-document.getElementById("imageLightbox")
+  document.getElementById("imageLightbox")
 
-.classList.add("active");
+    .classList.add("active");
 
-showLightboxImage(index);
+  showLightboxImage(index);
 
-document.getElementById("lightboxClose").focus();
+  document.getElementById("lightboxClose").focus();
 
 }
 
@@ -3153,23 +3153,23 @@ document.getElementById("lightboxClose").focus();
 
 function closeImageLightbox(){
 
-document.getElementById("imageLightbox")
+  document.getElementById("imageLightbox")
 
-.classList.remove("active");
+    .classList.remove("active");
 
-const img=document.getElementById("lightboxImage");
+  const img=document.getElementById("lightboxImage");
 
-img.onerror=null;
+  img.onerror=null;
 
-img.removeAttribute("src");
+  img.removeAttribute("src");
 
-if(zoomTrigger&&zoomTrigger.isConnected){
+  if(zoomTrigger&&zoomTrigger.isConnected){
 
-zoomTrigger.focus();
+    zoomTrigger.focus();
 
-}
+  }
 
-zoomTrigger=null;
+  zoomTrigger=null;
 
 }
 
@@ -3177,27 +3177,27 @@ zoomTrigger=null;
 
 document.getElementById("lightboxClose").onclick=
 
-closeImageLightbox;
+  closeImageLightbox;
 
 document.getElementById("lightboxPrev").onclick=()=>{
 
-showLightboxImage(lightboxIndex-1);
+  showLightboxImage(lightboxIndex-1);
 
 };
 
 document.getElementById("lightboxNext").onclick=()=>{
 
-showLightboxImage(lightboxIndex+1);
+  showLightboxImage(lightboxIndex+1);
 
 };
 
 document.getElementById("imageLightbox").onclick=e=>{
 
-if(e.target.id==="imageLightbox"){
+  if(e.target.id==="imageLightbox"){
 
-closeImageLightbox();
+    closeImageLightbox();
 
-}
+  }
 
 };
 
@@ -3205,23 +3205,23 @@ closeImageLightbox();
 
 document.querySelectorAll(".cat-btn").forEach(btn=>{
 
-btn.onclick=()=>{
+  btn.onclick=()=>{
 
-document.querySelectorAll(".cat-btn").forEach(b=>{
+    document.querySelectorAll(".cat-btn").forEach(b=>{
 
-b.classList.remove("active");
+      b.classList.remove("active");
 
-});
+    });
 
-btn.classList.add("active");
+    btn.classList.add("active");
 
-currentCategory=btn.dataset.cat;
+    currentCategory=btn.dataset.cat;
 
-currentPage=1;
+    currentPage=1;
 
-renderProducts();
+    renderProducts();
 
-};
+  };
 
 });
 
@@ -3229,9 +3229,9 @@ renderProducts();
 
 document.getElementById("search").oninput=()=>{
 
-currentPage=1;
+  currentPage=1;
 
-renderProducts();
+  renderProducts();
 
 };
 
@@ -3239,37 +3239,37 @@ renderProducts();
 
 document.getElementById("prev").onclick=()=>{
 
-if(currentPage>1){
+  if(currentPage>1){
 
-currentPage--;
+    currentPage--;
 
-renderProducts();
+    renderProducts();
 
-window.scrollTo({
+    window.scrollTo({
 
-top:0,
+      top:0,
 
-behavior:"smooth"
+      behavior:"smooth"
 
-});
+    });
 
-}
+  }
 
 };
 
 document.getElementById("next").onclick=()=>{
 
-currentPage++;
+  currentPage++;
 
-renderProducts();
+  renderProducts();
 
-window.scrollTo({
+  window.scrollTo({
 
-top:0,
+    top:0,
 
-behavior:"smooth"
+    behavior:"smooth"
 
-});
+  });
 
 };
 
@@ -3277,31 +3277,31 @@ behavior:"smooth"
 
 function closeModal(){
 
-closeImageLightbox();
+  closeImageLightbox();
 
-#ERROR!
+  ++productRequest;
 
-const modal=document.getElementById("modal");
+  const modal=document.getElementById("modal");
 
-const content=document.getElementById("modal-content");
+  const content=document.getElementById("modal-content");
 
-modal.style.display="none";
+  modal.style.display="none";
 
-const oldVideos=[...content.querySelectorAll("video")];
+  const oldVideos=[...content.querySelectorAll("video")];
 
-content.innerHTML="";
+  content.innerHTML="";
 
-oldVideos.forEach(video=>{
+  oldVideos.forEach(video=>{
 
-video.pause();
+    video.pause();
 
-video.removeAttribute("src");
+    video.removeAttribute("src");
 
-video.load();
+    video.load();
 
-});
+  });
 
-document.body.style.overflow="";
+  document.body.style.overflow="";
 
 }
 
@@ -3309,11 +3309,11 @@ document.getElementById("close").onclick=closeModal;
 
 document.getElementById("modal").onclick=e=>{
 
-if(e.target.id==="modal"){
+  if(e.target.id==="modal"){
 
-closeModal();
+    closeModal();
 
-}
+  }
 
 };
 
@@ -3321,41 +3321,41 @@ closeModal();
 
 document.addEventListener("keydown",e=>{
 
-const lightboxOpen=
+  const lightboxOpen=
 
-document.getElementById("imageLightbox")
+    document.getElementById("imageLightbox")
 
-.classList.contains("active");
+    .classList.contains("active");
 
-if(lightboxOpen){
+  if(lightboxOpen){
 
-if(e.key==="Escape"){
+    if(e.key==="Escape"){
 
-closeImageLightbox();
+      closeImageLightbox();
 
-}
+    }
 
-if(e.key==="ArrowRight"){
+    if(e.key==="ArrowRight"){
 
-showLightboxImage(lightboxIndex+1);
+      showLightboxImage(lightboxIndex+1);
 
-}
+    }
 
-if(e.key==="ArrowLeft"){
+    if(e.key==="ArrowLeft"){
 
-showLightboxImage(lightboxIndex-1);
+      showLightboxImage(lightboxIndex-1);
 
-}
+    }
 
-return;
+    return;
 
-}
+  }
 
-if(e.key==="Escape"){
+  if(e.key==="Escape"){
 
-closeModal();
+    closeModal();
 
-}
+  }
 
 });
 
@@ -3363,11 +3363,11 @@ closeModal();
 
 window.addEventListener("resize",()=>{
 
-startVisibleVideos(
+  startVisibleVideos(
 
-document.getElementById("modal-content")
+    document.getElementById("modal-content")
 
-);
+  );
 
 });
 
@@ -3375,11 +3375,11 @@ document.getElementById("modal-content")
 
 document.addEventListener("visibilitychange",()=>{
 
-startVisibleVideos(
+  startVisibleVideos(
 
-document.getElementById("modal-content")
+    document.getElementById("modal-content")
 
-);
+  );
 
 });
 
