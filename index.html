@@ -1476,6 +1476,24 @@ html{scroll-behavior:smooth}
   }
 }
 
+
+/* HEADER SEARCH: open and search from the top navigation */
+.header-search-wrap{display:flex;align-items:center;gap:10px;position:relative}
+.header-search-input{
+  display:none;width:clamp(180px,25vw,320px);height:42px;padding:0 14px;
+  border:1px solid #cbd9e8;border-radius:3px;background:#fff;color:#1B356F;
+  font:14px Arial,sans-serif;outline:none
+}
+.header-search-input.is-open{display:block}
+.header-search-input:focus{border-color:#4b91d0;box-shadow:0 0 0 2px rgba(75,145,208,.12)}
+.toolbar .search{display:none!important}
+@media(max-width:600px){
+  .store-header{gap:8px}
+  .header-search-wrap{gap:4px}
+  .header-search-input{position:absolute;right:0;top:calc(100% + 10px);width:min(78vw,300px);z-index:30;box-shadow:0 6px 18px rgba(20,50,90,.14)}
+  .header-search-input.is-open{display:block}
+}
+
 </style>
 </head>
 
@@ -1483,7 +1501,12 @@ html{scroll-behavior:smooth}
 
 <header class="store-header">
   <a class="store-brand" href="#" aria-label="Luvira Jewels home">LUVIRA JEWELS</a>
-  <a class="store-search" href="#all-products-section" aria-label="Search products"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><span>Search</span></a>
+  <div class="header-search-wrap">
+    <button class="store-search" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><span>Search</span>
+    </button>
+    <input class="header-search-input" id="headerSearchInput" type="search" placeholder="Search products..." aria-label="Search products">
+  </div>
 </header>
 
 <main class="container">
@@ -1532,6 +1555,8 @@ html{scroll-behavior:smooth}
       class="search"
       id="search"
       placeholder="Search product name or code..."
+      aria-hidden="true"
+      tabindex="-1"
     >
 
   </div>
@@ -4107,6 +4132,32 @@ document.addEventListener("visibilitychange",()=>{
 /* START WEBSITE */
 
 loadProducts();
+
+
+/* TOP HEADER SEARCH: filters products without jumping down the page */
+(function(){
+  const toggle=document.getElementById("headerSearchToggle");
+  const topInput=document.getElementById("headerSearchInput");
+  const productSearch=document.getElementById("search");
+  if(!toggle || !topInput || !productSearch) return;
+  toggle.addEventListener("click",()=>{
+    const open=topInput.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded",String(open));
+    if(open){topInput.focus();}
+    else{topInput.value="";productSearch.value="";productSearch.dispatchEvent(new Event("input",{bubbles:true}));}
+  });
+  topInput.addEventListener("input",()=>{
+    productSearch.value=topInput.value;
+    productSearch.dispatchEvent(new Event("input",{bubbles:true}));
+  });
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape" && topInput.classList.contains("is-open")){
+      topInput.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded","false");
+      topInput.blur();
+    }
+  });
+})();
 
 </script>
 
