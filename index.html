@@ -2131,7 +2131,7 @@ let currentCategory="All Products";
 
 let currentPage=1;
 
-const perPage=12;
+const perPage=24;
 
 async function loadProducts(){
 
@@ -2374,13 +2374,22 @@ loadDriveImage(cardImage,items[0],()=>{
     grid.appendChild(card);
   });
 
-  document.getElementById("heading").textContent=
+  // The current HTML uses #all-products-section, not #heading.
+  // Use the existing toolbar heading so rendering does not stop here.
+  const heading =
+    document.getElementById("heading") ||
+    document.querySelector(".toolbar h2");
 
-    currentCategory;
+  if (heading) {
+    heading.textContent =
+      currentCategory === "All Products" ? "All Products" : currentCategory;
+  }
 
-  document.getElementById("pagination").style.display=
-
-    filtered.length?"flex":"none";
+  // Show pagination only when there is more than one page.
+  const pagination = document.getElementById("pagination");
+  if (pagination) {
+    pagination.style.display = total > 1 ? "flex" : "none";
+  }
 
   document.getElementById("page").textContent=
 
