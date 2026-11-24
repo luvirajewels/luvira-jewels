@@ -1469,14 +1469,6 @@ html{scroll-behavior:smooth}
 .hero-banner .hero-cta{display:inline-flex!important}
 
 
-/* MOBILE: hide the header search icon; keep the All Products search field */
-@media (max-width: 700px) {
-  .store-header .store-search {
-    display: none !important;
-  }
-}
-
-
 /* HEADER SEARCH: open and search from the top navigation */
 .header-search-wrap{display:flex;align-items:center;gap:10px;position:relative}
 .header-search-input{
@@ -1492,6 +1484,35 @@ html{scroll-behavior:smooth}
   .header-search-wrap{gap:4px}
   .header-search-input{position:absolute;right:0;top:calc(100% + 10px);width:min(78vw,300px);z-index:30;box-shadow:0 6px 18px rgba(20,50,90,.14)}
   .header-search-input.is-open{display:block}
+}
+
+
+/* MOBILE HEADER SEARCH VISIBILITY FIX */
+@media (max-width: 700px) {
+  .store-header .header-search-wrap .store-search {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #1B356F !important;
+    padding: 8px 4px !important;
+    min-width: 38px;
+    min-height: 38px;
+  }
+  .store-header .header-search-wrap .store-search svg {
+    display: block !important;
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+  }
+  .store-header .header-search-wrap .store-search span {
+    display: inline !important;
+    font-size: 12px;
+  }
+  .store-header .header-search-wrap .header-search-input.is-open {
+    display: block !important;
+  }
 }
 
 </style>
