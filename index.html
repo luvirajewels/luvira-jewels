@@ -1,903 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luvira Jewels</title>
-
-<style>
-
-:root{
-  --black:#171512;
-  --gold:#c8a45d;
-  --cream:#faf8f3;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:var(--cream);
-  font-family:Arial,sans-serif;
-  color:#29251f;
-}
-
-header{
-  background:var(--black);
-  color:white;
-  text-align:center;
-  padding:24px;
-  border-bottom:3px solid var(--gold);
-}
-
-.logo{
-  font:bold 32px Georgia;
-  letter-spacing:5px;
-}
-
-.tagline{
-  font-size:11px;
-  color:var(--gold);
-  letter-spacing:3px;
-  margin-top:8px;
-}
-
-.container{
-  max-width:1400px;
-  margin:auto;
-  padding:25px 18px;
-}
-
-.section-title{
-  font:26px Georgia;
-  margin-bottom:22px;
-}
-
-.categories{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-}
-
-.cat-btn{
-  background:var(--black);
-  color:var(--gold);
-  border:1px solid var(--gold);
-  padding:18px 5px;
-  cursor:pointer;
-}
-
-.cat-btn.active{
-  background:var(--gold);
-  color:var(--black);
-}
-
-.toolbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:25px 0;
-}
-
-.toolbar h2{
-  font:25px Georgia;
-}
-
-.search{
-  padding:13px;
-  width:300px;
-  max-width:100%;
-  border:1px solid #ddd;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.product{
-  background:white;
-  border:1px solid #eee;
-  cursor:pointer;
-}
-
-.product-image{
-  aspect-ratio:1;
-  background:#f5f3ef;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.product-image span{
-  color:#b4a17f;
-  font:12px Georgia;
-  letter-spacing:2px;
-}
-
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  position:absolute;
-  inset:0;
-}
-
-.product-info{
-  padding:13px;
-}
-
-.product-info h3{
-  font:17px Georgia;
-}
-
-.product-info p{
-  font-size:12px;
-  color:#777;
-}
-
-.view-btn{
-  width:100%;
-  padding:11px;
-  background:var(--black);
-  color:var(--gold);
-  border:0;
-  cursor:pointer;
-}
-
-.status{
-  text-align:center;
-  padding:30px;
-}
-
-.pagination{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:15px;
-  padding:25px;
-}
-
-.pagination button{
-  padding:10px 18px;
-  background:var(--black);
-  color:var(--gold);
-  border:0;
-  cursor:pointer;
-}
-
-.pagination button:disabled{
-  opacity:.4;
-}
-
-footer{
-  background:var(--black);
-  color:var(--gold);
-  text-align:center;
-  padding:25px;
-  margin-top:35px;
-}
-
-/* PRODUCT POPUP */
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#000b;
-  z-index:1000;
-  overflow-y:auto;
-  padding:18px;
-}
-
-.modal-box{
-  background:white;
-  max-width:1500px;
-  margin:15px auto;
-  padding:25px;
-  position:relative;
-  max-height:calc(100vh - 66px);
-  max-height:calc(100dvh - 66px);
-  overflow-y:auto;
-}
-
-.close{
-  position:sticky;
-  float:right;
-  top:0;
-  z-index:20;
-  border:1px solid #ddd;
-  background:white;
-  color:#171512;
-  border-radius:50%;
-  width:38px;
-  height:38px;
-  font-size:26px;
-  cursor:pointer;
-}
-
-.product-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 360px;
-  gap:28px;
-  clear:both;
-}
-
-.desktop-gallery{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-  align-content:start;
-}
-
-.desktop-media{
-  aspect-ratio:1;
-  background:#f7f6f3;
-  overflow:hidden;
-  position:relative;
-  min-width:0;
-}
-
-.desktop-media img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  cursor:zoom-in;
-}
-
-/* CLEAN VIDEO PLAYER */
-
-.video-stage{
-  width:100%;
-  aspect-ratio:1/1;
-  position:relative;
-  background:#f8f7f4;
-  overflow:hidden;
-  display:block;
-}
-
-.desktop-media .video-stage{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  margin:0;
-  aspect-ratio:auto;
-}
-
-.video-stage video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:contain;
-  background:#f8f7f4;
-  border:0;
-  outline:0;
-  pointer-events:none;
-  -webkit-touch-callout:none;
-  user-select:none;
-}
-
-/* VIMEO BACKGROUND PLAYER: no visible Vimeo controls */
-.video-stage iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  display:block;
-  border:0;
-  outline:0;
-  background:#f8f7f4;
-  pointer-events:none;
-}
-
-/* HIDE VIDEO CONTROLS */
-
-.video-stage video::-webkit-media-controls{
-  display:none!important;
-}
-
-.video-stage video::-webkit-media-controls-panel{
-  display:none!important;
-}
-
-.video-stage video::-webkit-media-controls-enclosure{
-  display:none!important;
-}
-
-.video-stage video::-webkit-media-controls-start-playback-button{
-  display:none!important;
-  -webkit-appearance:none;
-}
-
-.video-stage video::-webkit-media-controls-play-button{
-  display:none!important;
-}
-
-.video-stage video::-webkit-media-controls-overlay-play-button{
-  display:none!important;
-}
-
-.video-stage video::-webkit-media-controls-fullscreen-button{
-  display:none!important;
-}
-
-.video-message{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-  color:#927b56;
-  font-size:13px;
-  background:#f8f7f4;
-}
-
-.video-retry{
-  border:1px solid #c8a45d;
-  background:#171512;
-  color:#c8a45d;
-  padding:10px 18px;
-  cursor:pointer;
-  margin-top:12px;
-}
-
-.video-message[hidden]{
-  display:none;
-}
-
-/* PRODUCT INFORMATION */
-
-.product-sidebar{
-  padding:8px 4px;
-  min-width:0;
-  position:sticky;
-  top:10px;
-  align-self:start;
-}
-
-.gallery-kicker{
-  color:#9a793e;
-  font-size:11px;
-  letter-spacing:2px;
-  font-weight:bold;
-}
-
-.product-sidebar h2{
-  font:30px/1.25 Georgia;
-  margin:12px 0 18px;
-}
-
-.product-sidebar p{
-  font-size:14px;
-  line-height:1.6;
-}
-
-.colour-title{
-  font-weight:bold;
-  margin:24px 0 10px;
-}
-
-.colour-options{
-  display:flex;
-  gap:9px;
-  flex-wrap:wrap;
-}
-
-.colour-btn{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:9px 11px;
-  border:1px solid #ddd;
-  background:white;
-  border-radius:30px;
-  cursor:pointer;
-}
-
-.colour-btn.active{
-  border:2px solid var(--gold);
-  background:#fffaf0;
-}
-
-.colour-swatch{
-  width:17px;
-  height:17px;
-  border-radius:50%;
-  border:1px solid #aaa;
-}
-
-.swatch-yl{
-  background:linear-gradient(135deg,#fff1a8,#c99b24);
-}
-
-.swatch-wh{
-  background:linear-gradient(135deg,#fff,#aeb4bb);
-}
-
-.swatch-rs{
-  background:linear-gradient(135deg,#f7d1bd,#b8795c);
-}
-
-.swatch-pt{
-  background:linear-gradient(135deg,#eee,#85898e);
-}
-
-.gallery-note{
-  font-size:12px!important;
-  color:#927b56;
-}
-
-/* PRODUCT DETAILS */
-
-.product-details{
-  margin-top:25px;
-  padding-top:20px;
-  border-top:1px solid #e8e2d8;
-}
-
-.product-details h3{
-  font:23px Georgia;
-  margin-bottom:15px;
-}
-
-.details-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:9px;
-}
-
-.detail-item{
-  background:#faf8f3;
-  border:1px solid #eee7da;
-  padding:12px;
-  min-width:0;
-}
-
-.detail-item strong{
-  display:block;
-  font-size:12px;
-  color:#8c7449;
-  margin-bottom:6px;
-}
-
-.detail-item span{
-  font-size:13px;
-  overflow-wrap:anywhere;
-}
-
-/* IMAGE FULLSCREEN */
-
-.zoomable-image{
-  cursor:zoom-in;
-}
-
-.image-lightbox{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  z-index:3000;
-  align-items:center;
-  justify-content:center;
-  padding:55px 65px;
-}
-
-.image-lightbox.active{
-  display:flex;
-}
-
-.image-lightbox img{
-  display:block;
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-  min-width:0;
-  min-height:0;
-}
-
-.lightbox-close,
-.lightbox-arrow{
-  position:absolute;
-  z-index:10;
-  border:0;
-  border-radius:50%;
-  background:white;
-  color:#171512;
-  width:44px;
-  height:44px;
-  font-size:28px;
-  cursor:pointer;
-  line-height:1;
-}
-
-.lightbox-close{
-  top:15px;
-  right:20px;
-}
-
-.lightbox-arrow{
-  top:50%;
-  transform:translateY(-50%);
-}
-
-.lightbox-arrow.prev{
-  left:10px;
-}
-
-.lightbox-arrow.next{
-  right:10px;
-}
-
-.lightbox-arrow[hidden]{
-  display:none;
-}
-
-.lightbox-caption{
-  position:absolute;
-  bottom:18px;
-  left:0;
-  right:0;
-  text-align:center;
-  color:white;
-  font-size:13px;
-  pointer-events:none;
-}
-
-/* MOBILE GALLERY */
-
-.mobile-gallery{
-  display:none;
-}
-
-.mobile-empty{
-  text-align:center;
-  padding:35px;
-  color:#927b56;
-  font-size:13px;
-}
-
-@media(max-width:1000px){
-
-  .grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .product-layout{
-    grid-template-columns:minmax(0,1fr) 310px;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .container{
-    padding:18px 12px;
-  }
-
-  .categories{
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-  }
-
-  .cat-btn{
-    padding:12px 4px;
-    font-size:11px;
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .product-info{
-    padding:9px;
-  }
-
-  .product-info h3{
-    font-size:14px;
-  }
-
-  .toolbar h2{
-    font-size:21px;
-  }
-
-  .search{
-    width:100%;
-  }
-
-  .modal{
-    padding:0;
-  }
-
-  .modal-box{
-    margin:0;
-    min-height:100%;
-    max-height:100%;
-    padding:14px;
-  }
-
-  .desktop-gallery{
-    display:none;
-  }
-
-  .product-layout{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-  }
-
-  .product-sidebar{
-    position:static;
-    order:2;
-    padding:22px 5px;
-    width:100%;
-  }
-
-  .product-sidebar h2{
-    font-size:25px;
-  }
-
-  .mobile-gallery{
-    display:block;
-    order:1;
-    width:100%;
-  }
-
-  .mobile-image-stage{
-    width:100%;
-    aspect-ratio:1/1;
-    background:#f8f7f4;
-    position:relative;
-    overflow:hidden;
-  }
-
-  .mobile-image-stage img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-    cursor:zoom-in;
-  }
-
-  .mobile-gallery .video-stage{
-    margin-bottom:14px;
-  }
-
-  .mobile-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:50%;
-    background:#ffffffdd;
-    color:#171512;
-    font-size:25px;
-    cursor:pointer;
-  }
-
-  .mobile-arrow.prev{
-    left:8px;
-  }
-
-  .mobile-arrow.next{
-    right:8px;
-  }
-
-  .mobile-dots{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    padding:14px;
-  }
-
-  .mobile-dot{
-    width:8px;
-    height:8px;
-    border:0;
-    border-radius:50%;
-    background:#ddd;
-    padding:0;
-    cursor:pointer;
-  }
-
-  .mobile-dot.active{
-    background:#333;
-  }
-
-  .mobile-tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    border-top:1px solid #ddd;
-    border-bottom:1px solid #ddd;
-    margin-top:5px;
-  }
-
-  .mobile-tab{
-    background:white;
-    border:0;
-    padding:15px 8px;
-    font-size:14px;
-    color:#555;
-    border-bottom:2px solid transparent;
-    cursor:pointer;
-  }
-
-  .mobile-tab.active{
-    border-bottom-color:#171512;
-    color:#171512;
-    font-weight:bold;
-  }
-
-  .mobile-tab-content{
-    padding-top:12px;
-  }
-
-  .details-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .detail-item{
-    padding:10px;
-  }
-
-  .detail-item span{
-    font-size:12px;
-  }
-
-  .image-lightbox{
-    padding:55px 12px;
-  }
-
-  .lightbox-arrow{
-    width:36px;
-    height:36px;
-  }
-
-}
-
-@media(max-width:350px){
-
-  .categories{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .grid{
-    gap:7px;
-  }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-
-  <div class="logo">LUVIRA JEWELS</div>
-
-  <div class="tagline">
-    EXCLUSIVE JEWELLERY COLLECTION
-  </div>
-
-</header>
-
-<main class="container">
-
-  <h1 class="section-title">
-    Explore Our Collections
-  </h1>
-
-  <div class="categories">
-
-    <button class="cat-btn active" data-cat="All Products">
-      ALL
-    </button>
-
-    <button class="cat-btn" data-cat="Rings">
-      RINGS
-    </button>
-
-    <button class="cat-btn" data-cat="Earrings">
-      EARRINGS
-    </button>
-
-    <button class="cat-btn" data-cat="Pendants">
-      PENDANTS
-    </button>
-
-    <button class="cat-btn" data-cat="Necklaces">
-      NECKLACES
-    </button>
-
-    <button class="cat-btn" data-cat="Bracelets">
-      BRACELETS
-    </button>
-
-  </div>
-
-  <div class="toolbar">
-
-    <h2 id="heading">All Products</h2>
-
-    <input
-      class="search"
-      id="search"
-      placeholder="Search product name or code..."
-    >
-
-  </div>
-
-  <div id="status" class="status">
-    Loading collections...
-  </div>
-
-  <div class="grid" id="products"></div>
-
-  <div class="pagination" id="pagination" style="display:none">
-
-    <button id="prev">Previous</button>
-
-    <span id="page"></span>
-
-    <button id="next">Next</button>
-
-  </div>
-
-</main>
-
-<footer>
-  LUVIRA JEWELS · EXCLUSIVE JEWELLERY COLLECTION
-</footer>
-
-<!-- PRODUCT POPUP -->
-
-<div class="modal" id="modal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      id="close"
-      aria-label="Close product"
-    >
-      &times;
-    </button>
-
-    <div id="modal-content"></div>
-
-  </div>
-
-</div>
-
-<!-- FULLSCREEN IMAGE -->
-
-<div
-  class="image-lightbox"
-  id="imageLightbox"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Enlarged product image"
->
-
-  <button
-    class="lightbox-close"
     id="lightboxClose"
     aria-label="Close image"
   >
@@ -908,9 +8,7 @@ footer{
     class="lightbox-arrow prev"
     id="lightboxPrev"
     aria-label="Previous image"
-  >
-    ‹
-  </button>
+  >‹</button>
 
   <img
     id="lightboxImage"
@@ -921,9 +19,7 @@ footer{
     class="lightbox-arrow next"
     id="lightboxNext"
     aria-label="Next image"
-  >
-    ›
-  </button>
+  >›</button>
 
   <div
     class="lightbox-caption"
@@ -970,9 +66,7 @@ function fetchProductMedia(folder){
   }
 
   if(mediaCache.has(folder)){
-
     return mediaCache.get(folder);
-
   }
 
   const request=new Promise((resolve,reject)=>{
@@ -1016,15 +110,10 @@ function fetchProductMedia(folder){
       cleanup();
 
       if(data&&data.success){
-
         resolve(data);
-
       }else{
-
         mediaCache.delete(folder);
-
         reject(new Error("Media API failed"));
-
       }
 
     };
@@ -1040,13 +129,9 @@ function fetchProductMedia(folder){
     };
 
     script.src=
-
       MEDIA_API+
-
       "?folder="+encodeURIComponent(folder)+
-
       "&callback="+encodeURIComponent(callback)+
-
       "&_="+Date.now();
 
     document.head.appendChild(script);
@@ -1070,12 +155,10 @@ function getDriveFileId(item){
   if(item.fileId)return String(item.fileId);
 
   const urls=[
-
     item.url,
     item.directUrl,
     item.downloadUrl,
     item.previewUrl
-
   ];
 
   for(const value of urls){
@@ -1083,13 +166,9 @@ function getDriveFileId(item){
     const url=String(value||"");
 
     const patterns=[
-
       /\/file\/d\/([a-zA-Z0-9_-]+)/,
-
       /[?&]id=([a-zA-Z0-9_-]+)/,
-
       /\/d\/([a-zA-Z0-9_-]+)/
-
     ];
 
     for(const pattern of patterns){
@@ -1117,39 +196,29 @@ function getImageSources(item,size=1200){
   const urls=[];
 
   if(size<=1200 && item.url){
-
     urls.push(String(item.url));
-
   }
 
   if(id){
 
     urls.push(
-
       "https://lh3.googleusercontent.com/d/"+
       id+"=w"+size
-
     );
 
     urls.push(
-
       "https://drive.google.com/thumbnail?id="+
       id+"&sz=w"+size
-
     );
 
     urls.push(
-
       "https://drive.google.com/uc?export=view&id="+id
-
     );
 
   }
 
   if(item.url){
-
     urls.push(String(item.url));
-
   }
 
   return [...new Set(urls.filter(Boolean))];
@@ -1160,7 +229,7 @@ function getImageSources(item,size=1200){
 
 function loadDriveImage(img,item,onFail,size=1200){
 
-  const urls=getImageSources(item,size);
+  const urls=getImageSources(item);
 
   let index=0;
 
@@ -1177,13 +246,9 @@ function loadDriveImage(img,item,onFail,size=1200){
       img.onerror=null;
 
       if(onFail){
-
         onFail();
-
       }else{
-
         img.remove();
-
       }
 
     }
@@ -1191,13 +256,9 @@ function loadDriveImage(img,item,onFail,size=1200){
   };
 
   if(urls.length){
-
     img.src=urls[0];
-
   }else if(onFail){
-
     onFail();
-
   }
 
 }
@@ -1207,19 +268,13 @@ function loadDriveImage(img,item,onFail,size=1200){
 function safe(value){
 
   return String(
-
     value==null||value===""?"-":value
-
   ).replace(/[&<>"']/g,c=>({
 
     "&":"&amp;",
-
     "<":"&lt;",
-
     ">":"&gt;",
-
     '"':"&quot;",
-
     "'":"&#39;"
 
   })[c]);
@@ -1239,15 +294,10 @@ function validVideoURL(value){
     if(url.protocol!=="https:")return "";
 
     if(
-
       url.hostname==="drive.google.com" &&
-
       /\/file\/d\/[^/]+\/(view|preview)/i.test(url.pathname)
-
     ){
-
       return "";
-
     }
 
     return url.href;
@@ -1273,21 +323,15 @@ function getVideoSources(item){
     const valid=validVideoURL(url);
 
     if(valid&&!sources.includes(valid)){
-
       sources.push(valid);
-
     }
 
   };
 
   add(item.streamUrl);
-
   add(item.videoUrl);
-
   add(item.directUrl);
-
   add(item.downloadUrl);
-
   add(item.url);
 
   const id=getDriveFileId(item);
@@ -1295,16 +339,12 @@ function getVideoSources(item){
   if(id&&/^[a-zA-Z0-9_-]+$/.test(id)){
 
     add(
-
       "https://drive.google.com/uc?export=download&id="+id
-
     );
 
     add(
-
       "https://drive.usercontent.google.com/download?id="+
       id+"&export=download&confirm=t"
-
     );
 
   }
@@ -1320,9 +360,7 @@ function parseCSV(text){
   const rows=[];
 
   let row=[];
-
   let cell="";
-
   let quoted=false;
 
   for(let i=0;i<text.length;i++){
@@ -1334,7 +372,6 @@ function parseCSV(text){
       if(quoted&&text[i+1]==='"'){
 
         cell+='"';
-
         i++;
 
       }else{
@@ -1346,7 +383,6 @@ function parseCSV(text){
     }else if(c===','&&!quoted){
 
       row.push(cell);
-
       cell="";
 
     }else if((c==='\n'||c==='\r')&&!quoted){
@@ -1356,13 +392,10 @@ function parseCSV(text){
       row.push(cell);
 
       if(row.some(v=>v.trim())){
-
         rows.push(row);
-
       }
 
       row=[];
-
       cell="";
 
     }else{
@@ -1376,9 +409,7 @@ function parseCSV(text){
   row.push(cell);
 
   if(row.some(v=>v.trim())){
-
     rows.push(row);
-
   }
 
   return rows;
@@ -1408,9 +439,7 @@ async function loadProducts(){
         const response=await fetch(url);
 
         if(!response.ok){
-
           throw new Error(category+" loading failed");
-
         }
 
         const rows=parseCSV(await response.text());
@@ -1422,23 +451,14 @@ async function loadProducts(){
           .map(r=>({
 
             code:r[0]||"",
-
             name:r[1]||"",
-
             description:r[2]||"",
-
             material:r[3]||"",
-
             metalWeight:r[4]||"",
-
             diamondWeight:r[5]||"",
-
             size:r[6]||"",
-
             imageFolder:r[7]||"",
-
             videoFolder:r[8]||"",
-
             category
 
           }));
@@ -1456,7 +476,6 @@ async function loadProducts(){
   }catch(error){
 
     status.textContent=
-
       "Unable to load products. Check Google Sheets publishing settings.";
 
     console.error(error);
@@ -1472,47 +491,32 @@ function renderProducts(){
   const grid=document.getElementById("products");
 
   const search=document
-
     .getElementById("search")
-
     .value
-
     .toLowerCase();
 
   const filtered=allProducts.filter(p=>
 
     (
-
       currentCategory==="All Products"||
-
       p.category===currentCategory
-
     )&&
-
     (
-
       p.name+" "+p.code+" "+p.category
-
     ).toLowerCase().includes(search)
 
   );
 
   const total=Math.max(
-
     1,
-
     Math.ceil(filtered.length/perPage)
-
   );
 
   currentPage=Math.min(currentPage,total);
 
   const list=filtered.slice(
-
     (currentPage-1)*perPage,
-
     currentPage*perPage
-
   );
 
   grid.innerHTML="";
@@ -1520,7 +524,6 @@ function renderProducts(){
   if(!filtered.length){
 
     grid.innerHTML=
-
       '<div class="status" style="grid-column:1/-1">No products found.</div>';
 
   }
@@ -1550,9 +553,7 @@ function renderProducts(){
         const img=document.createElement("img");
 
         img.alt=p.name;
-
         img.loading="lazy";
-
         img.referrerPolicy="no-referrer";
 
         img.onload=()=>placeholder.remove();
@@ -1560,13 +561,9 @@ function renderProducts(){
         image.appendChild(img);
 
         loadDriveImage(
-
           img,
-
           media.images[0],
-
           ()=>img.remove()
-
         );
 
       }).catch(console.warn);
@@ -1608,23 +605,18 @@ function renderProducts(){
   });
 
   document.getElementById("heading").textContent=
-
     currentCategory;
 
   document.getElementById("pagination").style.display=
-
     filtered.length?"flex":"none";
 
   document.getElementById("page").textContent=
-
     `Page ${currentPage} of ${total}`;
 
   document.getElementById("prev").disabled=
-
     currentPage===1;
 
   document.getElementById("next").disabled=
-
     currentPage===total;
 
 }
@@ -1636,19 +628,12 @@ let productRequest=0;
 let mediaState={
 
   product:null,
-
   images:[],
-
   videos:[],
-
   imageGroups:{},
-
   videoGroups:{},
-
   colour:"",
-
   imageIndex:0,
-
   tab:"images"
 
 };
@@ -1679,67 +664,109 @@ const COLOURS={
 
 /*
   VIMEO VIDEOS
-  Current product LJ002221 uses the three links supplied.
-  For every future product, add its Vimeo links in the Google Sheet
-  videoFolder column using this format:
+
+  Product LJ002221 uses the three Vimeo links supplied.
+
+  Future products can use the Google Sheet videoFolder column:
+
   RS=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
   YL=https://vimeo.com/VIDEO_ID/PRIVACY_HASH;
   WH=https://vimeo.com/VIDEO_ID/PRIVACY_HASH
 */
+
 const VIMEO_PRODUCT_MAP={
+
   "LJ002221":{
+
     RS:"https://vimeo.com/1249559319/ba27aa7c1b",
+
     YL:"https://vimeo.com/1249559318/d55ac4f0ba",
+
     WH:"https://vimeo.com/1249559320/898a317c21"
+
   }
+
 };
 
 function parseVimeoUrl(value,colour,productCode){
+
   const raw=String(value||"").trim();
-  const match=raw.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/i);
+
+  const match=raw.match(
+    /vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/i
+  );
+
   if(!match)return null;
+
   return {
+
     name:String(productCode||"PRODUCT")+"-"+colour,
+
     id:match[1],
+
     vimeoId:match[1],
+
     hash:match[2]||"",
+
     colour:colour,
+
     vimeoUrl:raw
+
   };
+
 }
 
 function getVimeoVideosForProduct(product){
+
   const result=[];
+
   const raw=String(product.videoFolder||"").trim();
 
-  // Preferred scalable method: store colour-specific Vimeo URLs in Sheet column I.
   const pattern=/(?:^|[;|\n])\s*(RS|WH|YL)\s*[:=]\s*(https?:\/\/(?:www\.)?vimeo\.com\/[^;|\s]+)/gi;
+
   let match;
+
   while((match=pattern.exec(raw))!==null){
-    const item=parseVimeoUrl(match[2],match[1].toUpperCase(),product.code);
+
+    const item=parseVimeoUrl(
+      match[2],
+      match[1].toUpperCase(),
+      product.code
+    );
+
     if(item)result.push(item);
+
   }
 
-  // Built-in first-product setup, so LJ002221 works even before Sheet column I is changed.
   if(!result.length){
-    const saved=VIMEO_PRODUCT_MAP[String(product.code||"").trim().toUpperCase()];
+
+    const saved=
+      VIMEO_PRODUCT_MAP[
+        String(product.code||"").trim().toUpperCase()
+      ];
+
     if(saved){
+
       Object.entries(saved).forEach(([colour,url])=>{
+
         const item=parseVimeoUrl(url,colour,product.code);
+
         if(item)result.push(item);
+
       });
+
     }
+
   }
 
   return result;
+
 }
 
 function getColour(name){
 
   const match=String(name||"")
-
     .toUpperCase()
-
     .match(/[-_](YL|WH|RS|PT)(?:[-_.]|$)/);
 
   return match?match[1]:"OTHER";
@@ -1755,13 +782,10 @@ function imagesForColour(){
 function videosForColour(){
 
   const matching=
-
     mediaState.videoGroups[mediaState.colour]||[];
 
   return matching.length?
-
     matching:
-
     (mediaState.videoGroups.OTHER||[]);
 
 }
@@ -1785,11 +809,8 @@ function renderColours(){
     .map(c=>`
 
       <button
-
         class="colour-btn ${mediaState.colour===c?"active":""}"
-
         data-colour="${c}"
-
       >
 
         <span class="colour-swatch ${COLOURS[c].swatch}"></span>
@@ -1801,1593 +822,3 @@ function renderColours(){
     `).join("");
 
 }
-
-/* PRODUCT DETAILS */
-
-function renderDetails(){
-
-  const p=mediaState.product;
-
-  const fields=[
-
-    ["Product Name",p.name],
-
-    ["Product Code",p.code],
-
-    ["Category",p.category],
-
-    ["Description",p.description],
-
-    ["Material",p.material],
-
-    ["Metal Weight",p.metalWeight],
-
-    ["Diamond Weight",p.diamondWeight],
-
-    ["Size",p.size]
-
-  ];
-
-  return `
-
-    <section class="product-details">
-
-      <h3>Product Details</h3>
-
-      <div class="details-grid">
-
-        ${fields.map(([a,b])=>`
-
-          <div class="detail-item">
-
-            <strong>${a}</strong>
-
-            <span>${safe(b)}</span>
-
-          </div>
-
-        `).join("")}
-
-      </div>
-
-    </section>
-
-  `;
-
-}
-
-/* CLEAN AUTOPLAY VIDEO */
-
-function videoHTML(item,index){
-
-  // Vimeo background mode hides the play, volume, settings and fullscreen controls.
-  if(item && item.vimeoId){
-    const privacyHash=item.hash
-      ? "&h="+encodeURIComponent(item.hash)
-      : "";
-    const vimeoSrc=
-      "https://player.vimeo.com/video/"+
-      encodeURIComponent(item.vimeoId)+
-      "?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"+
-      privacyHash;
-
-    return `
-      <div class="video-stage vimeo-video-stage">
-        <iframe
-          src="${safe(vimeoSrc)}"
-          title="Luvira Jewels product video ${index+1}"
-          loading="eager"
-          allow="autoplay; fullscreen; picture-in-picture"
-          referrerpolicy="strict-origin-when-cross-origin"
-          playsinline
-        ></iframe>
-      </div>
-    `;
-  }
-
-  const sources=getVideoSources(item);
-
-  if(!sources.length){
-
-    return `
-
-      <div class="video-stage">
-
-        <div class="video-message">
-
-          Video unavailable.
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-  const posterItem=imagesForColour()[0];
-
-  const posterSources=getImageSources(posterItem);
-
-  const poster=posterSources[0]||"";
-
-  return `
-
-    <div
-
-      class="video-stage"
-
-      data-sources="${safe(JSON.stringify(sources))}"
-
-    >
-
-      <video
-
-        class="product-video"
-
-        autoplay
-
-        muted
-
-        loop
-
-        playsinline
-
-        webkit-playsinline
-
-        disablepictureinpicture
-
-        disableremoteplayback
-
-        preload="none"
-
-        ${poster?`poster="${safe(poster)}"`:""}
-
-        aria-label="Luvira Jewels Product Video ${index+1}"
-
-      ></video>
-
-      <div class="video-message" hidden>
-
-        <span class="video-message-text">
-
-          Video could not load.
-
-        </span>
-
-        <button class="video-retry">
-
-          Retry Video
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-/* VIDEO PLAYER MANAGEMENT */
-
-const videoPlayers=new WeakMap();
-
-function isVideoVisible(video){
-
-  return (
-
-    video.isConnected &&
-
-    video.getClientRects().length>0 &&
-
-    !document.hidden &&
-
-    document.getElementById("modal").style.display==="block"
-
-  );
-
-}
-
-function prepareVideo(video){
-
-  if(videoPlayers.has(video)){
-
-    return videoPlayers.get(video);
-
-  }
-
-  const stage=video.parentElement;
-
-  const message=stage.querySelector(".video-message");
-
-  const messageText=stage.querySelector(".video-message-text");
-
-  const retryButton=stage.querySelector(".video-retry");
-
-  let sources=[];
-
-  try{
-
-    sources=JSON.parse(stage.dataset.sources||"[]");
-
-  }catch(error){
-
-    sources=[];
-
-  }
-
-  const state={
-
-    index:0,
-
-    loaded:false,
-
-    failed:false,
-
-    sources
-
-  };
-
-  videoPlayers.set(video,state);
-
-  video.controls=false;
-
-  video.removeAttribute("controls");
-
-  video.muted=true;
-
-  video.defaultMuted=true;
-
-  video.autoplay=true;
-
-  video.loop=true;
-
-  video.playsInline=true;
-
-  video.setAttribute("muted","");
-
-  video.setAttribute("autoplay","");
-
-  video.setAttribute("playsinline","");
-
-  video.setAttribute("webkit-playsinline","");
-
-  function showMessage(text){
-
-    if(messageText){
-
-      messageText.textContent=text;
-
-    }
-
-    if(message){
-
-      message.hidden=false;
-
-    }
-
-  }
-
-  function playVideo(){
-
-    if(!isVideoVisible(video))return;
-
-    if(state.failed)return;
-
-    video.muted=true;
-
-    const promise=video.play();
-
-    if(promise&&typeof promise.catch==="function"){
-
-      promise.catch(error=>{
-
-        if(!video.isConnected)return;
-
-        if(error.name==="NotAllowedError"){
-
-          showMessage("Tap to start video.");
-
-          if(retryButton){
-
-            retryButton.textContent="Start Video";
-
-          }
-
-        }
-
-      });
-
-    }
-
-  }
-
-  function loadSource(){
-
-    if(!video.isConnected)return;
-
-    if(!isVideoVisible(video)){
-
-      state.loaded=false;
-
-      return;
-
-    }
-
-    if(state.index>=state.sources.length){
-
-      state.failed=true;
-
-      showMessage(
-
-        "Video unavailable. Please check the video streaming URL."
-
-      );
-
-      if(retryButton){
-
-        retryButton.textContent="Retry Video";
-
-      }
-
-      return;
-
-    }
-
-    state.loaded=true;
-
-    state.failed=false;
-
-    video.muted=true;
-
-    video.preload="auto";
-
-    if(message){
-
-      message.hidden=true;
-
-    }
-
-    video.src=state.sources[state.index];
-
-    video.load();
-
-    playVideo();
-
-  }
-
-  video.addEventListener("loadeddata",()=>{
-
-    if(message){
-
-      message.hidden=true;
-
-    }
-
-    playVideo();
-
-  });
-
-  video.addEventListener("canplay",playVideo);
-
-  video.addEventListener("playing",()=>{
-
-    if(message){
-
-      message.hidden=true;
-
-    }
-
-  });
-
-  video.addEventListener("error",()=>{
-
-    if(!video.isConnected)return;
-
-    state.index++;
-
-    state.loaded=false;
-
-    loadSource();
-
-  });
-
-  video.addEventListener("ended",()=>{
-
-    if(isVideoVisible(video)){
-
-      video.currentTime=0;
-
-      playVideo();
-
-    }
-
-  });
-
-  if(retryButton){
-
-    retryButton.onclick=()=>{
-
-      if(message){
-
-        message.hidden=true;
-
-      }
-
-      if(state.failed){
-
-        state.index=0;
-
-        state.failed=false;
-
-        state.loaded=false;
-
-        loadSource();
-
-      }else{
-
-        playVideo();
-
-      }
-
-    };
-
-  }
-
-  state.start=()=>{
-
-    if(!isVideoVisible(video)){
-
-      video.pause();
-
-      return;
-
-    }
-
-    if(state.failed)return;
-
-    if(!state.loaded){
-
-      loadSource();
-
-    }else{
-
-      playVideo();
-
-    }
-
-  };
-
-  return state;
-
-}
-
-/* START ONLY VISIBLE VIDEOS */
-
-function startVisibleVideos(root){
-
-  if(!root)return;
-
-  root.querySelectorAll("video.product-video").forEach(video=>{
-
-    if(!isVideoVisible(video)){
-
-      video.pause();
-
-      return;
-
-    }
-
-    const player=prepareVideo(video);
-
-    player.start();
-
-  });
-
-}
-
-/* STOP ALL VIDEOS */
-
-function stopVideos(root){
-
-  if(!root)return;
-
-  root.querySelectorAll("video").forEach(video=>{
-
-    video.pause();
-
-    video.removeAttribute("src");
-
-    video.load();
-
-  });
-
-}
-
-/* MOBILE IMAGE GALLERY */
-
-function renderMobileImages(){
-
-  const images=imagesForColour();
-
-  const i=mediaState.imageIndex;
-
-  return `
-
-    <div class="mobile-image-stage">
-
-      ${images[i]?
-
-        '<img id="mobile-main-image" alt="Product image">'
-
-        :
-
-        '<div class="mobile-empty">No images available.</div>'
-
-      }
-
-      ${images.length>1?`
-
-        <button
-
-          class="mobile-arrow prev"
-
-          id="prev-image"
-
-          aria-label="Previous image"
-
-        >‹</button>
-
-        <button
-
-          class="mobile-arrow next"
-
-          id="next-image"
-
-          aria-label="Next image"
-
-        >›</button>
-
-      `:""}
-
-    </div>
-
-    <div class="mobile-dots">
-
-      ${images.map((x,n)=>`
-
-        <button
-
-          class="mobile-dot ${n===i?"active":""}"
-
-          data-dot="${n}"
-
-          aria-label="Image ${n+1}"
-
-        ></button>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-/* MOBILE VIDEO GALLERY */
-
-function renderMobileVideos(){
-
-  const videos=videosForColour();
-
-  if(!videos.length){
-
-    return '<div class="mobile-empty">No videos available for this colour.</div>';
-
-  }
-
-  return videos.map(
-
-    (v,i)=>videoHTML(v,i)
-
-  ).join("");
-
-}
-
-/* DESKTOP GALLERY ITEMS */
-
-function getDesktopItems(){
-
-  const images=imagesForColour();
-
-  const videos=videosForColour();
-
-  const items=[];
-
-  if(images.length){
-
-    items.push({
-
-      type:"image",
-
-      item:images[0],
-
-      imageIndex:0
-
-    });
-
-  }
-
-  videos.forEach(v=>{
-
-    items.push({
-
-      type:"video",
-
-      item:v
-
-    });
-
-  });
-
-  images.slice(1).forEach((v,index)=>{
-
-    items.push({
-
-      type:"image",
-
-      item:v,
-
-      imageIndex:index+1
-
-    });
-
-  });
-
-  return items;
-
-}
-
-/* DESKTOP GALLERY */
-
-function renderDesktop(){
-
-  const items=getDesktopItems();
-
-  if(!items.length){
-
-    return '<div class="mobile-empty">No product media available.</div>';
-
-  }
-
-  return items.map((m,i)=>{
-
-    if(m.type==="image"){
-
-      return `
-
-        <div class="desktop-media">
-
-          <img
-
-            data-desktop="${i}"
-
-            class="zoomable-image"
-
-            alt="Product image"
-
-          >
-
-        </div>
-
-      `;
-
-    }
-
-    return `
-
-      <div class="desktop-media">
-
-        ${videoHTML(m.item,i)}
-
-      </div>
-
-    `;
-
-  }).join("");
-
-}
-
-/* MAIN PRODUCT GALLERY */
-
-function renderGallery(){
-
-  const p=mediaState.product;
-
-  const content=document.getElementById("modal-content");
-
-  content.innerHTML="";
-
-  content.innerHTML=`
-
-    <div class="product-layout">
-
-      <div class="desktop-gallery">
-
-        ${renderDesktop()}
-
-      </div>
-
-      <div class="mobile-gallery">
-
-        <div
-
-          id="mobile-image-view"
-
-          style="${mediaState.tab==="images"?"":"display:none"}"
-
-        >
-
-          ${renderMobileImages()}
-
-        </div>
-
-        <div class="mobile-tabs">
-
-          <button
-
-            class="mobile-tab ${mediaState.tab==="images"?"active":""}"
-
-            data-tab="images"
-
-          >
-
-            ▧ &nbsp; Images
-
-          </button>
-
-          <button
-
-            class="mobile-tab ${mediaState.tab==="videos"?"active":""}"
-
-            data-tab="videos"
-
-          >
-
-            ▷ &nbsp; Videos
-
-          </button>
-
-        </div>
-
-        <div
-
-          class="mobile-tab-content"
-
-          id="mobile-video-view"
-
-        >
-
-          ${mediaState.tab==="videos"?renderMobileVideos():""}
-
-        </div>
-
-      </div>
-
-      <aside class="product-sidebar">
-
-        <div class="gallery-kicker">
-
-          Luvira Jewels
-
-        </div>
-
-        <h2>${safe(p.name)}</h2>
-
-        <p>
-
-          <strong>Product Code:</strong>
-
-          ${safe(p.code)}
-
-        </p>
-
-        <p>
-
-          <strong>Category:</strong>
-
-          ${safe(p.category)}
-
-        </p>
-
-        <p>${safe(p.description)}</p>
-
-        <div class="colour-title">
-
-          Choose your colour
-
-        </div>
-
-        <div class="colour-options">
-
-          ${renderColours()}
-
-        </div>
-
-        <p class="gallery-note">
-
-          Select a colour to view matching images and videos.
-
-        </p>
-
-        ${renderDetails()}
-
-      </aside>
-
-    </div>
-
-  `;
-
-  const items=getDesktopItems();
-
-  items.forEach((m,i)=>{
-
-    if(m.type!=="image")return;
-
-    const img=content.querySelector(
-
-      `[data-desktop="${i}"]`
-
-    );
-
-    if(img){
-
-      loadDriveImage(img,m.item);
-
-      bindZoom(img,m.imageIndex);
-
-    }
-
-  });
-
-  loadMobileImage();
-
-  bindGalleryEvents();
-
-  requestAnimationFrame(()=>{
-
-    startVisibleVideos(content);
-
-  });
-
-}
-
-/* MOBILE IMAGE LOADING */
-
-function loadMobileImage(){
-
-  const img=document.getElementById("mobile-main-image");
-
-  const item=imagesForColour()[mediaState.imageIndex];
-
-  if(img&&item){
-
-    loadDriveImage(img,item);
-
-    bindZoom(img,mediaState.imageIndex);
-
-  }
-
-}
-
-/* MOBILE IMAGE NAVIGATION */
-
-function renderImageView(){
-
-  const box=document.getElementById("mobile-image-view");
-
-  if(!box)return;
-
-  box.innerHTML=renderMobileImages();
-
-  loadMobileImage();
-
-  bindImageEvents();
-
-}
-
-function bindImageEvents(){
-
-  const prev=document.getElementById("prev-image");
-
-  const next=document.getElementById("next-image");
-
-  const images=imagesForColour();
-
-  if(prev){
-
-    prev.onclick=()=>{
-
-      mediaState.imageIndex=
-
-        (mediaState.imageIndex-1+images.length)%images.length;
-
-      renderImageView();
-
-    };
-
-  }
-
-  if(next){
-
-    next.onclick=()=>{
-
-      mediaState.imageIndex=
-
-        (mediaState.imageIndex+1)%images.length;
-
-      renderImageView();
-
-    };
-
-  }
-
-  document.querySelectorAll("[data-dot]").forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      mediaState.imageIndex=Number(btn.dataset.dot);
-
-      renderImageView();
-
-    };
-
-  });
-
-  const stage=document.querySelector(".mobile-image-stage");
-
-  if(stage){
-
-    let startX=0;
-
-    stage.ontouchstart=e=>{
-
-      startX=e.changedTouches[0].clientX;
-
-    };
-
-    stage.ontouchend=e=>{
-
-      const endX=e.changedTouches[0].clientX;
-
-      const difference=startX-endX;
-
-      if(Math.abs(difference)<50||images.length<2)return;
-
-      if(difference>0){
-
-        mediaState.imageIndex=
-
-          (mediaState.imageIndex+1)%images.length;
-
-      }else{
-
-        mediaState.imageIndex=
-
-          (mediaState.imageIndex-1+images.length)%images.length;
-
-      }
-
-      renderImageView();
-
-    };
-
-  }
-
-}
-
-/* TABS AND COLOUR SWITCHING */
-
-function bindGalleryEvents(){
-
-  bindImageEvents();
-
-  document.querySelectorAll("[data-tab]").forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      mediaState.tab=btn.dataset.tab;
-
-      document.querySelectorAll("[data-tab]").forEach(b=>{
-
-        b.classList.toggle(
-
-          "active",
-
-          b.dataset.tab===mediaState.tab
-
-        );
-
-      });
-
-      const imageView=
-
-        document.getElementById("mobile-image-view");
-
-      const videoView=
-
-        document.getElementById("mobile-video-view");
-
-      if(mediaState.tab==="images"){
-
-        imageView.style.display="block";
-
-        videoView.innerHTML="";
-
-      }else{
-
-        imageView.style.display="none";
-
-        videoView.innerHTML=renderMobileVideos();
-
-        startVisibleVideos(videoView);
-
-      }
-
-    };
-
-  });
-
-  document.querySelectorAll("[data-colour]").forEach(btn=>{
-
-    btn.onclick=()=>{
-
-      mediaState.colour=btn.dataset.colour;
-
-      mediaState.imageIndex=0;
-
-      if(
-
-        mediaState.tab==="videos"&&
-
-        !videosForColour().length
-
-      ){
-
-        mediaState.tab="images";
-
-      }
-
-      renderGallery();
-
-    };
-
-  });
-
-}
-
-/* OPEN PRODUCT */
-
-async function openProduct(p){
-
-  const requestId=++productRequest;
-
-  const modal=document.getElementById("modal");
-
-  const content=document.getElementById("modal-content");
-
-  mediaState={
-
-    product:p,
-
-    images:[],
-
-    videos:[],
-
-    imageGroups:{},
-
-    videoGroups:{},
-
-    colour:"",
-
-    imageIndex:0,
-
-    tab:"images"
-
-  };
-
-  modal.style.display="block";
-
-  document.body.style.overflow="hidden";
-
-  document.querySelector(".modal-box").scrollTop=0;
-
-  content.innerHTML=`
-
-    <div class="status">
-
-      Loading product images and videos...
-
-    </div>
-
-  `;
-
-  try{
-
-    const vimeoVideos=getVimeoVideosForProduct(p);
-
-    const mediaTasks=[
-      fetchProductMedia(p.imageFolder)
-    ];
-
-    // Do not send a Vimeo URL string to the Google Drive Apps Script.
-    if(!vimeoVideos.length){
-      mediaTasks.push(fetchProductMedia(p.videoFolder));
-    }
-
-    const results=await Promise.allSettled(mediaTasks);
-
-    if(requestId!==productRequest)return;
-
-    const imageData=
-      results[0].status==="fulfilled"?
-      results[0].value:
-      {images:[]};
-
-    const driveVideoData=
-      !vimeoVideos.length && results[1] && results[1].status==="fulfilled"?
-      results[1].value:
-      {videos:[]};
-
-    mediaState.images=imageData.images||[];
-    mediaState.videos=vimeoVideos.length?vimeoVideos:(driveVideoData.videos||[]);
-
-    /* GROUP IMAGES */
-
-    mediaState.images.forEach(item=>{
-
-      const c=getColour(item.name);
-
-      if(!mediaState.imageGroups[c]){
-
-        mediaState.imageGroups[c]=[];
-
-      }
-
-      mediaState.imageGroups[c].push(item);
-
-    });
-
-    /* GROUP VIDEOS */
-
-    mediaState.videos.forEach(item=>{
-
-      const c=getColour(item.name);
-
-      if(!mediaState.videoGroups[c]){
-
-        mediaState.videoGroups[c]=[];
-
-      }
-
-      mediaState.videoGroups[c].push(item);
-
-    });
-
-    const available=[...new Set([
-
-      ...Object.keys(mediaState.imageGroups),
-
-      ...Object.keys(mediaState.videoGroups)
-
-    ])].filter(c=>c!=="OTHER");
-
-    mediaState.colour=
-
-      ["YL","WH","RS","PT"].find(c=>available.includes(c))
-
-      ||available[0]
-
-      ||"OTHER";
-
-    if(
-
-      !imagesForColour().length &&
-
-      mediaState.imageGroups.OTHER
-
-    ){
-
-      mediaState.imageGroups[mediaState.colour]=
-
-        mediaState.imageGroups.OTHER;
-
-    }
-
-    /* MOBILE AUTO VIDEO TAB */
-
-    if(
-
-      window.matchMedia("(max-width:700px)").matches &&
-
-      videosForColour().length
-
-    ){
-
-      mediaState.tab="videos";
-
-    }
-
-    renderGallery();
-
-  }catch(error){
-
-    if(requestId!==productRequest)return;
-
-    console.error(error);
-
-    content.innerHTML=
-
-      '<div class="status">Unable to load product media. Please try again.</div>';
-
-  }
-
-}
-
-/* FULLSCREEN IMAGE ZOOM */
-
-let lightboxIndex=0;
-
-let zoomTrigger=null;
-
-function bindZoom(img,index){
-
-  img.classList.add("zoomable-image");
-
-  img.tabIndex=0;
-
-  img.setAttribute("role","button");
-
-  img.setAttribute(
-
-    "aria-label",
-
-    "Enlarge product image"
-
-  );
-
-  img.onclick=()=>{
-
-    openImageLightbox(index,img);
-
-  };
-
-  img.onkeydown=e=>{
-
-    if(e.key==="Enter"||e.key===" "){
-
-      e.preventDefault();
-
-      openImageLightbox(index,img);
-
-    }
-
-  };
-
-}
-
-/* HIGH RESOLUTION IMAGE */
-
-function showLightboxImage(index){
-
-  const images=imagesForColour();
-
-  if(!images.length)return;
-
-  lightboxIndex=
-
-    (index+images.length)%images.length;
-
-  const item=images[lightboxIndex];
-
-  const img=document.getElementById("lightboxImage");
-
-  const caption=
-
-    document.getElementById("lightboxCaption");
-
-  caption.textContent=
-
-    (lightboxIndex+1)+" / "+images.length;
-
-  img.onerror=null;
-
-  img.removeAttribute("src");
-
-  loadDriveImage(
-
-    img,
-
-    item,
-
-    ()=>{
-
-      caption.textContent="Image could not load.";
-
-    },
-
-    2400
-
-  );
-
-  document.getElementById("lightboxPrev").hidden=
-
-    images.length<2;
-
-  document.getElementById("lightboxNext").hidden=
-
-    images.length<2;
-
-}
-
-/* OPEN FULLSCREEN */
-
-function openImageLightbox(index,trigger){
-
-  if(!imagesForColour().length)return;
-
-  zoomTrigger=trigger;
-
-  document.getElementById("imageLightbox")
-
-    .classList.add("active");
-
-  showLightboxImage(index);
-
-  document.getElementById("lightboxClose").focus();
-
-}
-
-/* CLOSE FULLSCREEN */
-
-function closeImageLightbox(){
-
-  document.getElementById("imageLightbox")
-
-    .classList.remove("active");
-
-  const img=document.getElementById("lightboxImage");
-
-  img.onerror=null;
-
-  img.removeAttribute("src");
-
-  if(zoomTrigger&&zoomTrigger.isConnected){
-
-    zoomTrigger.focus();
-
-  }
-
-  zoomTrigger=null;
-
-}
-
-/* LIGHTBOX EVENTS */
-
-document.getElementById("lightboxClose").onclick=
-
-  closeImageLightbox;
-
-document.getElementById("lightboxPrev").onclick=()=>{
-
-  showLightboxImage(lightboxIndex-1);
-
-};
-
-document.getElementById("lightboxNext").onclick=()=>{
-
-  showLightboxImage(lightboxIndex+1);
-
-};
-
-document.getElementById("imageLightbox").onclick=e=>{
-
-  if(e.target.id==="imageLightbox"){
-
-    closeImageLightbox();
-
-  }
-
-};
-
-/* CATEGORY FILTER */
-
-document.querySelectorAll(".cat-btn").forEach(btn=>{
-
-  btn.onclick=()=>{
-
-    document.querySelectorAll(".cat-btn").forEach(b=>{
-
-      b.classList.remove("active");
-
-    });
-
-    btn.classList.add("active");
-
-    currentCategory=btn.dataset.cat;
-
-    currentPage=1;
-
-    renderProducts();
-
-  };
-
-});
-
-/* SEARCH */
-
-document.getElementById("search").oninput=()=>{
-
-  currentPage=1;
-
-  renderProducts();
-
-};
-
-/* PAGINATION */
-
-document.getElementById("prev").onclick=()=>{
-
-  if(currentPage>1){
-
-    currentPage--;
-
-    renderProducts();
-
-    window.scrollTo({
-
-      top:0,
-
-      behavior:"smooth"
-
-    });
-
-  }
-
-};
-
-document.getElementById("next").onclick=()=>{
-
-  currentPage++;
-
-  renderProducts();
-
-  window.scrollTo({
-
-    top:0,
-
-    behavior:"smooth"
-
-  });
-
-};
-
-/* CLOSE PRODUCT */
-
-function closeModal(){
-
-  closeImageLightbox();
-
-  ++productRequest;
-
-  const modal=document.getElementById("modal");
-
-  const content=document.getElementById("modal-content");
-
-  modal.style.display="none";
-
-  const oldVideos=[...content.querySelectorAll("video")];
-
-  content.innerHTML="";
-
-  oldVideos.forEach(video=>{
-
-    video.pause();
-
-    video.removeAttribute("src");
-
-    video.load();
-
-  });
-
-  document.body.style.overflow="";
-
-}
-
-document.getElementById("close").onclick=closeModal;
-
-document.getElementById("modal").onclick=e=>{
-
-  if(e.target.id==="modal"){
-
-    closeModal();
-
-  }
-
-};
-
-/* KEYBOARD CONTROLS */
-
-document.addEventListener("keydown",e=>{
-
-  const lightboxOpen=
-
-    document.getElementById("imageLightbox")
-
-    .classList.contains("active");
-
-  if(lightboxOpen){
-
-    if(e.key==="Escape"){
-
-      closeImageLightbox();
-
-    }
-
-    if(e.key==="ArrowRight"){
-
-      showLightboxImage(lightboxIndex+1);
-
-    }
-
-    if(e.key==="ArrowLeft"){
-
-      showLightboxImage(lightboxIndex-1);
-
-    }
-
-    return;
-
-  }
-
-  if(e.key==="Escape"){
-
-    closeModal();
-
-  }
-
-});
-
-/* RESPONSIVE VIDEO SUPPORT */
-
-window.addEventListener("resize",()=>{
-
-  startVisibleVideos(
-
-    document.getElementById("modal-content")
-
-  );
-
-});
-
-/* PAUSE WHEN BROWSER TAB IS HIDDEN */
-
-document.addEventListener("visibilitychange",()=>{
-
-  startVisibleVideos(
-
-    document.getElementById("modal-content")
-
-  );
-
-});
-
-/* START WEBSITE */
-
-loadProducts();
-
-</script>
-
-</body>
-</html>
